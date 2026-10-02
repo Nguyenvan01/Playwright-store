@@ -235,4 +235,3 @@ npm run test:prod && TEST_ENV=prod npm run docs:testcases
 Các vấn đề phân quyền khác (không kiểm thử tự động vì cần ghi dữ liệu thật): không có kiểm tra quyền theo vai trò
 (nhân viên `staff`/`warehouse` làm được mọi thứ, kể cả tạo admin); API tạo/sửa nhân viên trả về cả hash mật khẩu
 (`SELECT *`); tạo khách hàng với mật khẩu `admin123`/`manager123`/`staff123` thì lưu **plaintext**.
-# Playwright-store

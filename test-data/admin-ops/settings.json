@@ -1,0 +1,68 @@
+{
+  "mock": {
+    "site_name": "CANIFA",
+    "site_email": "contact@canifa.com",
+    "contact_phone": "1900 6061",
+    "contact_address": "Hà Nội, Việt Nam",
+    "site_description": "Thời trang cho mọi nhà",
+    "logo_url": "",
+    "favicon_url": "",
+    "primary_color": "#d71920",
+    "home_banner_url": "",
+    "background_url": "",
+    "free_shipping_threshold": "499000",
+    "default_shipping_fee": "30000",
+    "allow_cod": "1",
+    "allow_vnpay": "1",
+    "allow_momo": "0",
+    "allow_bank_transfer": "1",
+    "facebook_url": "https://facebook.com/canifa",
+    "instagram_url": "",
+    "tiktok_url": "",
+    "youtube_url": "",
+    "return_policy": "Đổi trả trong 30 ngày",
+    "shipping_policy": "",
+    "privacy_policy": "",
+    "terms_of_service": ""
+  },
+  "tabs": [
+    { "id": "ADO-SET-T01", "title": "Tab \"Thông tin cửa hàng\"", "tags": ["@smoke"], "tab": "Thông tin cửa hàng", "labels": ["Tên cửa hàng *", "Email liên hệ *", "Số điện thoại", "Địa chỉ", "Mô tả ngắn", "Logo URL", "Favicon URL"] },
+    { "id": "ADO-SET-T02", "title": "Tab \"Giao diện\"", "tab": "Giao diện", "labels": ["Màu chủ đạo", "Banner trang chủ", "Ảnh nền"] },
+    { "id": "ADO-SET-T03", "title": "Tab \"Bán hàng\"", "tab": "Bán hàng", "labels": ["Miễn phí vận chuyển từ", "Phí vận chuyển mặc định", "Cho phép COD", "Cho phép VNPay", "Cho phép MoMo", "Cho phép chuyển khoản"] },
+    { "id": "ADO-SET-T04", "title": "Tab \"Mạng xã hội\"", "tab": "Mạng xã hội", "labels": ["Facebook", "Instagram", "TikTok", "YouTube"] },
+    { "id": "ADO-SET-T05", "title": "Tab \"Chính sách\"", "tab": "Chính sách", "labels": ["Chính sách đổi trả", "Chính sách vận chuyển", "Chính sách bảo mật", "Điều khoản sử dụng"] }
+  ],
+  "loaded": {
+    "id": "ADO-SET-01",
+    "title": "Giá trị từ API được điền vào form (ô nhập + checkbox)",
+    "fields": { "Tên cửa hàng": "CANIFA", "Email liên hệ": "contact@canifa.com", "Số điện thoại": "1900 6061", "Địa chỉ": "Hà Nội, Việt Nam" },
+    "checkboxes": { "Cho phép COD": true, "Cho phép VNPay": true, "Cho phép MoMo": false, "Cho phép chuyển khoản": true }
+  },
+  "validation": [
+    { "id": "ADO-SET-V01", "title": "Xóa tên cửa hàng", "tags": ["@smoke"], "form": { "Tên cửa hàng": "" }, "toast": "Tên cửa hàng không được để trống." },
+    { "id": "ADO-SET-V02", "title": "Tên cửa hàng chỉ có khoảng trắng", "form": { "Tên cửa hàng": "   " }, "toast": "Tên cửa hàng không được để trống." },
+    { "id": "ADO-SET-V03", "title": "Xóa email liên hệ", "form": { "Email liên hệ": "" }, "toast": "Email liên hệ không được để trống." },
+    { "id": "ADO-SET-V04", "title": "Xóa cả tên và email -> báo tên trước", "form": { "Tên cửa hàng": "", "Email liên hệ": "" }, "toast": "Tên cửa hàng không được để trống." }
+  ],
+  "save": {
+    "id": "ADO-SET-02",
+    "title": "Sửa ở nhiều tab rồi \"Lưu cài đặt\" gửi PUT đủ thay đổi (mock)",
+    "steps": [
+      { "tab": "Thông tin cửa hàng", "form": { "Tên cửa hàng": "CANIFA E2E" } },
+      { "tab": "Bán hàng", "form": { "Phí vận chuyển mặc định": "35000", "Cho phép COD": false, "Cho phép MoMo": true } },
+      { "tab": "Mạng xã hội", "form": { "Instagram": "https://instagram.com/canifa" } }
+    ],
+    "expectedPayload": {
+      "site_name": "CANIFA E2E",
+      "site_email": "contact@canifa.com",
+      "default_shipping_fee": "35000",
+      "allow_cod": "0",
+      "allow_momo": "1",
+      "allow_vnpay": "1",
+      "instagram_url": "https://instagram.com/canifa",
+      "facebook_url": "https://facebook.com/canifa"
+    },
+    "toast": "Lưu cài đặt thành công."
+  },
+  "serverError": { "id": "ADO-SET-E01", "title": "Server báo lỗi khi lưu -> hiện thông báo của server", "status": 500, "message": "Không thể lưu cấu hình website." }
+}

@@ -1,0 +1,41 @@
+{
+  "categories": [
+    { "id": 9301, "name": "Áo Thun E2E", "slug": "ao-thun-e2e", "description": "Danh mục áo thun kiểm thử", "icon": "tshirt", "sort_order": 1, "is_featured": true, "is_active": true },
+    { "id": 9302, "name": "Quần Jeans E2E", "slug": "quan-jeans-e2e", "description": "", "icon": "", "sort_order": 2, "is_featured": false, "is_active": true },
+    { "id": 9303, "name": "Phụ Kiện E2E", "slug": "phu-kien-e2e", "description": null, "icon": "", "sort_order": 3, "is_featured": false, "is_active": false }
+  ],
+  "brands": [
+    { "id": 9401, "name": "Canifa E2E", "slug": "canifa-e2e", "description": "Thương hiệu kiểm thử", "logo": "", "is_featured": true, "is_active": true },
+    { "id": 9402, "name": "Routine E2E", "slug": "routine-e2e", "description": "", "logo": "", "is_featured": false, "is_active": true },
+    { "id": 9403, "name": "Kids E2E", "slug": "kids-e2e", "description": null, "logo": "", "is_featured": false, "is_active": false }
+  ],
+  "products": [
+    {
+      "id": 9201, "name": "Áo thun E2E cổ tròn", "slug": "ao-thun-e2e-co-tron", "sku": "E2E-AT-01", "price": 199000, "compare_price": 249000,
+      "cost_price": 100000, "stock": 50, "total_sold": 12, "is_featured": false, "is_active": true,
+      "category_id": 9301, "brand_id": 9401, "category_name": "Áo Thun E2E", "brand_name": "Canifa E2E", "image": null
+    },
+    {
+      "id": 9202, "name": "Quần jeans E2E slim", "slug": "quan-jeans-e2e-slim", "sku": "E2E-QJ-02", "price": 459000, "compare_price": null,
+      "cost_price": null, "stock": 3, "total_sold": 40, "is_featured": true, "is_active": true,
+      "category_id": 9302, "brand_id": 9402, "category_name": "Quần Jeans E2E", "brand_name": "Routine E2E", "image": null
+    },
+    {
+      "id": 9203, "name": "Mũ lưỡi trai E2E", "slug": "mu-luoi-trai-e2e", "sku": "E2E-MU-03", "price": 99000, "compare_price": null,
+      "cost_price": null, "stock": 0, "total_sold": 0, "is_featured": false, "is_active": false,
+      "category_id": 9303, "brand_id": 9403, "category_name": "Phụ Kiện E2E", "brand_name": "Kids E2E", "image": null
+    }
+  ],
+  "productDetails": {
+    "9201": {
+      "short_description": "Áo thun cổ tròn mặc hằng ngày",
+      "description": "Mô tả chi tiết áo thun E2E - không được mất khi sửa",
+      "material": "Cotton 100%",
+      "gender": "male",
+      "images": ["https://e2e.invalid/ao-thun-1.jpg"],
+      "variants": [
+        { "size_id": 2, "color_id": 1, "sku": "E2E-AT-01-2-1", "price": 199000, "stock": 10, "is_active": true }
+      ]
+    }
+  }
+}

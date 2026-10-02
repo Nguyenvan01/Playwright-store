@@ -1,0 +1,47 @@
+{
+  "headers": ["Khách hàng", "Sản phẩm", "Số sao", "Nội dung", "Ngày đánh giá", "Trạng thái", "Thao tác"],
+  "list": [
+    { "id": 1, "user_name": "Nguyễn Văn An", "user_email": "an@example.com", "product_name": "Áo thun nam basic", "product_sku": "TS001", "rating": 5, "content": "Áo đẹp, vải mát, sẽ ủng hộ tiếp.", "status": "pending", "created_at": "2026-09-20T03:00:00.000Z" },
+    { "id": 2, "user_name": "Trần Thị Bình", "user_email": "binh@example.com", "product_name": "Quần jeans nữ", "product_sku": "FE007", "rating": 4, "content": "Quần vừa vặn nhưng giao hơi chậm.", "status": "approved", "created_at": "2026-09-21T03:00:00.000Z" },
+    { "id": 3, "user_name": "Lê Minh Cường", "user_email": "cuong@example.com", "product_name": "Váy maxi cotton", "product_sku": "VY001", "rating": 2, "content": "Màu không giống hình.", "status": "hidden", "created_at": "2026-09-22T03:00:00.000Z" },
+    { "id": 4, "user_name": "Phạm Thu Dung", "user_email": "dung@example.com", "product_name": "Áo thun nam basic", "product_sku": "TS001", "rating": 1, "content": "Hàng lỗi đường may.", "status": "pending", "created_at": "2026-09-23T03:00:00.000Z" }
+  ],
+  "rows": [
+    { "id": "ADM-REV-R01", "title": "Đánh giá chờ duyệt: đủ thông tin + nút Xem/Duyệt/Ẩn/Xóa", "tags": ["@smoke"], "rowText": "Nguyễn Văn An", "expected": { "Khách hàng": "an@example.com", "Sản phẩm": "Áo thun nam basic", "Số sao": "5 sao", "Nội dung": "Áo đẹp, vải mát", "Trạng thái": "Chờ duyệt" }, "actions": ["Xem", "Duyệt", "Ẩn", "Xóa"] },
+    { "id": "ADM-REV-R02", "title": "Đánh giá đã duyệt: không còn nút Duyệt", "rowText": "Trần Thị Bình", "expected": { "Số sao": "4 sao", "Trạng thái": "Đã duyệt" }, "actions": ["Xem", "Ẩn", "Xóa"] },
+    { "id": "ADM-REV-R03", "title": "Đánh giá đã ẩn: không còn nút Ẩn", "rowText": "Lê Minh Cường", "expected": { "Số sao": "2 sao", "Trạng thái": "Đã ẩn" }, "actions": ["Xem", "Duyệt", "Xóa"] }
+  ],
+  "search": [
+    { "id": "ADM-REV-Q01", "title": "Tìm theo tên khách hàng", "keyword": "nguyễn văn", "visible": ["Nguyễn Văn An"], "hidden": ["Trần Thị Bình", "Lê Minh Cường", "Phạm Thu Dung"] },
+    { "id": "ADM-REV-Q02", "title": "Tìm theo tên sản phẩm", "keyword": "jeans", "visible": ["Trần Thị Bình"], "hidden": ["Nguyễn Văn An", "Lê Minh Cường", "Phạm Thu Dung"] },
+    { "id": "ADM-REV-Q03", "title": "Tìm theo nội dung, không phân biệt hoa thường", "keyword": "ĐƯỜNG MAY", "visible": ["Phạm Thu Dung"], "hidden": ["Nguyễn Văn An", "Trần Thị Bình", "Lê Minh Cường"] },
+    { "id": "ADM-REV-Q04", "title": "Sản phẩm trùng tên trả về nhiều dòng", "keyword": "áo thun", "visible": ["Nguyễn Văn An", "Phạm Thu Dung"], "hidden": ["Trần Thị Bình", "Lê Minh Cường"] },
+    { "id": "ADM-REV-Q05", "title": "Không có kết quả -> thông báo không tìm thấy", "keyword": "zzz-khong-co", "visible": [], "hidden": ["Nguyễn Văn An", "Trần Thị Bình", "Lê Minh Cường", "Phạm Thu Dung"], "emptyText": "Không tìm thấy đánh giá phù hợp." }
+  ],
+  "filters": [
+    { "id": "ADM-REV-F01", "title": "Lọc \"Chờ duyệt\" gửi status=pending", "status": "pending", "rating": "all", "query": { "status": "pending", "rating": null, "limit": "100" }, "visible": ["Nguyễn Văn An", "Phạm Thu Dung"] },
+    { "id": "ADM-REV-F02", "title": "Lọc \"Đã duyệt\" gửi status=approved", "status": "approved", "rating": "all", "query": { "status": "approved", "rating": null }, "visible": ["Trần Thị Bình"] },
+    { "id": "ADM-REV-F03", "title": "Lọc \"1 sao\" gửi rating=1", "status": "all", "rating": "1", "query": { "status": null, "rating": "1" }, "visible": ["Phạm Thu Dung"] },
+    { "id": "ADM-REV-F04", "title": "Kết hợp \"Chờ duyệt\" + \"5 sao\"", "status": "pending", "rating": "5", "query": { "status": "pending", "rating": "5" }, "visible": ["Nguyễn Văn An"] },
+    {
+      "id": "ADM-REV-F05", "title": "Bộ lọc không có kết quả -> báo \"Không tìm thấy đánh giá phù hợp.\"",
+      "knownBug": "AdminReviews.jsx:216 chỉ xét ô tìm kiếm -> lọc rỗng vẫn hiện 'Chưa có đánh giá nào'",
+      "status": "hidden", "rating": "5", "query": { "status": "hidden", "rating": "5" }, "visible": [], "emptyText": "Không tìm thấy đánh giá phù hợp."
+    }
+  ],
+  "statusActions": [
+    { "id": "ADM-REV-A01", "title": "Duyệt đánh giá chờ duyệt (mock PUT)", "tags": ["@smoke"], "rowText": "Nguyễn Văn An", "action": "Duyệt", "reviewId": 1, "status": "approved", "toast": "Duyệt đánh giá thành công.", "badge": "Đã duyệt" },
+    { "id": "ADM-REV-A02", "title": "Ẩn đánh giá đã duyệt (mock PUT)", "rowText": "Trần Thị Bình", "action": "Ẩn", "reviewId": 2, "status": "hidden", "toast": "Ẩn đánh giá thành công.", "badge": "Đã ẩn" },
+    { "id": "ADM-REV-A03", "title": "Duyệt lại đánh giá đã ẩn (mock PUT)", "rowText": "Lê Minh Cường", "action": "Duyệt", "reviewId": 3, "status": "approved", "toast": "Duyệt đánh giá thành công.", "badge": "Đã duyệt" },
+    { "id": "ADM-REV-A04", "title": "Ẩn đánh giá chờ duyệt (mock PUT)", "rowText": "Phạm Thu Dung", "action": "Ẩn", "reviewId": 4, "status": "hidden", "toast": "Ẩn đánh giá thành công.", "badge": "Đã ẩn" }
+  ],
+  "detail": {
+    "rowText": "Nguyễn Văn An",
+    "texts": ["Nguyễn Văn An", "an@example.com", "Áo thun nam basic", "5 sao", "Áo đẹp, vải mát, sẽ ủng hộ tiếp.", "Chờ duyệt"],
+    "approveButton": "Duyệt đánh giá",
+    "toast": "Duyệt đánh giá thành công.",
+    "badge": "Đã duyệt"
+  },
+  "remove": { "rowText": "Phạm Thu Dung", "toast": "Xóa đánh giá thành công." },
+  "updateError": { "id": "ADM-REV-E01", "title": "Server báo lỗi khi duyệt -> hiện thông báo của server", "rowText": "Nguyễn Văn An", "status": 404, "message": "Không tìm thấy đánh giá." }
+}

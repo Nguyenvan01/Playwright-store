@@ -1,0 +1,77 @@
+{
+  "user": {
+    "id": 9001, "name": "Nguyễn Văn Kiểm Thử", "email": "e2e.profile@example.com", "phone": "0912345678",
+    "avatar": null, "memberLevel": "Bronze"
+  },
+  "cartItem": { "product_id": 201, "name": "Áo khoác E2E", "slug": "ao-khoac-e2e", "price": 500000, "quantity": 1, "size": "M" },
+  "address": "hcm",
+
+  "prefill": [
+    {
+      "id": "ACC-CO-P01", "title": "Tên 3 từ: từ cuối vào ô Tên, phần còn lại vào ô Họ, điền sẵn SĐT",
+      "user": { "id": 9101, "name": "Nguyễn Văn An", "email": "e2e.an@example.com", "phone": "0912345678", "avatar": null, "memberLevel": "Bronze" },
+      "expected": { "firstName": "Nguyễn Văn", "lastName": "An", "phone": "0912345678" }
+    },
+    {
+      "id": "ACC-CO-P02", "title": "Tên 4 từ, tài khoản chưa có SĐT -> ô SĐT trống",
+      "user": { "id": 9102, "name": "Khách hàng Test Production", "email": "e2e.k@example.com", "phone": "", "avatar": null, "memberLevel": "Bronze" },
+      "expected": { "firstName": "Khách hàng Test", "lastName": "Production", "phone": "" }
+    },
+    {
+      "id": "ACC-CO-P03", "title": "Tên 1 từ -> chỉ điền ô Tên, ô Họ trống",
+      "user": { "id": 9103, "name": "Madonna", "email": "e2e.m@example.com", "phone": "0987654321", "avatar": null, "memberLevel": "Bronze" },
+      "expected": { "firstName": "", "lastName": "Madonna", "phone": "0987654321" }
+    }
+  ],
+
+  "payments": [
+    {
+      "id": "ACC-CO-M01", "title": "COD: payment_method cod, chưa thanh toán, gửi email tài khoản", "payment": "cod",
+      "expectedPayload": { "payment_method": "cod", "payment_status": "unpaid", "customer_email": "e2e.profile@example.com", "recipient_name": "Nguyễn Kiểm Thử", "recipient_phone": "0912345678" }
+    },
+    {
+      "id": "ACC-CO-M02", "title": "Chuyển khoản: gửi payment_method hợp lệ với DB (bank_transfer) và chưa thanh toán", "payment": "bank",
+      "knownBug": "CheckoutPage.jsx:541 gửi payment_method 'bank' nhưng CHECK của orders.payment_method (database/schema.pg.sql:417) chỉ nhận 'bank_transfer' -> backend 500; CheckoutPage.jsx:169 còn đặt payment_status 'paid' khi chưa thanh toán",
+      "expectedPayload": { "payment_method": "bank_transfer", "payment_status": "unpaid" }
+    },
+    {
+      "id": "ACC-CO-M03", "title": "VNPay: đơn mới tạo phải ở trạng thái chưa thanh toán", "payment": "vnpay",
+      "knownBug": "CheckoutPage.jsx:169 đặt payment_status 'paid' cho mọi phương thức khác COD ngay khi tạo đơn, trước khi khách thanh toán",
+      "expectedPayload": { "payment_method": "vnpay", "payment_status": "unpaid" }
+    },
+    {
+      "id": "ACC-CO-M04", "title": "MoMo: đơn mới tạo phải ở trạng thái chưa thanh toán", "payment": "momo",
+      "knownBug": "CheckoutPage.jsx:169 đặt payment_status 'paid' cho mọi phương thức khác COD ngay khi tạo đơn, trước khi khách thanh toán",
+      "expectedPayload": { "payment_method": "momo", "payment_status": "unpaid" }
+    }
+  ],
+
+  "createResponse": {
+    "success": true, "message": "Đặt hàng thành công",
+    "order": { "id": 999, "order_number": "ORD000999", "total_price": 500000, "status": "pending", "payment_status": "unpaid", "payment_method": "cod" }
+  },
+  "orderNumber": "ORD000999",
+  "success": {
+    "heading": "Đặt hàng thành công",
+    "payment": { "Phương thức": "Thanh toán khi nhận hàng (COD)", "Vận chuyển": "Giao hàng tiêu chuẩn (3-5 ngày)" },
+    "recipient": { "Họ tên": "Nguyễn Kiểm Thử", "Điện thoại": "0912345678", "Địa chỉ": "123 Lê Lợi, Phường 1, Quận 1, TP. Hồ Chí Minh" },
+    "totals": { "Giá trị đơn hàng": "500.000đ", "Phí vận chuyển": "Miễn phí", "Tổng tiền": "500.000đ" },
+    "codStatusExpected": "Chờ xác nhận"
+  },
+  "ordersAfter": {
+    "success": true,
+    "orders": [
+      {
+        "id": 999, "order_number": "ORD000999", "total_price": 500000, "status": "pending",
+        "payment_method": "cod", "payment_status": "unpaid",
+        "shipping_address": "123 Lê Lợi, Phường 1, Quận 1, TP. Hồ Chí Minh", "address_detail": "123 Lê Lợi",
+        "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+        "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường 1",
+        "shipping_method": "standard", "created_at": "2026-10-01T03:00:00.000Z",
+        "item_count": 1, "total_items": 1, "product_names": "Áo khoác E2E", "first_image": null,
+        "shipping_full_address": "123 Lê Lợi, Phường 1, Quận 1, TP. Hồ Chí Minh"
+      }
+    ],
+    "pagination": { "page": 1, "limit": 50, "total": 1, "totalPages": 1 }
+  }
+}

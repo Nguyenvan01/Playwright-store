@@ -1,0 +1,105 @@
+[
+  {
+    "id": "KD-ADM2-01",
+    "title": "Khuyến mãi: tìm không dấu và kiểm tra trạng thái tính theo ngày",
+    "tags": ["@smoke"],
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "adminMarketing.mockPromotionList", "arg": "@data:admin-marketing/promotions.json#list" },
+      { "keyword": "adminMarketing.openPromotions" },
+      { "keyword": "adminMarketing.verifyColumns", "arg": "@data:admin-marketing/promotions.json#headers" },
+      { "keyword": "adminMarketing.verifyRowCells", "args": ["Giảm giá Tết", { "Trạng thái": "Hết hạn", "Giá trị": "15%" }] },
+      { "keyword": "admin.searchList", "args": ["Tìm theo tên, mô tả hoặc trạng thái", "uu dai"] },
+      { "keyword": "adminMarketing.verifyVisibleRows", "args": [["Ưu đãi cuối tuần"], ["Flash Sale mùa hè", "Giảm giá Tết"]] },
+      { "keyword": "common.verifyNoPageErrors" }
+    ]
+  },
+  {
+    "id": "KD-ADM2-02",
+    "title": "Khuyến mãi: thêm mới gửi đúng dữ liệu (mock POST)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/admin/promotions", { "success": true }] },
+      { "keyword": "adminMarketing.mockPromotionList", "arg": "@data:admin-marketing/promotions.json#list" },
+      { "keyword": "adminMarketing.openPromotions" },
+      { "keyword": "adminMarketing.openCreatePromotion" },
+      { "keyword": "admin.fillForm", "arg": "@data:admin-marketing/promotions.json#create.form" },
+      { "keyword": "adminMarketing.clickModalButton", "args": ["Thêm khuyến mãi", "Tạo mới"] },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/admin/promotions", "@data:admin-marketing/promotions.json#create.expectedPayload"] },
+      { "keyword": "common.verifyToast", "arg": "Thêm khuyến mãi thành công." }
+    ]
+  },
+  {
+    "id": "KD-ADM2-03",
+    "title": "Mã giảm giá: tắt Công khai rồi xóa mã (mock PUT/DELETE)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["PUT", "**/api/admin/coupons/*", { "success": true }] },
+      { "keyword": "common.mockWrite", "args": ["DELETE", "**/api/admin/coupons/*", { "success": true }] },
+      { "keyword": "adminMarketing.mockCouponList", "arg": "@data:admin-marketing/coupons.json#list" },
+      { "keyword": "adminMarketing.openCoupons" },
+      { "keyword": "adminMarketing.toggleCoupon", "args": ["HETHAN1", "Công khai"] },
+      { "keyword": "common.verifyRequest", "args": ["PUT", "/admin/coupons/1", { "is_public": false }] },
+      { "keyword": "adminMarketing.verifyCouponToggle", "args": ["HETHAN1", "Công khai", false] },
+      { "keyword": "adminMarketing.clickCouponDelete", "arg": "HETHAN1" },
+      { "keyword": "adminMarketing.clickModalButton", "args": ["Xác nhận xóa", "Xóa"] },
+      { "keyword": "common.verifyRequest", "args": ["DELETE", "/admin/coupons/1"] },
+      { "keyword": "common.verifyToast", "arg": "Đã xóa mã giảm giá" },
+      { "keyword": "admin.verifyRow", "args": ["HETHAN1", false] }
+    ]
+  },
+  {
+    "id": "KD-ADM2-04",
+    "title": "Đánh giá: lọc chờ duyệt rồi duyệt 1 đánh giá (mock)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["PUT", "**/api/admin/reviews/*/status", { "success": true }] },
+      { "keyword": "adminMarketing.mockReviewList", "arg": "@data:admin-marketing/reviews.json#list" },
+      { "keyword": "adminMarketing.openReviews" },
+      { "keyword": "adminMarketing.filterReviewStatus", "arg": "pending" },
+      { "keyword": "adminMarketing.verifyListQuery", "args": ["/admin/reviews", { "status": "pending" }] },
+      { "keyword": "adminMarketing.verifyRowCount", "arg": 2 },
+      { "keyword": "admin.clickRowAction", "args": ["Nguyễn Văn An", "Duyệt"] },
+      { "keyword": "common.verifyRequest", "args": ["PUT", "/admin/reviews/1/status", { "status": "approved" }] },
+      { "keyword": "common.verifyToast", "arg": "Duyệt đánh giá thành công." },
+      { "keyword": "adminMarketing.verifyRowActions", "args": ["Nguyễn Văn An", ["Xem", "Ẩn", "Xóa"]] }
+    ]
+  },
+  {
+    "id": "KD-ADM2-05",
+    "title": "Bài viết: lưu khi thiếu tiêu đề bị chặn, không gửi request",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/admin/blogs", { "success": true }] },
+      { "keyword": "adminMarketing.mockBlogList", "arg": "@data:admin-marketing/blog.json#list" },
+      { "keyword": "adminMarketing.openBlog" },
+      { "keyword": "adminMarketing.openCreateBlog" },
+      { "keyword": "admin.fillForm", "arg": { "Mô tả ngắn": "Chỉ có mô tả" } },
+      { "keyword": "adminMarketing.clickModalButton", "args": ["Thêm bài viết", "Lưu bài viết"] },
+      { "keyword": "common.verifyToast", "arg": "Tiêu đề bài viết không được để trống." },
+      { "keyword": "common.verifyNoRequest", "args": ["POST", "/admin/blogs"] }
+    ]
+  },
+  {
+    "id": "KD-ADM2-06",
+    "title": "Liên hệ: xem chi tiết và đánh dấu đã xử lý (mock PUT)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["PUT", "**/api/admin/contacts/*/status", { "success": true }] },
+      { "keyword": "adminMarketing.mockContactList", "arg": "@data:admin-marketing/contacts.json#list" },
+      { "keyword": "adminMarketing.openContacts" },
+      { "keyword": "admin.clickRowAction", "args": ["Nguyễn Hoa", "Xem"] },
+      { "keyword": "adminMarketing.verifyModalText", "args": ["Chi tiết liên hệ", ["Hỏi về đổi size", "Chưa xử lý"]] },
+      { "keyword": "adminMarketing.clickModalButton", "args": ["Chi tiết liên hệ", "Đánh dấu đã xử lý"] },
+      { "keyword": "common.verifyRequest", "args": ["PUT", "/admin/contacts/1/status", { "status": "processed" }] },
+      { "keyword": "common.verifyToast", "arg": "Cập nhật trạng thái liên hệ thành công." },
+      { "keyword": "adminMarketing.verifyModalText", "args": ["Chi tiết liên hệ", ["Đã xử lý"]] }
+    ]
+  }
+]

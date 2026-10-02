@@ -1,0 +1,104 @@
+{
+  "list": {
+    "success": true,
+    "addresses": [
+      {
+        "id": 701, "full_name": "Nguyễn Văn Kiểm Thử", "phone": "0912345678", "address": "12 Nguyễn Huệ",
+        "ward": "Phường Bến Nghé", "district": "Quận 1", "city": "Hồ Chí Minh", "is_default": true, "created_at": "2026-09-01T03:00:00.000Z"
+      },
+      {
+        "id": 702, "full_name": "Trần Thị Bình", "phone": "0987654321", "address": "25 Xuân Thủy",
+        "ward": "Phường Dịch Vọng Hậu", "district": "Quận Cầu Giấy", "city": "Hà Nội", "is_default": false, "created_at": "2026-09-05T03:00:00.000Z"
+      }
+    ]
+  },
+  "empty": { "success": true, "addresses": [] },
+  "names": ["Nguyễn Văn Kiểm Thử", "Trần Thị Bình"],
+  "defaultName": "Nguyễn Văn Kiểm Thử",
+  "defaultId": 701,
+  "otherName": "Trần Thị Bình",
+  "otherId": 702,
+  "cardTexts": {
+    "Nguyễn Văn Kiểm Thử": ["0912345678", "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, Hồ Chí Minh", "Mặc định"],
+    "Trần Thị Bình": ["0987654321", "25 Xuân Thủy, Phường Dịch Vọng Hậu, Quận Cầu Giấy, Hà Nội"]
+  },
+
+  "validForm": {
+    "fullName": "Lê Văn Mới", "phone": "0905 123 456", "address": "88 Bạch Đằng",
+    "ward": "Phường Hải Châu 1", "district": "Quận Hải Châu", "city": "Đà Nẵng"
+  },
+  "validation": [
+    {
+      "id": "ACC-ADR-V01", "title": "Bỏ trống toàn bộ trường bắt buộc",
+      "form": { "fullName": "", "phone": "", "address": "", "city": "" },
+      "errors": ["Vui lòng nhập họ tên", "Vui lòng nhập số điện thoại", "Vui lòng nhập địa chỉ", "Vui lòng chọn tỉnh/thành phố"]
+    },
+    { "id": "ACC-ADR-V02", "title": "Họ tên chỉ có khoảng trắng", "form": { "fullName": "   " }, "errors": ["Vui lòng nhập họ tên"] },
+    { "id": "ACC-ADR-V03", "title": "Số điện thoại quá ngắn", "form": { "phone": "12345" }, "errors": ["Số điện thoại không hợp lệ"] },
+    { "id": "ACC-ADR-V04", "title": "Số điện thoại không bắt đầu bằng 0", "form": { "phone": "9123456789" }, "errors": ["Số điện thoại không hợp lệ"] },
+    { "id": "ACC-ADR-V05", "title": "Số điện thoại quá dài (12 số)", "form": { "phone": "091234567890" }, "errors": ["Số điện thoại không hợp lệ"] },
+    { "id": "ACC-ADR-V06", "title": "Chưa chọn tỉnh/thành phố", "form": { "city": "" }, "errors": ["Vui lòng chọn tỉnh/thành phố"] }
+  ],
+
+  "create": {
+    "form": {
+      "fullName": "Lê Văn Mới", "phone": "0905 123 456", "address": "88 Bạch Đằng",
+      "ward": "Phường Hải Châu 1", "district": "Quận Hải Châu", "city": "Đà Nẵng", "isDefault": false
+    },
+    "response": {
+      "success": true,
+      "address": {
+        "id": 703, "user_id": 9001, "full_name": "Lê Văn Mới", "phone": "0905 123 456", "address": "88 Bạch Đằng",
+        "ward": "Phường Hải Châu 1", "district": "Quận Hải Châu", "city": "Đà Nẵng", "is_default": false,
+        "created_at": "2026-10-01T03:00:00.000Z", "updated_at": "2026-10-01T03:00:00.000Z"
+      }
+    },
+    "cardTexts": ["0905 123 456", "88 Bạch Đằng, Phường Hải Châu 1, Quận Hải Châu, Đà Nẵng"]
+  },
+  "createFirst": {
+    "success": true,
+    "address": {
+      "id": 705, "user_id": 9001, "full_name": "Lê Văn Mới", "phone": "0905 123 456", "address": "88 Bạch Đằng",
+      "ward": "Phường Hải Châu 1", "district": "Quận Hải Châu", "city": "Đà Nẵng", "is_default": true,
+      "created_at": "2026-10-01T03:00:00.000Z", "updated_at": "2026-10-01T03:00:00.000Z"
+    }
+  },
+  "createDefault": {
+    "form": {
+      "fullName": "Lê Văn Mới", "phone": "0905123456", "address": "88 Bạch Đằng",
+      "ward": "", "district": "Quận Hải Châu", "city": "Đà Nẵng", "isDefault": true
+    },
+    "response": {
+      "success": true,
+      "address": {
+        "id": 704, "user_id": 9001, "full_name": "Lê Văn Mới", "phone": "0905123456", "address": "88 Bạch Đằng",
+        "ward": "", "district": "Quận Hải Châu", "city": "Đà Nẵng", "is_default": true,
+        "created_at": "2026-10-01T03:00:00.000Z", "updated_at": "2026-10-01T03:00:00.000Z"
+      }
+    }
+  },
+  "edit": {
+    "name": "Trần Thị Bình",
+    "expectedForm": {
+      "fullName": "Trần Thị Bình", "phone": "0987654321", "address": "25 Xuân Thủy",
+      "ward": "Phường Dịch Vọng Hậu", "district": "Quận Cầu Giấy", "city": "Hà Nội"
+    },
+    "changes": { "fullName": "Trần Thị Bình An", "address": "30 Trần Thái Tông", "city": "Hà Nội" },
+    "newName": "Trần Thị Bình An",
+    "response": {
+      "success": true,
+      "address": {
+        "id": 702, "user_id": 9001, "full_name": "Trần Thị Bình An", "phone": "0987654321", "address": "30 Trần Thái Tông",
+        "ward": "Phường Dịch Vọng Hậu", "district": "Quận Cầu Giấy", "city": "Hà Nội", "is_default": false,
+        "created_at": "2026-09-05T03:00:00.000Z", "updated_at": "2026-10-01T03:00:00.000Z"
+      }
+    }
+  },
+  "setDefault": { "response": { "success": true, "address": { "id": 702, "is_default": true } } },
+  "delete": { "response": { "success": true, "message": "Đã xóa địa chỉ" }, "dialogText": "Bạn có chắc muốn xóa địa chỉ \"25 Xuân Thủy\"?" },
+  "serverError": {
+    "id": "ACC-ADR-E01", "title": "Lỗi server khi thêm địa chỉ hiển thị thông báo lỗi",
+    "knownBug": "AddressesPage.jsx:220 - catch {} nuốt lỗi POST /addresses, form vẫn mở nhưng không có thông báo nào",
+    "status": 500, "response": { "success": false, "message": "Lỗi server" }, "message": "Lỗi server"
+  }
+}

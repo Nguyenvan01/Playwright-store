@@ -1,0 +1,114 @@
+{
+  "headers": ["Tên khuyến mãi", "Loại giảm", "Giá trị", "Ngày bắt đầu", "Ngày kết thúc", "Trạng thái", "Nổi bật", "Thao tác"],
+  "list": [
+    { "id": 1, "title": "Flash Sale mùa hè", "slug": "flash-sale-mua-he", "description": "Giảm giá nhanh cho thời trang hè.", "discount_type": "percentage", "discount_value": 20, "startOffset": -3, "endOffset": 5, "is_active": true, "is_featured": true },
+    { "id": 2, "title": "Ưu đãi cuối tuần", "slug": "uu-dai-cuoi-tuan", "description": "Giảm trực tiếp cho đơn cuối tuần.", "discount_type": "fixed_amount", "discount_value": 100000, "startOffset": 2, "endOffset": 10, "is_active": true, "is_featured": false },
+    { "id": 3, "title": "Giảm giá Tết", "slug": "giam-gia-tet", "description": "Chương trình cho khách hàng thân thiết.", "discount_type": "percentage", "discount_value": 15, "start_date": "2026-01-20", "end_date": "2026-02-10", "is_active": true, "is_featured": false },
+    { "id": 4, "title": "Khuyến mãi tạm dừng", "slug": "khuyen-mai-tam-dung", "description": "", "discount_type": "fixed_amount", "discount_value": 50000, "startOffset": -1, "endOffset": 1, "is_active": false, "is_featured": false }
+  ],
+  "statusCases": [
+    {
+      "id": "ADM-PRO-S01", "title": "Đang trong hạn + bật -> \"Đang hoạt động\", giảm %", "tags": ["@smoke"],
+      "promotion": { "id": 11, "title": "KM đang chạy", "discount_type": "percentage", "discount_value": 20, "startOffset": -3, "endOffset": 5, "is_active": true, "is_featured": true },
+      "expected": { "Loại giảm": "Giảm theo phần trăm", "Giá trị": "20%", "Trạng thái": "Đang hoạt động", "Nổi bật": "Có" }
+    },
+    {
+      "id": "ADM-PRO-S02", "title": "Chưa tới ngày bắt đầu -> \"Sắp diễn ra\", giảm tiền",
+      "promotion": { "id": 12, "title": "KM sắp tới", "discount_type": "fixed_amount", "discount_value": 100000, "startOffset": 2, "endOffset": 10, "is_active": true, "is_featured": false },
+      "expected": { "Loại giảm": "Giảm theo số tiền", "Giá trị": "100.000đ", "Trạng thái": "Sắp diễn ra", "Nổi bật": "Không" }
+    },
+    {
+      "id": "ADM-PRO-S03", "title": "Đã qua ngày kết thúc -> \"Hết hạn\"",
+      "promotion": { "id": 13, "title": "KM đã qua", "discount_type": "percentage", "discount_value": 15, "startOffset": -20, "endOffset": -1, "is_active": true, "is_featured": false },
+      "expected": { "Trạng thái": "Hết hạn" }
+    },
+    {
+      "id": "ADM-PRO-S04", "title": "Đang trong hạn nhưng tắt -> \"Tạm ẩn\"",
+      "promotion": { "id": 14, "title": "KM bị tắt", "discount_type": "fixed_amount", "discount_value": 50000, "startOffset": -1, "endOffset": 1, "is_active": false, "is_featured": false },
+      "expected": { "Trạng thái": "Tạm ẩn", "Giá trị": "50.000đ" }
+    },
+    {
+      "id": "ADM-PRO-S05", "title": "Bắt đầu đúng hôm nay -> \"Đang hoạt động\"",
+      "promotion": { "id": 15, "title": "KM bắt đầu hôm nay", "discount_type": "percentage", "discount_value": 5, "startOffset": 0, "endOffset": 3, "is_active": true, "is_featured": false },
+      "expected": { "Trạng thái": "Đang hoạt động" }
+    },
+    {
+      "id": "ADM-PRO-S06", "title": "Kết thúc đúng hôm nay -> vẫn \"Đang hoạt động\"",
+      "promotion": { "id": 16, "title": "KM kết thúc hôm nay", "discount_type": "percentage", "discount_value": 5, "startOffset": -3, "endOffset": 0, "is_active": true, "is_featured": false },
+      "expected": { "Trạng thái": "Đang hoạt động" }
+    },
+    {
+      "id": "ADM-PRO-S07", "title": "Tắt + đã hết hạn -> ưu tiên \"Tạm ẩn\"",
+      "promotion": { "id": 17, "title": "KM tắt và hết hạn", "discount_type": "percentage", "discount_value": 5, "startOffset": -10, "endOffset": -5, "is_active": false, "is_featured": false },
+      "expected": { "Trạng thái": "Tạm ẩn" }
+    }
+  ],
+  "search": [
+    { "id": "ADM-PRO-Q01", "title": "Tìm theo tên", "keyword": "flash", "visible": ["Flash Sale mùa hè"], "hidden": ["Ưu đãi cuối tuần", "Giảm giá Tết", "Khuyến mãi tạm dừng"] },
+    { "id": "ADM-PRO-Q02", "title": "Tìm không dấu vẫn khớp tên có dấu", "keyword": "uu dai cuoi", "visible": ["Ưu đãi cuối tuần"], "hidden": ["Flash Sale mùa hè", "Giảm giá Tết"] },
+    { "id": "ADM-PRO-Q03", "title": "Tìm theo mô tả", "keyword": "thân thiết", "visible": ["Giảm giá Tết"], "hidden": ["Flash Sale mùa hè", "Ưu đãi cuối tuần"] },
+    { "id": "ADM-PRO-Q04", "title": "Tìm theo trạng thái \"Hết hạn\"", "keyword": "HẾT HẠN", "visible": ["Giảm giá Tết"], "hidden": ["Flash Sale mùa hè", "Ưu đãi cuối tuần", "Khuyến mãi tạm dừng"] },
+    { "id": "ADM-PRO-Q05", "title": "Tìm theo trạng thái \"Tạm ẩn\"", "keyword": "tam an", "visible": ["Khuyến mãi tạm dừng"], "hidden": ["Flash Sale mùa hè", "Ưu đãi cuối tuần", "Giảm giá Tết"] },
+    { "id": "ADM-PRO-Q06", "title": "Không có kết quả -> thông báo không tìm thấy", "keyword": "zzz-khong-ton-tai", "visible": [], "hidden": ["Flash Sale mùa hè", "Ưu đãi cuối tuần", "Giảm giá Tết", "Khuyến mãi tạm dừng"], "emptyText": "Không tìm thấy khuyến mãi phù hợp." }
+  ],
+  "validation": [
+    { "id": "ADM-PRO-V01", "title": "Bỏ trống tên", "form": { "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" }, "toast": "Tên khuyến mãi không được để trống." },
+    { "id": "ADM-PRO-V02", "title": "Tên chỉ có khoảng trắng", "form": { "Tên khuyến mãi": "   ", "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" }, "toast": "Tên khuyến mãi không được để trống." },
+    { "id": "ADM-PRO-V03", "title": "Bỏ trống giá trị giảm", "tags": ["@smoke"], "form": { "Tên khuyến mãi": "KM E2E", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" }, "toast": "Giá trị giảm phải lớn hơn 0." },
+    { "id": "ADM-PRO-V04", "title": "Giá trị giảm = 0", "form": { "Tên khuyến mãi": "KM E2E", "Giá trị giảm": "0", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" }, "toast": "Giá trị giảm phải lớn hơn 0." },
+    { "id": "ADM-PRO-V05", "title": "Giảm theo % vượt 100", "form": { "Tên khuyến mãi": "KM E2E", "Loại giảm giá": "percentage", "Giá trị giảm": "150", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" }, "toast": "Giá trị giảm theo phần trăm không được vượt quá 100." },
+    { "id": "ADM-PRO-V06", "title": "Giảm theo tiền > 100 hợp lệ, thiếu ngày bắt đầu", "form": { "Tên khuyến mãi": "KM E2E", "Loại giảm giá": "fixed_amount", "Giá trị giảm": "150000", "Ngày kết thúc": "2026-12-31" }, "toast": "Ngày bắt đầu không được để trống." },
+    { "id": "ADM-PRO-V07", "title": "Thiếu ngày kết thúc", "form": { "Tên khuyến mãi": "KM E2E", "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-01" }, "toast": "Ngày kết thúc không được để trống." },
+    { "id": "ADM-PRO-V08", "title": "Ngày kết thúc trước ngày bắt đầu", "form": { "Tên khuyến mãi": "KM E2E", "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-31", "Ngày kết thúc": "2026-12-01" }, "toast": "Ngày kết thúc không được nhỏ hơn ngày bắt đầu." },
+    { "id": "ADM-PRO-V09", "title": "Giảm đúng 100% vẫn qua bước kiểm tra %, dừng ở ngày", "form": { "Tên khuyến mãi": "KM E2E", "Loại giảm giá": "percentage", "Giá trị giảm": "100", "Ngày bắt đầu": "2026-12-01" }, "toast": "Ngày kết thúc không được để trống." }
+  ],
+  "invalidImage": { "id": "ADM-PRO-V10", "title": "URL ảnh sai định dạng bị trình duyệt chặn (không gửi request)", "form": { "Tên khuyến mãi": "KM E2E", "Ảnh khuyến mãi hoặc URL ảnh": "khong-phai-url", "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" } },
+  "create": {
+    "form": {
+      "Tên khuyến mãi": "Khuyến mãi E2E Tết",
+      "Mô tả": "Mô tả tạo bởi E2E",
+      "Ảnh khuyến mãi hoặc URL ảnh": "https://example.com/km.png",
+      "Loại giảm giá": "fixed_amount",
+      "Giá trị giảm": "50000",
+      "Ngày bắt đầu": "2026-12-01",
+      "Ngày kết thúc": "2026-12-31",
+      "Trạng thái": "hidden",
+      "Khuyến mãi nổi bật": true
+    },
+    "expectedPayload": {
+      "title": "Khuyến mãi E2E Tết",
+      "slug": "khuyen-mai-e2e-tet",
+      "description": "Mô tả tạo bởi E2E",
+      "image_url": "https://example.com/km.png",
+      "discount_type": "fixed_amount",
+      "discount_value": 50000,
+      "start_date": "2026-12-01",
+      "end_date": "2026-12-31",
+      "is_active": false,
+      "is_featured": true
+    },
+    "toast": "Thêm khuyến mãi thành công."
+  },
+  "slugCases": [
+    { "id": "ADM-PRO-G01", "title": "Slug tự sinh từ tên (bỏ dấu, ký tự đặc biệt)", "steps": [{ "Tên khuyến mãi": "Siêu Sale Đặc Biệt 11.11" }], "expectedSlug": "sieu-sale-dac-biet-11-11" },
+    { "id": "ADM-PRO-G02", "title": "Slug tự đặt được giữ khi đổi tên", "steps": [{ "Tên khuyến mãi": "Tên ban đầu" }, { "Slug": "slug-tu-dat" }, { "Tên khuyến mãi": "Tên mới hoàn toàn" }], "expectedSlug": "slug-tu-dat" },
+    { "id": "ADM-PRO-G03", "title": "Slug nhập tay được chuẩn hóa", "steps": [{ "Slug": "Slug Có Dấu & Khoảng Trắng" }], "expectedSlug": "slug-co-dau-khoang-trang" }
+  ],
+  "edit": {
+    "title": "Giảm giá Tết",
+    "prefilled": { "Tên khuyến mãi": "Giảm giá Tết", "Slug": "giam-gia-tet", "Loại giảm giá": "percentage", "Giá trị giảm": "15", "Ngày bắt đầu": "2026-01-20", "Ngày kết thúc": "2026-02-10", "Trạng thái": "active" },
+    "form": { "Giá trị giảm": "25", "Ngày kết thúc": "2026-02-28" },
+    "expectedPayload": { "title": "Giảm giá Tết", "slug": "giam-gia-tet", "discount_value": 25, "start_date": "2026-01-20", "end_date": "2026-02-28", "is_active": true },
+    "toast": "Cập nhật khuyến mãi thành công."
+  },
+  "saveError": {
+    "id": "ADM-PRO-E01",
+    "title": "Server báo lỗi khi lưu -> hiện đúng thông báo của server",
+    "knownBug": "AdminPromotions.jsx:247 luôn hiện 'Không thể lưu khuyến mãi. Vui lòng kiểm tra lại thông tin.', bỏ qua message server trả về (vd: 'Slug khuyến mãi đã tồn tại.')",
+    "form": { "Tên khuyến mãi": "Flash Sale mùa hè", "Giá trị giảm": "10", "Ngày bắt đầu": "2026-12-01", "Ngày kết thúc": "2026-12-31" },
+    "status": 409,
+    "message": "Slug khuyến mãi đã tồn tại."
+  },
+  "view": { "title": "Flash Sale mùa hè", "texts": ["flash-sale-mua-he", "Giảm giá nhanh cho thời trang hè.", "Giảm theo phần trăm", "20%", "Đang hoạt động", "Nổi bật"] },
+  "remove": { "title": "Ưu đãi cuối tuần", "toast": "Xóa khuyến mãi thành công." }
+}

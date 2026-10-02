@@ -1,0 +1,19 @@
+{
+  "protectedRoutes": [
+    {
+      "id": "ACC-RD-01", "title": "Chưa đăng nhập mở /profile -> chuyển về /login", "path": "/profile", "expected": "/login",
+      "knownBug": "ProfilePage.jsx:165 useState(profileToForm(user)) với user = null ở lần render đầu (default param của profileToForm dòng 139 không áp dụng cho null) -> crash 'Cannot read properties of null', ErrorBoundary hiện 'Đã xảy ra lỗi' nên useEffect chuyển /login (dòng 170) không bao giờ chạy"
+    },
+    { "id": "ACC-RD-02", "title": "Chưa đăng nhập mở /orders -> chuyển về /login", "tags": ["@smoke"], "path": "/orders", "expected": "/login" },
+    { "id": "ACC-RD-03", "title": "Chưa đăng nhập mở /favorites -> chuyển về /login", "path": "/favorites", "expected": "/login" },
+    { "id": "ACC-RD-04", "title": "Chưa đăng nhập mở /addresses -> chuyển về /login", "path": "/addresses", "expected": "/login" },
+    { "id": "ACC-RD-05", "title": "Chưa đăng nhập mở chi tiết đơn /orders/1 -> chuyển về /login", "path": "/orders/1", "expected": "/login" }
+  ],
+  "loginReturn": {
+    "id": "ACC-RD-06", "title": "Bấm Đăng nhập ở trang thanh toán, đăng nhập xong quay lại /checkout",
+    "requires": ["customer"],
+    "knownBug": "LoginPage.jsx:94 (và :25) luôn navigate('/profile'), bỏ qua location.state.from = '/checkout' mà CheckoutPage.jsx:330 truyền sang",
+    "cartItem": { "product_id": 201, "name": "Áo khoác E2E", "slug": "ao-khoac-e2e", "price": 500000, "quantity": 1, "size": "M" },
+    "expected": "/checkout"
+  }
+}

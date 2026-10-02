@@ -1,0 +1,97 @@
+{
+  "headers": ["Mã", "Tên", "Loại", "Giảm", "Sử dụng", "Hiệu lực", "Công khai", "Trạng thái", "Thao tác"],
+  "list": [
+    { "id": 1, "code": "HETHAN1", "name": "Flash Sale 15%", "description": "Giảm 15% cho đơn từ 499k", "discount_type": "percentage", "discount_value": 15, "min_order_amount": 499000, "max_usage_total": 300, "max_usage_per_user": 1, "used_count": 0, "valid_from": "2026-09-11T14:23:39.773Z", "valid_until": "2026-09-14T14:23:39.773Z", "is_active": true, "is_public": true },
+    { "id": 2, "code": "FREESHIP30", "name": "Freeship 30K", "description": "Miễn phí vận chuyển", "discount_type": "fixed_amount", "discount_value": 30000, "min_order_amount": 0, "max_usage_total": null, "max_usage_per_user": 1, "used_count": 5, "valid_from": "2026-09-12T14:23:39.773Z", "valid_until": "2026-09-15T14:23:39.773Z", "is_active": true, "is_public": false },
+    { "id": 3, "code": "VIP50", "name": "Khách VIP 50%", "description": "", "coupon_type": "first_order", "discount_type": "percentage", "discount_value": 50, "min_order_amount": 0, "max_usage_total": 10, "max_usage_per_user": 1, "used_count": 10, "valid_from": null, "valid_until": null, "is_active": false, "is_public": true }
+  ],
+  "display": [
+    { "id": "ADM-CPN-D01", "title": "Mã giảm %: hiển thị mã, tên, % và lượt dùng", "tags": ["@smoke"], "code": "HETHAN1", "expected": { "Mã": "HETHAN1", "Tên": "Flash Sale 15%", "Giảm": "15%", "Sử dụng": "0 / 300" } },
+    { "id": "ADM-CPN-D02", "title": "Mã giảm tiền, không giới hạn lượt: \"30.000đ\" và \"5 / ∞\"", "code": "FREESHIP30", "expected": { "Giảm": "30.000đ", "Sử dụng": "5 / ∞" } },
+    { "id": "ADM-CPN-D03", "title": "Loại first_order hiển thị \"Khách mới\"", "code": "VIP50", "expected": { "Loại": "Khách mới", "Giảm": "50%", "Sử dụng": "10 / 10" } }
+  ],
+  "realDataChecks": [
+    {
+      "id": "ADM-CPN-B01", "title": "Dữ liệu thật: cột \"Loại\" hiển thị loại mã",
+      "knownBug": "adminController.js:1565-1592 getCoupons/createCoupon không đọc/lưu coupon_type -> cột \"Loại\" (AdminCoupons.jsx:128) luôn trống",
+      "column": "Loại", "pattern": "\\S"
+    },
+    {
+      "id": "ADM-CPN-B02", "title": "Dữ liệu thật: cột \"Hiệu lực\" hiển thị ngày dd/mm/yyyy",
+      "knownBug": "AdminCoupons.jsx:133 in thẳng chuỗi ISO (vd: 2026-09-11T14:23:39.773Z) thay vì định dạng ngày",
+      "column": "Hiệu lực", "pattern": "^\\d{1,2}/\\d{1,2}/\\d{4}"
+    }
+  ],
+  "required": [
+    { "id": "ADM-CPN-V01", "title": "Bỏ trống Mã và Giá trị -> trình duyệt chặn, không gửi POST", "form": {}, "toast": "" },
+    { "id": "ADM-CPN-V02", "title": "Có Mã nhưng bỏ trống Giá trị -> không gửi POST", "form": { "Mã": "E2EONLY" }, "toast": "" },
+    { "id": "ADM-CPN-V03", "title": "Có Giá trị nhưng bỏ trống Mã -> không gửi POST", "form": { "Giá trị": "10" }, "toast": "" }
+  ],
+  "create": {
+    "typedCode": "sale10e2e",
+    "expectedCode": "SALE10E2E",
+    "form": {
+      "Tên": "Giảm 10% E2E",
+      "Loại mã": "shipping",
+      "Giảm theo": "percentage",
+      "Giá trị": "10",
+      "Giảm tối đa": "50000",
+      "Đơn tối thiểu": "300000",
+      "SL sử dụng": "100",
+      "Từ ngày": "2026-12-01",
+      "Đến ngày": "2026-12-31"
+    },
+    "expectedPayload": {
+      "code": "SALE10E2E",
+      "name": "Giảm 10% E2E",
+      "coupon_type": "shipping",
+      "discount_type": "percentage",
+      "discount_value": "10",
+      "max_discount_amount": "50000",
+      "min_order_amount": "300000",
+      "max_usage_total": "100",
+      "valid_from": "2026-12-01",
+      "valid_until": "2026-12-31",
+      "is_active": true,
+      "is_public": true
+    },
+    "toast": "Đã thêm mã giảm giá mới"
+  },
+  "saveError": {
+    "id": "ADM-CPN-E01",
+    "title": "Server báo lỗi khi lưu -> hiện đúng thông báo của server",
+    "knownBug": "AdminCoupons.jsx:51 đọc err.response.data.error trong khi backend trả 'message' -> luôn hiện 'Lưu mã giảm giá thất bại'",
+    "form": { "Mã": "TRUNGMA", "Giá trị": "10" },
+    "status": 500,
+    "message": "Có lỗi xảy ra, vui lòng thử lại sau."
+  },
+  "edit": {
+    "code": "HETHAN1",
+    "prefilled": { "Mã": "HETHAN1", "Tên": "Flash Sale 15%", "Giảm theo": "percentage", "Giá trị": "15", "SL sử dụng": "300", "Đơn tối thiểu": "499000" },
+    "form": { "Tên": "Flash Sale 20%", "Giá trị": "20" },
+    "expectedPayload": { "id": 1, "code": "HETHAN1", "name": "Flash Sale 20%", "discount_value": "20" },
+    "toast": "Đã cập nhật mã giảm giá"
+  },
+  "editDates": {
+    "id": "ADM-CPN-B03",
+    "title": "Sửa: ô \"Từ ngày\"/\"Đến ngày\" điền sẵn ngày hiệu lực",
+    "knownBug": "AdminCoupons.jsx:55 đưa chuỗi ISO có giờ vào input type=date -> 2 ô ngày bị trống khi sửa",
+    "code": "HETHAN1",
+    "prefilled": { "Từ ngày": "2026-09-11", "Đến ngày": "2026-09-14" }
+  },
+  "typeLabel": {
+    "id": "ADM-CPN-B04",
+    "title": "Nhãn loại first_order trong form khớp nhãn trong bảng (\"Khách mới\")",
+    "knownBug": "AdminCoupons.jsx:180 option ghi 'Khách hàng mới' nhưng bảng (dòng 80) ghi 'Khách mới'",
+    "field": "Loại mã",
+    "value": "first_order",
+    "tableLabel": "Khách mới"
+  },
+  "toggles": [
+    { "id": "ADM-CPN-T01", "title": "Tắt \"Công khai\" gửi PUT is_public=false", "tags": ["@smoke"], "code": "HETHAN1", "column": "Công khai", "field": "is_public", "from": true, "toast": "Đã cập nhật trạng thái" },
+    { "id": "ADM-CPN-T02", "title": "Bật \"Công khai\" gửi PUT is_public=true", "code": "FREESHIP30", "column": "Công khai", "field": "is_public", "from": false, "toast": "Đã cập nhật trạng thái" },
+    { "id": "ADM-CPN-T03", "title": "Bật \"Trạng thái\" gửi PUT is_active=true", "code": "VIP50", "column": "Trạng thái", "field": "is_active", "from": false, "toast": "Đã cập nhật trạng thái" },
+    { "id": "ADM-CPN-T04", "title": "Tắt \"Trạng thái\" gửi PUT is_active=false", "code": "FREESHIP30", "column": "Trạng thái", "field": "is_active", "from": true, "toast": "Đã cập nhật trạng thái" }
+  ],
+  "remove": { "code": "HETHAN1", "confirmText": "Bạn có chắc muốn xóa mã giảm giá \"HETHAN1\"?", "toast": "Đã xóa mã giảm giá" }
+}

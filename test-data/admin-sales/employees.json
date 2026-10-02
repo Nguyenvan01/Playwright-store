@@ -1,0 +1,87 @@
+{
+  "fixture": {
+    "employees": [
+      { "id": 9101, "name": "Nhân Viên E2E", "email": "nv.e2e@dathoang.test", "phone": "0902000001", "role": "staff", "is_active": true, "created_at": "2026-09-01T03:00:00.000Z" },
+      { "id": 9102, "name": "Quản Lý E2E", "email": "ql.e2e@dathoang.test", "phone": null, "role": "manager", "is_active": true, "created_at": "2026-08-01T03:00:00.000Z" },
+      { "id": 9103, "name": "Thủ Kho E2E", "email": "kho.e2e@dathoang.test", "phone": "0902000003", "role": "warehouse", "is_active": false, "created_at": "2026-07-01T03:00:00.000Z" },
+      { "id": 9104, "name": "Quản Trị Viên E2E", "email": "qtv2.e2e@dathoang.test", "phone": null, "role": "admin", "is_active": true, "created_at": "2026-06-01T03:00:00.000Z" }
+    ]
+  },
+  "heading": "Tài khoản nhân viên",
+  "headers": ["Nhân viên", "Email", "Điện thoại", "Vai trò", "Ngày tạo", "Trạng thái", "Thao tác"],
+  "roles": [
+    { "name": "Nhân Viên E2E", "label": "Nhân viên" },
+    { "name": "Quản Lý E2E", "label": "Quản lý" },
+    { "name": "Thủ Kho E2E", "label": "Nhân viên kho" },
+    { "name": "Quản Trị Viên E2E", "label": "Quản trị viên" }
+  ],
+  "search": { "text": "kho.e2e", "request": { "search": "kho.e2e" }, "rows": ["Thủ Kho E2E"], "hidden": ["Nhân Viên E2E"] },
+  "addValidation": [
+    {
+      "id": "ADS-EMP-V01", "title": "Bỏ trống toàn bộ form", "tags": ["@smoke"],
+      "form": {},
+      "errors": ["Họ và tên không được để trống.", "Email không được để trống.", "Mật khẩu không được để trống."]
+    },
+    {
+      "id": "ADS-EMP-V02", "title": "Email 'a@b' (qua kiểm tra trình duyệt) bị app báo sai định dạng",
+      "form": { "Họ và tên": "NV E2E", "Email": "nv@e2e", "Mật khẩu": "matkhau123" },
+      "errors": ["Email không đúng định dạng."]
+    },
+    {
+      "id": "ADS-EMP-V03", "title": "Email thiếu @ bị trình duyệt chặn trước khi submit",
+      "form": { "Họ và tên": "NV E2E", "Email": "nv-e2e.example.test", "Mật khẩu": "matkhau123" },
+      "errors": [], "nativeEmailInvalid": true
+    },
+    { "id": "ADS-EMP-V04", "title": "Số điện thoại sai định dạng", "form": { "Họ và tên": "NV E2E", "Email": "nv.e2e@example.test", "Số điện thoại": "12345", "Mật khẩu": "matkhau123" }, "errors": ["Số điện thoại không đúng định dạng."] },
+    { "id": "ADS-EMP-V05", "title": "Mật khẩu dưới 6 ký tự", "form": { "Họ và tên": "NV E2E", "Email": "nv.e2e@example.test", "Mật khẩu": "12345" }, "errors": ["Mật khẩu phải có ít nhất 6 ký tự."] }
+  ],
+  "editValidation": [
+    { "id": "ADS-EMP-EV01", "title": "Mật khẩu mới dưới 6 ký tự khi sửa", "employee": "Nhân Viên E2E", "form": { "Mật khẩu": "123" }, "errors": ["Mật khẩu phải có ít nhất 6 ký tự."] },
+    { "id": "ADS-EMP-EV02", "title": "Xóa trống họ tên khi sửa", "employee": "Nhân Viên E2E", "form": { "Họ và tên": "" }, "errors": ["Họ và tên không được để trống."] }
+  ],
+  "create": [
+    {
+      "id": "ADS-EMP-C01", "title": "Thêm nhân viên kho",
+      "form": { "Họ và tên": "Kho Mới E2E", "Email": "khomoi.e2e@dathoang.test", "Số điện thoại": "0902999001", "Mật khẩu": "matkhau123", "Vai trò": "warehouse" },
+      "payload": { "name": "Kho Mới E2E", "email": "khomoi.e2e@dathoang.test", "phone": "0902999001", "password": "matkhau123", "role": "warehouse", "is_active": true },
+      "response": { "success": true, "employee": { "id": 9199, "name": "Kho Mới E2E", "email": "khomoi.e2e@dathoang.test", "phone": "0902999001", "role": "warehouse", "is_active": true, "created_at": "2026-10-01T03:00:00.000Z" } },
+      "name": "Kho Mới E2E", "roleLabel": "Nhân viên kho"
+    },
+    {
+      "id": "ADS-EMP-C02", "title": "Thêm quản lý (vai trò mặc định đổi sang Quản lý), tài khoản tắt",
+      "form": { "Họ và tên": "Quản Lý Mới E2E", "Email": "qlmoi.e2e@dathoang.test", "Mật khẩu": "matkhau123", "Vai trò": "Quản lý", "Tài khoản hoạt động": false },
+      "payload": { "name": "Quản Lý Mới E2E", "email": "qlmoi.e2e@dathoang.test", "phone": "", "password": "matkhau123", "role": "manager", "is_active": false },
+      "response": { "success": true, "employee": { "id": 9198, "name": "Quản Lý Mới E2E", "email": "qlmoi.e2e@dathoang.test", "phone": null, "role": "manager", "is_active": false, "created_at": "2026-10-01T03:00:00.000Z" } },
+      "name": "Quản Lý Mới E2E", "roleLabel": "Quản lý"
+    }
+  ],
+  "createToast": "Đã thêm nhân viên mới",
+  "edit": {
+    "employee": "Nhân Viên E2E",
+    "id": 9101,
+    "prefill": { "Họ và tên": "Nhân Viên E2E", "Email": "nv.e2e@dathoang.test", "Số điện thoại": "0902000001", "Mật khẩu": "", "Vai trò": "staff" },
+    "passwordPlaceholder": "Để trống nếu không đổi mật khẩu",
+    "form": { "Họ và tên": "Nhân Viên Đã Sửa E2E", "Vai trò": "manager" },
+    "payload": { "name": "Nhân Viên Đã Sửa E2E", "email": "nv.e2e@dathoang.test", "phone": "0902000001", "role": "manager", "is_active": true },
+    "response": { "success": true, "employee": { "id": 9101, "name": "Nhân Viên Đã Sửa E2E", "email": "nv.e2e@dathoang.test", "phone": "0902000001", "role": "manager", "is_active": true, "created_at": "2026-09-01T03:00:00.000Z" } },
+    "newName": "Nhân Viên Đã Sửa E2E",
+    "roleLabel": "Quản lý",
+    "toast": "Đã cập nhật nhân viên",
+    "withPassword": { "form": { "Mật khẩu": "matkhaumoi123" }, "payload": { "password": "matkhaumoi123" } }
+  },
+  "delete": {
+    "employee": "Nhân Viên E2E",
+    "id": 9101,
+    "heading": "Xác nhận vô hiệu hóa",
+    "message": "Vô hiệu hóa tài khoản \"Nhân Viên E2E\"?",
+    "backendStatus": 400,
+    "backendResponse": { "success": false, "message": "Không thể xóa tài khoản nhân viên. Vui lòng vô hiệu hóa tài khoản." },
+    "successToast": "Đã vô hiệu hóa tài khoản"
+  },
+  "toggle": {
+    "employee": "Nhân Viên E2E",
+    "id": 9101,
+    "toast": "Đã cập nhật trạng thái",
+    "errorToast": "Không thể cập nhật trạng thái"
+  }
+}

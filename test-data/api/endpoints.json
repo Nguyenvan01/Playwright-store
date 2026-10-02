@@ -1,0 +1,23 @@
+{
+  "customerProtected": [
+    "/profile",
+    "/orders",
+    "/wishlist",
+    "/addresses"
+  ],
+  "adminProtected": [
+    "/admin/dashboard",
+    "/admin/products",
+    "/admin/orders",
+    "/admin/customers",
+    "/admin/employees",
+    "/admin/settings",
+    "/admin/reports/overview",
+    "/admin/coupons"
+  ],
+  "adminBackdoorPasswords": [
+    "admin123",
+    "manager123",
+    "staff123"
+  ]
+}

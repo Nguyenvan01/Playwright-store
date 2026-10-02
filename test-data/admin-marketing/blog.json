@@ -1,0 +1,68 @@
+{
+  "headers": ["Ảnh", "Bài viết", "Slug", "Trạng thái", "Nổi bật", "Ngày tạo", "Thao tác"],
+  "list": [
+    { "id": 1, "title": "Size L là bao nhiêu kg?", "slug": "size-l-la-bao-nhieu-kg", "summary": "Bảng size chuẩn nam nữ.", "content": "Nội dung bảng size", "thumbnail": "", "is_published": true, "is_featured": false, "created_at": "2026-09-13T03:00:00.000Z" },
+    { "id": 2, "title": "Phối đồ với chân váy dài", "slug": "phoi-do-chan-vay-dai", "summary": "15 cách phối chuẩn dáng.", "content": "Nội dung phối đồ", "thumbnail": "", "is_published": true, "is_featured": true, "created_at": "2026-09-12T03:00:00.000Z" },
+    { "id": 3, "title": "Bài nháp mùa đông", "slug": "bai-nhap-mua-dong", "summary": "", "content": "", "thumbnail": "", "is_published": false, "is_featured": false, "created_at": "2026-09-11T03:00:00.000Z" }
+  ],
+  "rows": [
+    { "id": "ADM-BLG-R01", "title": "Bài hiển thị: mô tả, slug, ngày tạo, ảnh mặc định", "tags": ["@smoke"], "rowText": "Size L là bao nhiêu kg?", "expected": { "Ảnh": "Không có ảnh", "Bài viết": "Bảng size chuẩn nam nữ.", "Slug": "size-l-la-bao-nhieu-kg", "Trạng thái": "Hiển thị", "Ngày tạo": "13/09/2026" }, "actions": ["Bật/tắt nổi bật", "Xem", "Sửa", "Ẩn bài viết", "Xóa"] },
+    { "id": "ADM-BLG-R02", "title": "Bài nổi bật có nhãn \"Nổi bật\"", "rowText": "Phối đồ với chân váy dài", "expected": { "Bài viết": "Nổi bật", "Trạng thái": "Hiển thị" }, "actions": ["Bật/tắt nổi bật", "Xem", "Sửa", "Ẩn bài viết", "Xóa"] },
+    { "id": "ADM-BLG-R03", "title": "Bài ẩn: trạng thái \"Ẩn\", nút \"Hiển thị bài viết\", mô tả mặc định", "rowText": "Bài nháp mùa đông", "expected": { "Bài viết": "Chưa có mô tả ngắn", "Trạng thái": "Ẩn" }, "actions": ["Bật/tắt nổi bật", "Xem", "Sửa", "Hiển thị bài viết", "Xóa"] }
+  ],
+  "search": [
+    { "id": "ADM-BLG-Q01", "title": "Tìm theo tiêu đề", "keyword": "size l", "visible": ["Size L là bao nhiêu kg?"], "hidden": ["Phối đồ với chân váy dài", "Bài nháp mùa đông"] },
+    { "id": "ADM-BLG-Q02", "title": "Tìm theo slug", "keyword": "phoi-do", "visible": ["Phối đồ với chân váy dài"], "hidden": ["Size L là bao nhiêu kg?", "Bài nháp mùa đông"] },
+    { "id": "ADM-BLG-Q03", "title": "Tìm theo mô tả ngắn", "keyword": "15 cách", "visible": ["Phối đồ với chân váy dài"], "hidden": ["Size L là bao nhiêu kg?", "Bài nháp mùa đông"] },
+    { "id": "ADM-BLG-Q04", "title": "Tìm không phân biệt hoa thường", "keyword": "MÙA ĐÔNG", "visible": ["Bài nháp mùa đông"], "hidden": ["Size L là bao nhiêu kg?", "Phối đồ với chân váy dài"] },
+    { "id": "ADM-BLG-Q05", "title": "Không có kết quả -> thông báo không tìm thấy", "keyword": "zzz-khong-co", "visible": [], "hidden": ["Size L là bao nhiêu kg?", "Phối đồ với chân váy dài", "Bài nháp mùa đông"], "emptyText": "Không tìm thấy bài viết phù hợp." }
+  ],
+  "validation": [
+    { "id": "ADM-BLG-V01", "title": "Bỏ trống tiêu đề", "tags": ["@smoke"], "form": { "Mô tả ngắn": "Có mô tả nhưng thiếu tiêu đề" }, "toast": "Tiêu đề bài viết không được để trống." },
+    { "id": "ADM-BLG-V02", "title": "Tiêu đề chỉ có khoảng trắng", "form": { "Tiêu đề": "    " }, "toast": "Tiêu đề bài viết không được để trống." }
+  ],
+  "create": {
+    "form": {
+      "Tiêu đề": "Bài viết E2E mới",
+      "Mô tả ngắn": "Tóm tắt E2E",
+      "Nội dung": "Nội dung E2E",
+      "Trạng thái": "hidden",
+      "Bài viết nổi bật": true
+    },
+    "expectedPayload": {
+      "title": "Bài viết E2E mới",
+      "slug": "bai-viet-e2e-moi",
+      "summary": "Tóm tắt E2E",
+      "content": "Nội dung E2E",
+      "thumbnail": "",
+      "is_published": false,
+      "is_featured": true
+    },
+    "toast": "Thêm bài viết thành công."
+  },
+  "slugCases": [
+    { "id": "ADM-BLG-G01", "title": "Slug tự sinh từ tiêu đề", "steps": [{ "Tiêu đề": "Xu hướng Thu Đông 2026!" }], "expectedSlug": "xu-huong-thu-dong-2026" },
+    { "id": "ADM-BLG-G02", "title": "Slug nhập tay được chuẩn hóa", "steps": [{ "Slug": "Slug Tự Đặt Có Dấu" }], "expectedSlug": "slug-tu-dat-co-dau" },
+    {
+      "id": "ADM-BLG-G03", "title": "Thêm mới: slug nhập tay được giữ khi sửa tiêu đề",
+      "knownBug": "AdminBlog.jsx:151 khi tạo mới luôn slugify lại tiêu đề -> ghi đè slug người dùng đã nhập",
+      "steps": [{ "Slug": "slug-tu-dat" }, { "Tiêu đề": "Tiêu đề mới" }], "expectedSlug": "slug-tu-dat"
+    }
+  ],
+  "edit": {
+    "title": "Size L là bao nhiêu kg?",
+    "prefilled": { "Tiêu đề": "Size L là bao nhiêu kg?", "Slug": "size-l-la-bao-nhieu-kg", "Mô tả ngắn": "Bảng size chuẩn nam nữ.", "Nội dung": "Nội dung bảng size", "Trạng thái": "visible" },
+    "form": { "Tiêu đề": "Size L bao nhiêu kg (cập nhật)" },
+    "expectedPayload": { "title": "Size L bao nhiêu kg (cập nhật)", "slug": "size-l-la-bao-nhieu-kg", "is_published": true, "is_featured": false },
+    "toast": "Cập nhật bài viết thành công."
+  },
+  "toggles": [
+    { "id": "ADM-BLG-T01", "title": "Ẩn bài đang hiển thị (mock PUT)", "rowText": "Size L là bao nhiêu kg?", "action": "Ẩn bài viết", "expectedPayload": { "is_published": false }, "toast": "Cập nhật bài viết thành công.", "expected": { "Trạng thái": "Ẩn" } },
+    { "id": "ADM-BLG-T02", "title": "Hiển thị bài đang ẩn (mock PUT)", "rowText": "Bài nháp mùa đông", "action": "Hiển thị bài viết", "expectedPayload": { "is_published": true }, "toast": "Cập nhật bài viết thành công.", "expected": { "Trạng thái": "Hiển thị" } },
+    { "id": "ADM-BLG-T03", "title": "Bật nổi bật (mock PUT)", "rowText": "Size L là bao nhiêu kg?", "action": "Bật/tắt nổi bật", "expectedPayload": { "is_featured": true }, "toast": "Cập nhật bài viết thành công.", "expected": { "Bài viết": "Nổi bật" } },
+    { "id": "ADM-BLG-T04", "title": "Tắt nổi bật (mock PUT)", "rowText": "Phối đồ với chân váy dài", "action": "Bật/tắt nổi bật", "expectedPayload": { "is_featured": false }, "toast": "Cập nhật bài viết thành công.", "expected": { "Bài viết": "15 cách phối chuẩn dáng." } }
+  ],
+  "view": { "title": "Phối đồ với chân váy dài", "texts": ["Phối đồ với chân váy dài", "Slug: phoi-do-chan-vay-dai", "15 cách phối chuẩn dáng.", "Nội dung phối đồ", "Nổi bật", "Hiển thị"] },
+  "remove": { "title": "Bài nháp mùa đông", "toast": "Xóa bài viết thành công." },
+  "invalidImage": { "url": "khong-phai-anh.png", "error": "Không thể tải ảnh. Vui lòng kiểm tra lại URL." }
+}

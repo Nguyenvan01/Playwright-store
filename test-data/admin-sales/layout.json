@@ -1,0 +1,76 @@
+{
+  "profile": {
+    "success": true,
+    "user": { "id": 5, "name": "Quản Trị E2E", "email": "qtv.e2e@dathoang.test", "role": "admin" }
+  },
+  "titles": [
+    { "id": "ADS-LAY-T01", "title": "Tiêu đề trang Tổng quan", "path": "/admin", "expect": "Tổng quan", "tags": ["@smoke"] },
+    { "id": "ADS-LAY-T02", "title": "Tiêu đề trang Sản phẩm", "path": "/admin/products", "expect": "Sản phẩm" },
+    { "id": "ADS-LAY-T03", "title": "Tiêu đề trang Thêm sản phẩm", "path": "/admin/products/create", "expect": "Thêm sản phẩm mới" },
+    {
+      "id": "ADS-LAY-T04",
+      "title": "Tiêu đề trang Chỉnh sửa sản phẩm",
+      "path": "/admin/products/edit/9201",
+      "expect": "Chỉnh sửa sản phẩm",
+      "knownBug": "AdminLayout.jsx:11,31 - map tiêu đề dùng khóa '/admin/products/edit' nhưng route thật là '/admin/products/edit/:id' -> header hiển thị 'Admin'"
+    },
+    { "id": "ADS-LAY-T05", "title": "Tiêu đề trang Danh mục", "path": "/admin/categories", "expect": "Danh mục" },
+    { "id": "ADS-LAY-T06", "title": "Tiêu đề trang Thương hiệu", "path": "/admin/brands", "expect": "Thương hiệu" },
+    { "id": "ADS-LAY-T07", "title": "Tiêu đề trang Đơn hàng", "path": "/admin/orders", "expect": "Đơn hàng" },
+    { "id": "ADS-LAY-T08", "title": "Tiêu đề trang Khách hàng", "path": "/admin/customers", "expect": "Khách hàng" },
+    { "id": "ADS-LAY-T09", "title": "Tiêu đề trang Nhân viên", "path": "/admin/employees", "expect": "Nhân viên" }
+  ],
+  "activeMenu": [
+    { "id": "ADS-LAY-A01", "title": "Chỉ 'Tổng quan' sáng khi ở /admin", "path": "/admin", "active": "Tổng quan" },
+    { "id": "ADS-LAY-A02", "title": "Trang con /admin/products/create vẫn sáng mục 'Sản phẩm'", "path": "/admin/products/create", "active": "Sản phẩm" },
+    { "id": "ADS-LAY-A03", "title": "Mục 'Khách hàng' sáng khi ở /admin/customers", "path": "/admin/customers", "active": "Khách hàng" }
+  ],
+  "userMenu": [
+    { "id": "ADS-LAY-U01", "title": "Menu người dùng -> Tổng quan", "from": "/admin/employees", "item": "Tổng quan", "path": "/admin", "pageTitle": "Tổng quan" },
+    { "id": "ADS-LAY-U02", "title": "Menu người dùng -> Cài đặt", "from": "/admin/employees", "item": "Cài đặt", "path": "/admin/settings", "pageTitle": "Cài đặt" }
+  ],
+  "notifications": {
+    "empty": {
+      "notifications": [],
+      "counts": { "all": 0, "newOrders": 0, "pendingOld": 0, "lowStock": 0, "outStock": 0, "returns": 0, "pendingReviews": 0, "pendingContacts": 0 }
+    },
+    "some": {
+      "notifications": [
+        {
+          "id": "order_new_9001", "type": "order_new", "title": "Đơn hàng mới",
+          "message": "Đơn #E2E-0001 - Nguyễn Văn E2E vừa đặt 599.000đ",
+          "time": "2026-09-30T03:30:00.000Z", "link": "/admin/orders", "icon": "shopping_bag", "color": "blue", "isNew": true
+        },
+        {
+          "id": "low_stock_9202", "type": "low_stock", "title": "Sắp hết hàng",
+          "message": "Quần jeans E2E slim - chỉ còn 3 cái",
+          "time": null, "link": "/admin/products", "icon": "alert_triangle", "color": "orange", "isNew": true
+        },
+        {
+          "id": "review_9501", "type": "review", "title": "Đánh giá chờ duyệt",
+          "message": "Khách E2E đánh giá 4/5 sao sản phẩm \"Áo thun E2E cổ tròn\"",
+          "time": "2026-09-29T03:30:00.000Z", "link": "/admin/reviews", "icon": "star", "color": "yellow"
+        }
+      ],
+      "counts": { "all": 3, "newOrders": 1, "pendingOld": 0, "lowStock": 1, "outStock": 0, "returns": 0, "pendingReviews": 1, "pendingContacts": 0 }
+    },
+    "panel": {
+      "items": ["Đơn hàng mới", "Sắp hết hàng", "Đánh giá chờ duyệt"],
+      "stats": ["1 đơn mới", "1 kho", "1 đánh giá"],
+      "footer": "3 thông báo",
+      "newChip": "2 mới"
+    },
+    "badges": [
+      { "id": "ADS-NOTI-B01", "title": "Không có thông báo -> không hiện số trên chuông", "response": "empty", "badge": null },
+      {
+        "id": "ADS-NOTI-B02",
+        "title": "Số trên chuông bằng tổng số thông báo",
+        "response": "some",
+        "badge": "3",
+        "tags": ["@smoke"],
+        "knownBug": "AdminHeader.jsx:34 - totalNotif cộng TẤT CẢ giá trị counts (all + newOrders + lowStock + ...) nên đếm gấp đôi: 3 thông báo hiển thị 6"
+      }
+    ],
+    "clickItem": { "title": "Đánh giá chờ duyệt", "path": "/admin/reviews", "pageTitle": "Đánh giá" }
+  }
+}

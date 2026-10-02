@@ -1,0 +1,918 @@
+{
+  "pages": {
+    "nam": {
+      "path": "/nam",
+      "heading": "Thời trang Nam",
+      "breadcrumb": "Nam",
+      "description": "Khám phá bộ sưu tập thời trang nam cao cấp với chất liệu vải cao cấp, thiết kế hiện đại và phong cách thanh lịch. Phù hợp cho mọi dịp từ công sở đến dạo phố.",
+      "mode": "server",
+      "productsApi": "**/api/products?**",
+      "sortOptions": [
+        "Mới nhất",
+        "Giá: Thấp → Cao",
+        "Giá: Cao → Thấp",
+        "Bán chạy"
+      ],
+      "defaultSort": "Mới nhất",
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL"
+      ],
+      "colors": [
+        "Đen",
+        "Trắng",
+        "Xám",
+        "Navy",
+        "Xanh dương"
+      ],
+      "priceDefault": {
+        "from": "0",
+        "to": "5.000.000"
+      },
+      "emptyText": "Không tìm thấy sản phẩm phù hợp.",
+      "mockCategories": [
+        "Tất cả",
+        "Áo Thun",
+        "Quần Jeans",
+        "Áo Polo",
+        "Homewear"
+      ]
+    },
+    "nu": {
+      "path": "/nu",
+      "heading": "Thời trang Nữ",
+      "breadcrumb": "Nữ",
+      "description": "Bộ sưu tập thời trang nữ với thiết kế tinh tế, phong cách hiện đại và thanh lịch. Từ những bộ đầm sang trọng đến trang phục công sở thanh lịch.",
+      "mode": "server",
+      "productsApi": "**/api/products?**",
+      "sortOptions": [
+        "Mới nhất",
+        "Giá: Thấp → Cao",
+        "Giá: Cao → Thấp",
+        "Bán chạy"
+      ],
+      "defaultSort": "Mới nhất",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L"
+      ],
+      "colors": [
+        "Đen",
+        "Trắng",
+        "Hồng",
+        "Hồng phấn",
+        "Kem"
+      ],
+      "priceDefault": {
+        "from": "0",
+        "to": "5.000.000"
+      },
+      "emptyText": "Không tìm thấy sản phẩm phù hợp.",
+      "mockCategories": [
+        "Tất cả",
+        "Áo Thun",
+        "Váy",
+        "Homewear",
+        "Quần"
+      ]
+    },
+    "tre-em": {
+      "path": "/tre-em",
+      "heading": "TRẺ EM",
+      "breadcrumb": "Trẻ em",
+      "description": "Thời trang đáng yêu cho bé yêu với chất liệu mềm mại, thoáng khí và thiết kế vui nhộn. Giúp bé tự tin thể hiện phong cách riêng từ những năm tháng đầu đời.",
+      "mode": "server",
+      "productsApi": "**/api/products/kids?**",
+      "categoriesApi": "**/api/products/kids-categories",
+      "sortOptions": [
+        "Mới nhất",
+        "Giá: Thấp → Cao",
+        "Giá: Cao → Thấp",
+        "Bán chạy"
+      ],
+      "defaultSort": "Mới nhất",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Trắng",
+        "Đen",
+        "Đỏ",
+        "Xám",
+        "Xanh dương",
+        "Vàng nhạt",
+        "Hồng",
+        "Vàng neon",
+        "Tím",
+        "Xanh ngọc",
+        "Nâu",
+        "Họa tiết sọc",
+        "Phối màu"
+      ],
+      "priceDefault": {
+        "from": "0",
+        "to": "2.000.000"
+      },
+      "emptyText": "Không tìm thấy sản phẩm nào.",
+      "mockCategories": [
+        "Tất cả",
+        "Áo Trẻ Em",
+        "Quần Trẻ Em"
+      ]
+    },
+    "giam-gia": {
+      "path": "/giam-gia",
+      "heading": "GIẢM GIÁ",
+      "breadcrumb": "Khuyến mãi",
+      "description": "Ưu đãi lên đến 70% cho tất cả sản phẩm. Nhanh tay chọn ngay những item yêu thích với giá hời nhất!",
+      "mode": "client",
+      "productsApi": "**/api/products?**",
+      "sortOptions": [
+        "Giảm nhiều nhất",
+        "Giá: Thấp → Cao",
+        "Giá: Cao → Thấp",
+        "Bán chạy"
+      ],
+      "defaultSort": "Giảm nhiều nhất",
+      "sizes": [
+        "XS",
+        "S",
+        "M",
+        "L",
+        "XL",
+        "XXL",
+        "XXXL"
+      ],
+      "colors": [
+        "Trắng",
+        "Đen",
+        "Đỏ",
+        "Xám",
+        "Xanh dương",
+        "Vàng nhạt",
+        "Hồng",
+        "Vàng neon",
+        "Tím",
+        "Xanh ngọc",
+        "Nâu",
+        "Họa tiết sọc",
+        "Phối màu"
+      ],
+      "priceDefault": {
+        "from": "0",
+        "to": "5.000.000"
+      },
+      "emptyText": "Không có sản phẩm nào phù hợp",
+      "mockCategories": [
+        "Tất cả",
+        "Áo Thun",
+        "Áo Sơ Mi",
+        "Quần Jeans",
+        "T-Shirt"
+      ]
+    }
+  },
+  "mockList": {
+    "success": true,
+    "data": {
+      "products": [
+        {
+          "id": 990301,
+          "name": "Áo thun nam E2E A",
+          "slug": "e2e-listing-1",
+          "price": 199000,
+          "compare_price": 299000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "ao-thun",
+          "gender": "male",
+          "colors": [
+            {
+              "id": "den",
+              "name": "Đen"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 10,
+          "is_on_sale": true,
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "id": 990302,
+          "name": "Áo thun nam E2E B",
+          "slug": "e2e-listing-2",
+          "price": 249000,
+          "compare_price": 299000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "ao-thun",
+          "gender": "male",
+          "colors": [
+            {
+              "id": "trang",
+              "name": "Trắng"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 9,
+          "is_on_sale": true,
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "id": 990303,
+          "name": "Áo thun nữ E2E C",
+          "slug": "e2e-listing-3",
+          "price": 299000,
+          "compare_price": 399000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "ao-thun",
+          "gender": "female",
+          "colors": [
+            {
+              "id": "den",
+              "name": "Đen"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 8,
+          "is_on_sale": true,
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "id": 990304,
+          "name": "Áo polo E2E D",
+          "slug": "e2e-listing-4",
+          "price": 349000,
+          "compare_price": 499000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "ao-polo",
+          "gender": "male",
+          "colors": [
+            {
+              "id": "xam",
+              "name": "Xám"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 7,
+          "is_on_sale": true,
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "id": 990305,
+          "name": "Áo polo E2E E",
+          "slug": "e2e-listing-5",
+          "price": 399000,
+          "compare_price": 449000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "ao-polo",
+          "gender": "male",
+          "colors": [
+            {
+              "id": "den",
+              "name": "Đen"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 6,
+          "is_on_sale": true,
+          "sizes": [
+            "S",
+            "M"
+          ]
+        },
+        {
+          "id": 990306,
+          "name": "Quần jeans E2E F",
+          "slug": "e2e-listing-6",
+          "price": 449000,
+          "compare_price": 599000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "quan-jeans",
+          "gender": "female",
+          "colors": [
+            {
+              "id": "xanh-duong",
+              "name": "Xanh dương"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 5,
+          "is_on_sale": true,
+          "sizes": [
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "id": 990307,
+          "name": "Quần jeans E2E G",
+          "slug": "e2e-listing-7",
+          "price": 499000,
+          "compare_price": 999000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "quan-jeans",
+          "gender": "male",
+          "colors": [
+            {
+              "id": "den",
+              "name": "Đen"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 4,
+          "is_on_sale": true,
+          "sizes": [
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "id": 990308,
+          "name": "Homewear E2E H",
+          "slug": "e2e-listing-8",
+          "price": 549000,
+          "compare_price": 699000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "homewear",
+          "gender": "female",
+          "colors": [
+            {
+              "id": "trang",
+              "name": "Trắng"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 3,
+          "is_on_sale": true,
+          "sizes": [
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "id": 990309,
+          "name": "Váy E2E I",
+          "slug": "e2e-listing-9",
+          "price": 599000,
+          "compare_price": 899000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "vay",
+          "gender": "female",
+          "colors": [
+            {
+              "id": "hong",
+              "name": "Hồng"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 2,
+          "is_on_sale": true,
+          "sizes": [
+            "L",
+            "XL"
+          ]
+        },
+        {
+          "id": 990310,
+          "name": "Váy E2E J",
+          "slug": "e2e-listing-10",
+          "price": 699000,
+          "compare_price": 799000,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "category_slug": "vay",
+          "gender": "female",
+          "colors": [
+            {
+              "id": "den",
+              "name": "Đen"
+            }
+          ],
+          "avg_rating": 4,
+          "review_count": 1,
+          "is_on_sale": true,
+          "sizes": [
+            "L",
+            "XL"
+          ]
+        }
+      ],
+      "pagination": {
+        "page": 1,
+        "limit": 8,
+        "total": 10,
+        "total_pages": 2
+      }
+    }
+  },
+  "mockEmpty": {
+    "success": true,
+    "data": {
+      "products": [],
+      "pagination": {
+        "page": 1,
+        "limit": 8,
+        "total": 0,
+        "total_pages": 1
+      }
+    }
+  },
+  "mockKidsCategories": {
+    "success": true,
+    "data": [
+      {
+        "id": "all",
+        "name": "Tất cả",
+        "count": 10
+      },
+      {
+        "id": "ao-tre-em",
+        "name": "Áo Trẻ Em",
+        "count": 3
+      },
+      {
+        "id": "quan-tre-em",
+        "name": "Quần Trẻ Em",
+        "count": 2
+      }
+    ]
+  },
+  "overlayToast": "Vui lòng chọn size/màu trước khi thêm vào giỏ hàng.",
+  "layout": [
+    {
+      "id": "SF-LST-01",
+      "title": "Nam: tiêu đề, breadcrumb, số lượng, sắp xếp, bộ lọc mặc định",
+      "page": "nam",
+      "tags": [
+        "@smoke"
+      ]
+    },
+    {
+      "id": "SF-LST-02",
+      "title": "Nữ: tiêu đề, breadcrumb, số lượng, sắp xếp, bộ lọc mặc định",
+      "page": "nu"
+    },
+    {
+      "id": "SF-LST-03",
+      "title": "Trẻ em: tiêu đề, breadcrumb, số lượng, sắp xếp, bộ lọc mặc định",
+      "page": "tre-em"
+    },
+    {
+      "id": "SF-LST-04",
+      "title": "Giảm giá: tiêu đề, breadcrumb, số lượng, sắp xếp, bộ lọc mặc định",
+      "page": "giam-gia"
+    }
+  ],
+  "sort": [
+    {
+      "id": "SF-LST-05",
+      "title": "Nam: sắp xếp \"Giá: Thấp → Cao\" (dữ liệu thật)",
+      "page": "nam",
+      "option": "Giá: Thấp → Cao",
+      "order": "asc"
+    },
+    {
+      "id": "SF-LST-06",
+      "title": "Nam: sắp xếp \"Giá: Cao → Thấp\" (dữ liệu thật)",
+      "page": "nam",
+      "option": "Giá: Cao → Thấp",
+      "order": "desc"
+    },
+    {
+      "id": "SF-LST-07",
+      "title": "Nữ: sắp xếp \"Giá: Thấp → Cao\" (dữ liệu thật)",
+      "page": "nu",
+      "option": "Giá: Thấp → Cao",
+      "order": "asc"
+    },
+    {
+      "id": "SF-LST-08",
+      "title": "Nữ: sắp xếp \"Giá: Cao → Thấp\" (dữ liệu thật)",
+      "page": "nu",
+      "option": "Giá: Cao → Thấp",
+      "order": "desc"
+    },
+    {
+      "id": "SF-LST-09",
+      "title": "Trẻ em: sắp xếp \"Giá: Thấp → Cao\" (dữ liệu thật)",
+      "page": "tre-em",
+      "option": "Giá: Thấp → Cao",
+      "order": "asc"
+    },
+    {
+      "id": "SF-LST-10",
+      "title": "Trẻ em: sắp xếp \"Giá: Cao → Thấp\" (dữ liệu thật)",
+      "page": "tre-em",
+      "option": "Giá: Cao → Thấp",
+      "order": "desc"
+    },
+    {
+      "id": "SF-LST-11",
+      "title": "Giảm giá: sắp xếp \"Giá: Thấp → Cao\" (dữ liệu thật)",
+      "page": "giam-gia",
+      "option": "Giá: Thấp → Cao",
+      "order": "asc"
+    },
+    {
+      "id": "SF-LST-12",
+      "title": "Giảm giá: sắp xếp \"Giá: Cao → Thấp\" (dữ liệu thật)",
+      "page": "giam-gia",
+      "option": "Giá: Cao → Thấp",
+      "order": "desc"
+    }
+  ],
+  "empty": [
+    {
+      "id": "SF-LST-13",
+      "title": "Nam: API trả rỗng -> thông báo không có sản phẩm (mock)",
+      "page": "nam"
+    },
+    {
+      "id": "SF-LST-14",
+      "title": "Nữ: API trả rỗng -> thông báo không có sản phẩm (mock)",
+      "page": "nu"
+    },
+    {
+      "id": "SF-LST-15",
+      "title": "Trẻ em: API trả rỗng -> thông báo không có sản phẩm (mock)",
+      "page": "tre-em"
+    },
+    {
+      "id": "SF-LST-16",
+      "title": "Giảm giá: API trả rỗng -> thông báo không có sản phẩm (mock)",
+      "page": "giam-gia"
+    }
+  ],
+  "category": [
+    {
+      "id": "SF-LST-17",
+      "title": "Nam: lọc danh mục \"Áo Polo\" gửi category=ao-polo (mock)",
+      "page": "nam",
+      "category": "Áo Polo",
+      "params": {
+        "category": "ao-polo"
+      }
+    },
+    {
+      "id": "SF-LST-18",
+      "title": "Nữ: lọc danh mục \"Váy\" gửi category=vay (mock)",
+      "page": "nu",
+      "category": "Váy",
+      "params": {
+        "category": "vay"
+      }
+    },
+    {
+      "id": "SF-LST-19",
+      "title": "Trẻ em: lọc danh mục \"Áo Trẻ Em\" gửi category=ao-tre-em (mock)",
+      "page": "tre-em",
+      "category": "Áo Trẻ Em",
+      "params": {
+        "category": "ao-tre-em"
+      }
+    },
+    {
+      "id": "SF-LST-20",
+      "title": "Giảm giá: lọc danh mục \"Áo Thun\" còn 3 sản phẩm (mock, lọc phía trình duyệt)",
+      "page": "giam-gia",
+      "category": "Áo Thun",
+      "countText": "Hiển thị 3 trên 3 sản phẩm"
+    }
+  ],
+  "price": [
+    {
+      "id": "SF-LST-21",
+      "title": "Nam: lọc giá 300.000 - 600.000 (dữ liệu thật)",
+      "page": "nam",
+      "from": "300000",
+      "to": "600000",
+      "min": 300000,
+      "max": 600000,
+      "params": {
+        "min_price": "300000",
+        "max_price": "600000"
+      }
+    },
+    {
+      "id": "SF-LST-22",
+      "title": "Nữ: lọc giá 300.000 - 600.000 (dữ liệu thật)",
+      "page": "nu",
+      "from": "300000",
+      "to": "600000",
+      "min": 300000,
+      "max": 600000,
+      "params": {
+        "min_price": "300000",
+        "max_price": "600000"
+      }
+    },
+    {
+      "id": "SF-LST-23",
+      "title": "Trẻ em: lọc giá 300.000 - 600.000 (dữ liệu thật)",
+      "page": "tre-em",
+      "from": "300000",
+      "to": "600000",
+      "min": 300000,
+      "max": 600000,
+      "params": {
+        "min_price": "300000",
+        "max_price": "600000"
+      }
+    },
+    {
+      "id": "SF-LST-24",
+      "title": "Giảm giá: lọc giá 300.000 - 600.000 (dữ liệu thật)",
+      "page": "giam-gia",
+      "from": "300000",
+      "to": "600000",
+      "min": 300000,
+      "max": 600000
+    }
+  ],
+  "discount": [
+    {
+      "id": "SF-LST-25",
+      "title": "Nam: lọc \"Giảm 30%\" chỉ còn sản phẩm giảm >= 30% (dữ liệu thật)",
+      "page": "nam",
+      "label": "Giảm 30%",
+      "minPercent": 30,
+      "params": {
+        "discount": "30"
+      }
+    },
+    {
+      "id": "SF-LST-26",
+      "title": "Nữ: lọc \"Giảm 30%\" chỉ còn sản phẩm giảm >= 30% (dữ liệu thật)",
+      "page": "nu",
+      "label": "Giảm 30%",
+      "minPercent": 30,
+      "params": {
+        "discount": "30"
+      }
+    },
+    {
+      "id": "SF-LST-27",
+      "title": "Trẻ em: lọc \"Giảm 30%\" chỉ còn sản phẩm giảm >= 30% (dữ liệu thật)",
+      "page": "tre-em",
+      "label": "Giảm 30%",
+      "minPercent": 30,
+      "params": {
+        "discount": "30"
+      }
+    },
+    {
+      "id": "SF-LST-28",
+      "title": "Giảm giá: lọc \"Giảm 30%\" chỉ còn sản phẩm giảm >= 30% (dữ liệu thật)",
+      "page": "giam-gia",
+      "label": "Giảm 30%",
+      "minPercent": 30
+    }
+  ],
+  "color": [
+    {
+      "id": "SF-LST-29",
+      "title": "Nam: lọc màu \"Đen\" gửi color=1 (mock)",
+      "page": "nam",
+      "color": "Đen",
+      "params": {
+        "color": "1"
+      }
+    },
+    {
+      "id": "SF-LST-30",
+      "title": "Nữ: lọc màu \"Hồng\" gửi color=7 (mock)",
+      "page": "nu",
+      "color": "Hồng",
+      "params": {
+        "color": "7"
+      }
+    },
+    {
+      "id": "SF-LST-31",
+      "title": "Trẻ em: lọc màu \"Đen\" gửi color=den (mock)",
+      "page": "tre-em",
+      "color": "Đen",
+      "params": {
+        "color": "den"
+      }
+    },
+    {
+      "id": "SF-LST-32",
+      "title": "Giảm giá: lọc màu \"Đen\" còn 5 sản phẩm (mock)",
+      "page": "giam-gia",
+      "color": "Đen",
+      "countText": "Hiển thị 5 trên 5 sản phẩm"
+    }
+  ],
+  "size": [
+    {
+      "id": "SF-LST-33",
+      "title": "Nam: lọc size M gửi size=M lên API",
+      "page": "nam",
+      "size": "M",
+      "knownBug": "ProductFilters.jsx:88 SizeFilter gọi onChange(size.id) (chuỗi) thay vì mảng -> selectedSizes.join/.some lỗi; MenPage.jsx:144 không gửi request, danh sách rỗng",
+      "params": {
+        "size": "M"
+      }
+    },
+    {
+      "id": "SF-LST-34",
+      "title": "Nữ: lọc size M gửi size=M lên API",
+      "page": "nu",
+      "size": "M",
+      "knownBug": "ProductFilters.jsx:88 SizeFilter gọi onChange(size.id) (chuỗi) thay vì mảng -> selectedSizes.join/.some lỗi; WomenPage.jsx không gửi request, danh sách rỗng",
+      "params": {
+        "size": "M"
+      }
+    },
+    {
+      "id": "SF-LST-35",
+      "title": "Trẻ em: lọc size M gửi size=M lên API",
+      "page": "tre-em",
+      "size": "M",
+      "knownBug": "ProductFilters.jsx:88 SizeFilter gọi onChange(size.id) (chuỗi) thay vì mảng -> selectedSizes.join/.some lỗi; KidsPage.jsx:154 không gửi request, danh sách rỗng",
+      "params": {
+        "size": "M"
+      }
+    },
+    {
+      "id": "SF-LST-36",
+      "title": "Giảm giá: lọc size M chỉ còn 5 sản phẩm có size M (mock)",
+      "page": "giam-gia",
+      "size": "M",
+      "knownBug": "ProductFilters.jsx:88 SizeFilter gọi onChange(size.id) (chuỗi) thay vì mảng -> selectedSizes.join/.some lỗi; SalePage.jsx:138 selectedSizes.some không phải hàm -> trang crash",
+      "countText": "Hiển thị 5 trên 5 sản phẩm"
+    }
+  ],
+  "paging": [
+    {
+      "id": "SF-LST-37",
+      "title": "Nam: bấm trang 2 gửi page=2 (mock)",
+      "page": "nam",
+      "via": "number",
+      "params": {
+        "page": "2"
+      }
+    },
+    {
+      "id": "SF-LST-38",
+      "title": "Nam: bấm \"trang sau\" gửi page=2 (mock)",
+      "page": "nam",
+      "via": "next",
+      "params": {
+        "page": "2"
+      }
+    },
+    {
+      "id": "SF-LST-39",
+      "title": "Nam: \"Xem thêm sản phẩm\" tải trang tiếp theo",
+      "page": "nam",
+      "via": "loadMore",
+      "params": {
+        "page": "2"
+      },
+      "knownBug": "MenPage.jsx:424 nút \"Xem thêm sản phẩm\" không có onClick"
+    },
+    {
+      "id": "SF-LST-40",
+      "title": "Nữ: \"Xem thêm sản phẩm\" tải trang tiếp theo (mock)",
+      "page": "nu",
+      "via": "loadMore",
+      "params": {
+        "page": "2"
+      }
+    },
+    {
+      "id": "SF-LST-41",
+      "title": "Trẻ em: bấm trang 2 gửi page=2 (mock)",
+      "page": "tre-em",
+      "via": "number",
+      "params": {
+        "page": "2"
+      }
+    },
+    {
+      "id": "SF-LST-42",
+      "title": "Giảm giá: bấm trang 2 hiển thị 2 sản phẩm còn lại (mock)",
+      "page": "giam-gia",
+      "via": "number",
+      "countText": "Hiển thị 2 trên 10 sản phẩm"
+    },
+    {
+      "id": "SF-LST-43",
+      "title": "Giảm giá: bấm \"trang sau\" hiển thị trang 2 (mock)",
+      "page": "giam-gia",
+      "via": "next",
+      "countText": "Hiển thị 2 trên 10 sản phẩm"
+    }
+  ],
+  "overlayAdd": [
+    {
+      "id": "SF-LST-44",
+      "title": "Nam: \"Thêm vào giỏ\" trên thẻ -> nhắc chọn size và mở trang chi tiết",
+      "page": "nam",
+      "tags": [
+        "@smoke"
+      ]
+    },
+    {
+      "id": "SF-LST-45",
+      "title": "Nữ: \"Thêm vào giỏ\" trên thẻ -> nhắc chọn size và mở trang chi tiết",
+      "page": "nu"
+    },
+    {
+      "id": "SF-LST-46",
+      "title": "Trẻ em: \"Thêm vào giỏ\" trên thẻ -> nhắc chọn size và mở trang chi tiết",
+      "page": "tre-em"
+    },
+    {
+      "id": "SF-LST-47",
+      "title": "Giảm giá: \"Thêm vào giỏ\" trên thẻ -> nhắc chọn size và mở trang chi tiết",
+      "page": "giam-gia"
+    }
+  ],
+  "overlayDetail": [
+    {
+      "id": "SF-LST-48",
+      "title": "Nam: \"Xem chi tiết\" trên thẻ mở trang chi tiết",
+      "page": "nam"
+    },
+    {
+      "id": "SF-LST-49",
+      "title": "Nữ: \"Xem chi tiết\" trên thẻ mở trang chi tiết",
+      "page": "nu"
+    },
+    {
+      "id": "SF-LST-50",
+      "title": "Trẻ em: \"Xem chi tiết\" trên thẻ mở trang chi tiết",
+      "page": "tre-em"
+    },
+    {
+      "id": "SF-LST-51",
+      "title": "Giảm giá: \"Xem chi tiết\" trên thẻ mở trang chi tiết",
+      "page": "giam-gia"
+    }
+  ],
+  "favorite": [
+    {
+      "id": "SF-LST-52",
+      "title": "Nam: bấm nút yêu thích không rời khỏi trang danh sách",
+      "page": "nam",
+      "knownBug": "Nút yêu thích nằm trong <Link> và không có onClick -> bấm tim lại mở trang chi tiết, không thêm vào yêu thích"
+    },
+    {
+      "id": "SF-LST-53",
+      "title": "Nữ: bấm nút yêu thích không rời khỏi trang danh sách",
+      "page": "nu",
+      "knownBug": "Nút yêu thích nằm trong <Link> và không có onClick -> bấm tim lại mở trang chi tiết, không thêm vào yêu thích"
+    },
+    {
+      "id": "SF-LST-54",
+      "title": "Trẻ em: bấm nút yêu thích không rời khỏi trang danh sách",
+      "page": "tre-em",
+      "knownBug": "Nút yêu thích nằm trong <Link> và không có onClick -> bấm tim lại mở trang chi tiết, không thêm vào yêu thích"
+    },
+    {
+      "id": "SF-LST-55",
+      "title": "Giảm giá: bấm nút yêu thích không rời khỏi trang danh sách",
+      "page": "giam-gia",
+      "knownBug": "Nút yêu thích nằm trong <Link> và không có onClick -> bấm tim lại mở trang chi tiết, không thêm vào yêu thích"
+    }
+  ],
+  "showMore": {
+    "id": "SF-LST-56",
+    "title": "Giảm giá: \"Xem thêm +\" hiện đủ 8 danh mục",
+    "page": "giam-gia",
+    "categories": [
+      "Tất cả",
+      "Áo Thun",
+      "Áo Sơ Mi",
+      "Quần Jeans",
+      "T-Shirt",
+      "Váy",
+      "Homewear",
+      "Áo Polo"
+    ]
+  }
+}

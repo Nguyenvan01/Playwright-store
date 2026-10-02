@@ -1,0 +1,23 @@
+{
+  "sorting": [
+    { "id": "API-PUB-S01", "title": "Sắp xếp giá tăng dần", "query": "sort=price&order=asc&limit=10", "order": "asc" },
+    { "id": "API-PUB-S02", "title": "Sắp xếp giá giảm dần", "query": "sort=price&order=desc&limit=10", "order": "desc" }
+  ],
+  "filters": [
+    { "id": "API-PUB-F01", "title": "Lọc theo giới tính nam", "query": "gender=male&limit=20", "field": "gender", "equals": "male" },
+    { "id": "API-PUB-F02", "title": "Lọc theo giới tính nữ", "query": "gender=female&limit=20", "field": "gender", "equals": "female" },
+    { "id": "API-PUB-F03", "title": "Lọc theo danh mục tshirt", "query": "category=tshirt&limit=20", "field": "category_slug", "equals": "tshirt" }
+  ],
+  "validation": [
+    { "id": "API-PUB-V01", "title": "Tìm kiếm từ khóa rỗng", "path": "/products/search?q=", "status": 400, "message": "Từ khóa tìm kiếm phải có ít nhất 2 ký tự" },
+    { "id": "API-PUB-V02", "title": "Tìm kiếm từ khóa 1 ký tự", "path": "/products/search?q=a", "status": 400, "message": "Từ khóa tìm kiếm phải có ít nhất 2 ký tự" },
+    { "id": "API-PUB-V03", "title": "Bài viết không tồn tại", "path": "/news/khong-ton-tai-e2e", "status": 404, "message": "Không tìm thấy bài viết" },
+    {
+      "id": "API-PUB-V04",
+      "title": "Trang âm (page=-1) phải báo lỗi tham số",
+      "path": "/products?page=-1",
+      "status": 400,
+      "knownBug": "Backend không validate page, trả 500 'Không thể tải danh sách sản phẩm'"
+    }
+  ]
+}

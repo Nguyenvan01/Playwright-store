@@ -1,0 +1,43 @@
+{
+  "validation": [
+    {
+      "id": "REG-V01",
+      "title": "Bỏ trống toàn bộ form",
+      "form": { "name": "", "email": "", "phone": "", "password": "", "confirmPassword": "" },
+      "errors": [
+        "Vui lòng nhập họ và tên",
+        "Vui lòng nhập email hoặc số điện thoại",
+        "Vui lòng nhập số điện thoại",
+        "Vui lòng nhập mật khẩu"
+      ]
+    },
+    {
+      "id": "REG-V02",
+      "title": "Mật khẩu xác nhận không khớp",
+      "form": { "name": "E2E Tester", "email": "e2e.${uid}@example.com", "phone": "0912345678", "password": "E2e@123456", "confirmPassword": "khac-mat-khau" },
+      "errors": ["Mật khẩu xác nhận không khớp"]
+    },
+    {
+      "id": "REG-V03",
+      "title": "Mật khẩu dưới 6 ký tự",
+      "form": { "name": "E2E Tester", "email": "e2e.${uid}@example.com", "phone": "0912345678", "password": "123", "confirmPassword": "123" },
+      "errors": ["Mật khẩu phải có ít nhất 6 ký tự"]
+    },
+    {
+      "id": "REG-V04",
+      "title": "Thiếu số điện thoại",
+      "form": { "name": "E2E Tester", "email": "e2e.${uid}@example.com", "phone": "", "password": "E2e@123456" },
+      "errors": ["Vui lòng nhập số điện thoại"]
+    },
+    {
+      "id": "REG-V05",
+      "title": "Thiếu họ tên",
+      "form": { "name": "", "email": "e2e.${uid}@example.com", "phone": "0912345678", "password": "E2e@123456" },
+      "errors": ["Vui lòng nhập họ và tên"]
+    }
+  ],
+  "serverErrors": [
+    { "id": "REG-S01", "title": "Email đã tồn tại (mock 409)", "status": 409, "message": "Email đã được sử dụng" },
+    { "id": "REG-S02", "title": "Email không hợp lệ theo server (mock 400)", "status": 400, "message": "Email không hợp lệ" }
+  ]
+}

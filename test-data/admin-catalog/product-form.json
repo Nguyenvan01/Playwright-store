@@ -1,0 +1,112 @@
+{
+  "validation": [
+    { "id": "ADC-PF-V01", "title": "Bỏ trống tên và giá", "fields": {}, "error": "Vui lòng nhập tên và giá sản phẩm", "tags": ["@smoke"] },
+    { "id": "ADC-PF-V02", "title": "Chỉ nhập tên, thiếu giá", "fields": { "Tên sản phẩm": "Áo thiếu giá E2E" }, "error": "Vui lòng nhập tên và giá sản phẩm" },
+    { "id": "ADC-PF-V03", "title": "Chỉ nhập giá, thiếu tên", "fields": { "Giá bán": "199000" }, "error": "Vui lòng nhập tên và giá sản phẩm" }
+  ],
+  "slugs": [
+    { "id": "ADC-PF-S01", "title": "Tên có dấu thông thường", "name": "Áo thun nam basic", "slug": "ao-thun-nam-basic" },
+    { "id": "ADC-PF-S02", "title": "Ký tự đặc biệt và khoảng trắng kép", "name": "Quần Jeans  Slim-Fit (2024)!", "slug": "quan-jeans-slim-fit-2024" },
+    {
+      "id": "ADC-PF-S03", "title": "Tên có chữ 'đ' giữa từ", "name": "Áo khoác đen", "slug": "ao-khoac-den",
+      "knownBug": "AdminProductForm.jsx:154-158 - NFD không tách 'đ' nên bị thay bằng '-' -> slug 'ao-khoac-en'"
+    },
+    {
+      "id": "ADC-PF-S04", "title": "Tên bắt đầu bằng chữ 'Đ'", "name": "Đầm dự tiệc", "slug": "dam-du-tiec",
+      "knownBug": "AdminProductForm.jsx:154-158 - 'Đ' đầu tên bị bỏ -> slug 'am-du-tiec'"
+    }
+  ],
+  "variants": {
+    "sku": "E2E-VAR",
+    "price": "250000",
+    "sizes": ["S", "M"],
+    "colors": ["Đen", "Trắng"],
+    "buttonBefore": "Tạo 0 biến thể",
+    "buttonAfter": "Tạo 4 biến thể",
+    "rows": [
+      { "size": "S", "color": "Đen", "sku": "E2E-VAR-2-1" },
+      { "size": "S", "color": "Trắng", "sku": "E2E-VAR-2-2" },
+      { "size": "M", "color": "Đen", "sku": "E2E-VAR-3-1" },
+      { "size": "M", "color": "Trắng", "sku": "E2E-VAR-3-2" }
+    ]
+  },
+  "images": {
+    "urls": ["https://e2e.invalid/anh-1.jpg", "https://e2e.invalid/anh-2.jpg"],
+    "mainBadge": "Ảnh chính"
+  },
+  "create": {
+    "fields": {
+      "Tên sản phẩm": "Áo thun E2E tạo mới",
+      "Mô tả ngắn": "Mô tả ngắn E2E",
+      "Mô tả chi tiết": "Mô tả chi tiết E2E",
+      "Giá bán": "199000",
+      "Giá gốc": "249000",
+      "SKU": "E2E-NEW-01",
+      "Tồn kho": "20",
+      "Danh mục": "Áo Thun E2E",
+      "Thương hiệu": "Canifa E2E",
+      "Giới tính": "Nam",
+      "Chất liệu": "Cotton 100%",
+      "Sản phẩm nổi bật": true
+    },
+    "imageUrl": "https://e2e.invalid/anh-tao-moi.jpg",
+    "slug": "ao-thun-e2e-tao-moi",
+    "payload": {
+      "name": "Áo thun E2E tạo mới",
+      "slug": "ao-thun-e2e-tao-moi",
+      "short_description": "Mô tả ngắn E2E",
+      "description": "Mô tả chi tiết E2E",
+      "price": 199000,
+      "compare_price": 249000,
+      "cost_price": null,
+      "sku": "E2E-NEW-01",
+      "stock": 20,
+      "category_id": 9301,
+      "brand_id": 9401,
+      "gender": "male",
+      "material": "Cotton 100%",
+      "is_featured": true,
+      "is_active": true,
+      "images": ["https://e2e.invalid/anh-tao-moi.jpg"],
+      "variants": []
+    },
+    "response": { "success": true, "product": { "id": 9299 } },
+    "toast": "Tạo sản phẩm thành công.",
+    "error": { "status": 400, "message": "Mã SKU đã tồn tại." }
+  },
+  "edit": {
+    "id": 9201,
+    "path": "/admin/products/edit/9201",
+    "product": "Áo thun E2E cổ tròn",
+    "prefill": {
+      "Tên sản phẩm": "Áo thun E2E cổ tròn",
+      "Slug": "ao-thun-e2e-co-tron",
+      "Mô tả chi tiết": "Mô tả chi tiết áo thun E2E - không được mất khi sửa",
+      "Giá bán": "199000",
+      "SKU": "E2E-AT-01",
+      "Danh mục": "9301",
+      "Thương hiệu": "9401",
+      "Giới tính": "male",
+      "Chất liệu": "Cotton 100%"
+    },
+    "variantCount": 1,
+    "imageCount": 1,
+    "change": { "Giá bán": "219000" },
+    "payload": {
+      "name": "Áo thun E2E cổ tròn",
+      "price": 219000,
+      "description": "Mô tả chi tiết áo thun E2E - không được mất khi sửa",
+      "material": "Cotton 100%",
+      "gender": "male",
+      "category_id": 9301,
+      "brand_id": 9401
+    },
+    "toast": "Lưu sản phẩm thành công.",
+    "fromListBug": "AdminProductForm.jsx:57-89 - khi bấm Sửa từ danh sách, form lấy dữ liệu dòng trong sessionStorage (thiếu description/material/gender/variants) và return trước khi tải danh mục/thương hiệu -> ô Danh mục trống và lưu sẽ ghi đè mô tả/chất liệu/giới tính"
+  },
+  "upload": {
+    "fileName": "anh-e2e.png",
+    "response": { "success": true, "url": "https://e2e.invalid/uploads/anh-e2e.png" },
+    "knownBug": "AdminProductForm.jsx:187 - upload gửi Authorization từ localStorage 'token' (không tồn tại ở phiên admin) thay vì 'admin_token' -> header 'Bearer null'"
+  }
+}

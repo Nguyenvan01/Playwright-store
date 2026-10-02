@@ -1,0 +1,44 @@
+{
+  "statLabels": ["Tổng sản phẩm", "Tổng tồn kho", "Sắp hết hàng", "Giá trị tồn kho"],
+  "headers": ["Sản phẩm", "SKU", "Danh mục", "Tồn kho", "Ngưỡng", "Giá vốn", "Giá trị"],
+  "mock": {
+    "stats": { "totalProducts": 5, "totalStock": 120, "lowStock": 2, "outOfStock": 1, "totalValue": 12500000 },
+    "products": [
+      { "id": 1, "name": "Áo thun basic", "sku": "TS001", "stock": 0, "price": 199000, "cost_price": 100000, "category_name": "T-Shirt" },
+      { "id": 2, "name": "Quần jeans slim", "sku": "FE007", "stock": 3, "price": 499000, "cost_price": 200000, "category_name": "Quần Jeans" },
+      { "id": 3, "name": "Váy maxi", "sku": "VY001", "stock": 5, "price": 399000, "cost_price": 150000, "category_name": "Váy" },
+      { "id": 4, "name": "Áo sơ mi trắng", "sku": "SM001", "stock": 6, "price": 359000, "cost_price": 180000, "category_name": "Áo Sơ Mi" },
+      { "id": 5, "name": "Đầm ngủ lụa", "sku": "HW006", "stock": 106, "price": 449000, "cost_price": null, "category_name": "Homewear" }
+    ]
+  },
+  "statCards": { "Tổng sản phẩm": "5", "Tổng tồn kho": "120", "Sắp hết hàng": "2", "Giá trị tồn kho": "12.500.000đ" },
+  "rows": [
+    { "id": "ADO-WH-R01", "title": "Sắp hết: tồn 3, ngưỡng 5, giá vốn và giá trị", "tags": ["@smoke"], "rowText": "Quần jeans slim", "expected": { "SKU": "FE007", "Danh mục": "Quần Jeans", "Tồn kho": "3", "Ngưỡng": "5", "Giá vốn": "200.000đ", "Giá trị": "600.000đ" } },
+    { "id": "ADO-WH-R02", "title": "Chưa có giá vốn -> 0đ", "rowText": "Đầm ngủ lụa", "expected": { "Tồn kho": "106", "Giá vốn": "0đ", "Giá trị": "0đ" } },
+    { "id": "ADO-WH-R03", "title": "Hết hàng: tồn 0, giá trị 0đ", "rowText": "Áo thun basic", "expected": { "Tồn kho": "0", "Giá vốn": "100.000đ", "Giá trị": "0đ" } }
+  ],
+  "tabs": [
+    { "id": "ADO-WH-T01", "title": "Tab \"Sắp hết\" gửi filter=low, chỉ còn tồn 1-5", "tab": "Sắp hết", "filter": "low", "visible": ["Quần jeans slim", "Váy maxi"], "hidden": ["Áo thun basic", "Áo sơ mi trắng", "Đầm ngủ lụa"] },
+    { "id": "ADO-WH-T02", "title": "Tab \"Hết hàng\" gửi filter=out, chỉ còn tồn 0", "tab": "Hết hàng", "filter": "out", "visible": ["Áo thun basic"], "hidden": ["Quần jeans slim", "Váy maxi", "Áo sơ mi trắng", "Đầm ngủ lụa"] },
+    { "id": "ADO-WH-T03", "title": "Quay lại tab \"Tất cả\" gửi filter=all", "tab": "Tất cả", "filter": "all", "visible": ["Áo thun basic", "Quần jeans slim", "Váy maxi", "Áo sơ mi trắng", "Đầm ngủ lụa"], "hidden": [] }
+  ],
+  "search": [
+    { "id": "ADO-WH-Q01", "title": "Tìm theo tên sản phẩm", "keyword": "jeans", "visible": ["Quần jeans slim"], "hidden": ["Áo thun basic", "Váy maxi", "Đầm ngủ lụa"] },
+    { "id": "ADO-WH-Q02", "title": "Tìm theo SKU (không phân biệt hoa thường)", "keyword": "vy001", "visible": ["Váy maxi"], "hidden": ["Áo thun basic", "Quần jeans slim", "Đầm ngủ lụa"] },
+    { "id": "ADO-WH-Q03", "title": "Tìm theo danh mục", "keyword": "homewear", "visible": ["Đầm ngủ lụa"], "hidden": ["Áo thun basic", "Quần jeans slim", "Váy maxi"] },
+    { "id": "ADO-WH-Q04", "title": "Tìm không dấu vẫn khớp tên có dấu", "keyword": "dam ngu", "visible": ["Đầm ngủ lụa"], "hidden": ["Áo thun basic", "Quần jeans slim", "Váy maxi"] },
+    { "id": "ADO-WH-Q05", "title": "Không có kết quả -> \"Không tìm thấy sản phẩm phù hợp.\"", "keyword": "zzz-khong-co", "visible": [], "hidden": ["Áo thun basic", "Quần jeans slim", "Váy maxi", "Áo sơ mi trắng", "Đầm ngủ lụa"], "emptyText": "Không tìm thấy sản phẩm phù hợp." }
+  ],
+  "tabBadges": [
+    { "id": "ADO-WH-B01", "title": "Tab \"Tất cả\": số đếm trên 3 tab đúng", "tab": "Tất cả", "badges": { "Tất cả": 5, "Sắp hết": 2, "Hết hàng": 1 } },
+    {
+      "id": "ADO-WH-B02", "title": "Tab \"Sắp hết\": số đếm các tab không đổi",
+      "knownBug": "AdminWarehouse.jsx:39-40,111-113 đếm số trên tab từ danh sách đang lọc -> ở tab 'Sắp hết' tab 'Tất cả' thành 2 và số của 'Hết hàng' biến mất",
+      "tab": "Sắp hết", "badges": { "Tất cả": 5, "Sắp hết": 2, "Hết hàng": 1 }
+    }
+  ],
+  "realStats": {
+    "id": "ADO-WH-B03", "title": "Dữ liệu thật: thẻ \"Tổng sản phẩm\" bằng số sản phẩm trong bảng",
+    "knownBug": "adminController.js:1638-1655 PostgreSQL trả alias không đặt trong ngoặc kép thành chữ thường (totalproducts...) nên destructuring { totalProducts, ... } luôn undefined -> các thẻ thống kê kho luôn 0"
+  }
+}

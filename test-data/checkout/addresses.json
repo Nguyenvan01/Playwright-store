@@ -1,0 +1,29 @@
+{
+  "hcm": {
+    "firstName": "Nguyễn",
+    "lastName": "Kiểm Thử",
+    "phone": "0912345678",
+    "city": "hcm",
+    "district": "quan-1",
+    "ward": "phuong-1",
+    "address": "123 Lê Lợi"
+  },
+  "hanoi": {
+    "firstName": "Trần",
+    "lastName": "Thị Hà",
+    "phone": "0987654321",
+    "city": "hanoi",
+    "district": "cau-giay",
+    "ward": "phuong-2",
+    "address": "15 Xuân Thủy"
+  },
+  "danang": {
+    "firstName": "Lê",
+    "lastName": "Văn Đà",
+    "phone": "0905123456",
+    "city": "danang",
+    "district": "hai-chau",
+    "ward": "phuong-3",
+    "address": "88 Bạch Đằng"
+  }
+}

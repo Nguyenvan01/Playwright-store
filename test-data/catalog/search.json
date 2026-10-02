@@ -1,0 +1,23 @@
+{
+  "suggestions": [
+    {
+      "id": "SEARCH-01",
+      "title": "Gõ tên đầy đủ hiện gợi ý đúng sản phẩm",
+      "tags": ["@smoke"],
+      "keyword": "${product.name}",
+      "expectSuggestion": "${product.name}"
+    }
+  ],
+  "resultPage": [
+    {
+      "id": "SEARCH-02",
+      "title": "Enter với từ đầu tiên trong tên sản phẩm",
+      "keyword": "${productFirstWord}",
+      "expectHeading": "Kết quả tìm kiếm: \"${productFirstWord}\""
+    }
+  ],
+  "noResult": [
+    { "id": "SEARCH-03", "title": "Chuỗi vô nghĩa", "keyword": "zzzkhongtontaie2e" },
+    { "id": "SEARCH-04", "title": "Chuỗi số dài", "keyword": "9876543210123" }
+  ]
+}

@@ -1,0 +1,291 @@
+[
+  {
+    "key": "category",
+    "label": "Danh mục",
+    "path": "/admin/categories",
+    "title": "Danh mục",
+    "api": "categories",
+    "fixture": "categories",
+    "responseKey": "category",
+    "searchPlaceholder": "Tìm kiếm danh mục...",
+    "addButton": "Thêm danh mục",
+    "addHeading": "Thêm danh mục mới",
+    "editHeading": "Sửa danh mục",
+    "nameLabel": "Tên danh mục",
+    "empty": "Không tìm thấy danh mục",
+    "deleteMessage": "Bạn có chắc muốn xóa danh mục \"{name}\"?",
+    "toasts": {
+      "created": "Đã thêm danh mục mới",
+      "updated": "Đã cập nhật danh mục",
+      "saveFailed": "Lưu danh mục thất bại",
+      "deleted": "Đã xóa danh mục",
+      "toggled": "Đã cập nhật trạng thái",
+      "toggleFailed": "Không thể cập nhật trạng thái"
+    },
+    "searches": [
+      {
+        "id": "ADC-CAT-SR01",
+        "title": "Tìm danh mục theo tên",
+        "text": "jeans",
+        "visible": [
+          "Quần Jeans E2E"
+        ],
+        "hidden": [
+          "Áo Thun E2E"
+        ]
+      },
+      {
+        "id": "ADC-CAT-SR02",
+        "title": "Tìm danh mục theo slug",
+        "text": "phu-kien",
+        "visible": [
+          "Phụ Kiện E2E"
+        ],
+        "hidden": [
+          "Quần Jeans E2E"
+        ]
+      },
+      {
+        "id": "ADC-CAT-SR03",
+        "title": "Không có danh mục khớp",
+        "text": "khong-ton-tai-e2e",
+        "visible": [],
+        "hidden": [
+          "Áo Thun E2E"
+        ],
+        "empty": true
+      }
+    ],
+    "create": {
+      "form": {
+        "Tên danh mục": "Váy E2E",
+        "Slug": "vay-e2e",
+        "Mô tả": "Danh mục váy kiểm thử",
+        "Thứ tự": "9",
+        "Icon": "dress",
+        "Nổi bật": true
+      },
+      "payload": {
+        "name": "Váy E2E",
+        "slug": "vay-e2e",
+        "description": "Danh mục váy kiểm thử",
+        "sort_order": "9",
+        "icon": "dress",
+        "is_featured": true,
+        "is_active": true
+      },
+      "response": {
+        "success": true,
+        "category": {
+          "id": 9399,
+          "name": "Váy E2E",
+          "slug": "vay-e2e",
+          "description": "Danh mục váy kiểm thử",
+          "icon": "dress",
+          "sort_order": 9,
+          "is_featured": true,
+          "is_active": true
+        }
+      },
+      "name": "Váy E2E"
+    },
+    "edit": {
+      "target": "Quần Jeans E2E",
+      "id": 9302,
+      "prefill": {
+        "Tên danh mục": "Quần Jeans E2E",
+        "Slug": "quan-jeans-e2e",
+        "Thứ tự": "2"
+      },
+      "form": {
+        "Tên danh mục": "Quần Jeans E2E Sửa",
+        "Mô tả": "Đã sửa bởi E2E"
+      },
+      "payload": {
+        "id": 9302,
+        "name": "Quần Jeans E2E Sửa",
+        "slug": "quan-jeans-e2e",
+        "description": "Đã sửa bởi E2E"
+      },
+      "response": {
+        "success": true,
+        "category": {
+          "id": 9302,
+          "name": "Quần Jeans E2E Sửa",
+          "slug": "quan-jeans-e2e",
+          "description": "Đã sửa bởi E2E",
+          "icon": "",
+          "sort_order": 2,
+          "is_featured": false,
+          "is_active": true
+        }
+      },
+      "name": "Quần Jeans E2E Sửa",
+      "description": "Đã sửa bởi E2E"
+    },
+    "delete": {
+      "target": "Phụ Kiện E2E",
+      "id": 9303,
+      "errorMessage": "Danh mục đang có sản phẩm, không thể xóa."
+    },
+    "toggle": {
+      "target": "Quần Jeans E2E",
+      "id": 9302,
+      "payload": {
+        "is_active": false
+      }
+    },
+    "featured": {
+      "target": "Áo Thun E2E",
+      "knownBug": "AdminCategories.jsx:115 - badge 'Nổi bật' so sánh is_featured === 1 nhưng API (Postgres) trả boolean true -> không bao giờ hiện"
+    }
+  },
+  {
+    "key": "brand",
+    "label": "Thương hiệu",
+    "path": "/admin/brands",
+    "title": "Thương hiệu",
+    "api": "brands",
+    "fixture": "brands",
+    "responseKey": "brand",
+    "searchPlaceholder": "Tìm kiếm thương hiệu...",
+    "addButton": "Thêm thương hiệu",
+    "addHeading": "Thêm thương hiệu mới",
+    "editHeading": "Sửa thương hiệu",
+    "nameLabel": "Tên thương hiệu",
+    "empty": "Không tìm thấy thương hiệu",
+    "deleteMessage": "Bạn có chắc muốn xóa thương hiệu \"{name}\"?",
+    "toasts": {
+      "created": "Đã thêm thương hiệu mới",
+      "updated": "Đã cập nhật thương hiệu",
+      "saveFailed": "Lưu thương hiệu thất bại",
+      "deleted": "Đã xóa thương hiệu",
+      "toggled": "Đã cập nhật trạng thái",
+      "toggleFailed": "Không thể cập nhật trạng thái"
+    },
+    "searches": [
+      {
+        "id": "ADC-BRD-SR01",
+        "title": "Tìm thương hiệu theo tên",
+        "text": "ROUTINE",
+        "visible": [
+          "Routine E2E"
+        ],
+        "hidden": [
+          "Canifa E2E"
+        ]
+      },
+      {
+        "id": "ADC-BRD-SR02",
+        "title": "Tìm thương hiệu theo slug",
+        "text": "kids-e2e",
+        "visible": [
+          "Kids E2E"
+        ],
+        "hidden": [
+          "Routine E2E"
+        ]
+      },
+      {
+        "id": "ADC-BRD-SR03",
+        "title": "Không có thương hiệu khớp",
+        "text": "khong-ton-tai-e2e",
+        "visible": [],
+        "hidden": [
+          "Canifa E2E"
+        ],
+        "empty": true
+      }
+    ],
+    "create": {
+      "form": {
+        "Tên thương hiệu": "Zara E2E",
+        "Mô tả": "Thương hiệu kiểm thử mới",
+        "Logo (URL)": "https://e2e.invalid/logo.png"
+      },
+      "payload": {
+        "name": "Zara E2E",
+        "slug": "zara-e2e",
+        "description": "Thương hiệu kiểm thử mới",
+        "logo": "https://e2e.invalid/logo.png",
+        "is_featured": false,
+        "is_active": true
+      },
+      "response": {
+        "success": true,
+        "brand": {
+          "id": 9499,
+          "name": "Zara E2E",
+          "slug": "zara-e2e",
+          "description": "Thương hiệu kiểm thử mới",
+          "logo": "https://e2e.invalid/logo.png",
+          "is_featured": false,
+          "is_active": true
+        }
+      },
+      "name": "Zara E2E"
+    },
+    "edit": {
+      "target": "Routine E2E",
+      "id": 9402,
+      "prefill": {
+        "Tên thương hiệu": "Routine E2E",
+        "Slug": "routine-e2e"
+      },
+      "form": {
+        "Mô tả": "Đã sửa bởi E2E"
+      },
+      "payload": {
+        "id": 9402,
+        "name": "Routine E2E",
+        "slug": "routine-e2e",
+        "description": "Đã sửa bởi E2E"
+      },
+      "response": {
+        "success": true,
+        "brand": {
+          "id": 9402,
+          "name": "Routine E2E",
+          "slug": "routine-e2e",
+          "description": "Đã sửa bởi E2E",
+          "logo": "",
+          "is_featured": false,
+          "is_active": true
+        }
+      },
+      "name": "Routine E2E",
+      "description": "Đã sửa bởi E2E"
+    },
+    "delete": {
+      "target": "Kids E2E",
+      "id": 9403,
+      "errorMessage": "Thương hiệu đang có sản phẩm, không thể xóa."
+    },
+    "toggle": {
+      "target": "Routine E2E",
+      "id": 9402,
+      "payload": {
+        "is_active": false
+      }
+    },
+    "featured": {
+      "target": "Canifa E2E",
+      "knownBug": "AdminBrands.jsx:111 - badge 'Nổi bật' so sánh is_featured === 1 nhưng API (Postgres) trả boolean true -> không bao giờ hiện"
+    },
+    "slugAutofill": [
+      {
+        "id": "ADC-BRD-SL01",
+        "title": "Slug tự sinh từ tên không dấu",
+        "name": "Local Brand 2026",
+        "slug": "local-brand-2026"
+      },
+      {
+        "id": "ADC-BRD-SL02",
+        "title": "Slug tự sinh từ tên tiếng Việt có dấu",
+        "name": "Thương hiệu Test",
+        "slug": "thuong-hieu-test",
+        "knownBug": "AdminBrands.jsx:138 - slug chỉ giữ [a-z0-9], không bỏ dấu tiếng Việt -> 'th-ng-hi-u-test'"
+      }
+    ]
+  }
+]

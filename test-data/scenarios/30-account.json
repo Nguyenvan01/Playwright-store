@@ -1,0 +1,116 @@
+[
+  {
+    "id": "KD-ACC-11",
+    "title": "Hồ sơ: vào qua menu, sửa SĐT + giới tính (mock API) và kiểm tra hiển thị",
+    "tags": ["@smoke"],
+    "requires": ["customer"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "customer" },
+      { "keyword": "common.mockGet", "args": ["**/api/profile", "@data:account/profile.json#responses.gold"] },
+      { "keyword": "common.mockGet", "args": ["**/api/orders*", "@data:account/orders.json#empty"] },
+      { "keyword": "common.mockGet", "args": ["**/api/wishlist", "@data:account/wishlist.json#empty"] },
+      { "keyword": "common.mockGet", "args": ["**/api/addresses", "@data:account/addresses.json#empty"] },
+      { "keyword": "common.mockWrite", "args": ["PUT", "**/api/profile", "@data:account/profile.json#scenario.updateResponse"] },
+      { "keyword": "account.openProfileFromMenu" },
+      { "keyword": "account.verifyProfileFields", "arg": { "Họ và tên": "Nguyễn Thị Kiểm Thử", "Hạng thành viên": "Vàng" } },
+      { "keyword": "account.startEditProfile" },
+      { "keyword": "account.fillProfileForm", "arg": "@data:account/profile.json#scenario.form" },
+      { "keyword": "account.saveProfile" },
+      {
+        "keyword": "common.verifyRequest",
+        "args": ["PUT", "/api/profile", { "name": "Nguyễn Thị Kiểm Thử", "phone": "0911222333", "gender": "female" }]
+      },
+      { "keyword": "account.verifyProfileEditing", "arg": false },
+      { "keyword": "account.verifyProfileFields", "arg": { "Số điện thoại": "0911222333", "Giới tính": "Nữ" } }
+    ]
+  },
+  {
+    "id": "KD-ACC-12",
+    "title": "Đơn hàng: lọc Chờ xác nhận, mở chi tiết và hủy đơn có lý do (mock API)",
+    "requires": ["customer"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "customer" },
+      { "keyword": "common.mockGet", "args": ["**/api/orders*", "@data:account/orders.json#list"] },
+      { "keyword": "common.mockGet", "args": ["**/api/orders/*", "@data:account/order-detail.json#pending"] },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/orders/*/cancel", "@data:account/order-detail.json#cancel.response"] },
+      { "keyword": "account.openOrders" },
+      { "keyword": "account.verifyOrdersLoaded" },
+      { "keyword": "account.filterOrdersByStatus", "arg": "Chờ xác nhận" },
+      { "keyword": "account.verifyOrderList", "arg": ["ORD000107"] },
+      { "keyword": "account.openOrderFromList", "arg": "ORD000107" },
+      { "keyword": "account.verifyOrderDetailHeading", "arg": "Chi tiết đơn hàng #ORD000107" },
+      { "keyword": "account.verifyOrderDetailTotals", "arg": { "Tạm tính": "480.000đ", "Tổng tiền": "450.000đ" } },
+      { "keyword": "account.openCancelOrderDialog" },
+      { "keyword": "account.confirmCancelOrder", "arg": "Đặt nhầm size, muốn đặt lại" },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/api/orders/107/cancel", { "reason": "Đặt nhầm size, muốn đặt lại" }] },
+      { "keyword": "account.verifyOrderDetailStatus", "args": ["Đã hủy", "Chưa thanh toán"] },
+      { "keyword": "account.verifyOrderDetailCancelable", "arg": false }
+    ]
+  },
+  {
+    "id": "KD-ACC-13",
+    "title": "Sổ địa chỉ: thêm địa chỉ đầu tiên từ màn hình trống (mock API)",
+    "requires": ["customer"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "customer" },
+      { "keyword": "common.mockGet", "args": ["**/api/addresses", "@data:account/addresses.json#empty"] },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/addresses", "@data:account/addresses.json#createFirst", 201] },
+      { "keyword": "account.openAddresses" },
+      { "keyword": "account.verifyAddressesEmpty" },
+      { "keyword": "account.openAddAddressFromEmptyState" },
+      { "keyword": "account.submitAddressForm", "note": "Bấm lưu khi form trống -> báo lỗi" },
+      {
+        "keyword": "account.verifyAddressFormErrors",
+        "arg": ["Vui lòng nhập họ tên", "Vui lòng nhập số điện thoại", "Vui lòng nhập địa chỉ", "Vui lòng chọn tỉnh/thành phố"]
+      },
+      { "keyword": "account.fillAddressForm", "arg": "@data:account/addresses.json#create.form" },
+      { "keyword": "account.submitAddressForm" },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/api/addresses", { "fullName": "Lê Văn Mới", "city": "Đà Nẵng" }] },
+      { "keyword": "account.verifyAddressList", "arg": ["Lê Văn Mới"] },
+      { "keyword": "account.verifyAddressDefault", "args": ["Lê Văn Mới", true] }
+    ]
+  },
+  {
+    "id": "KD-ACC-14",
+    "title": "Yêu thích: sắp xếp giá giảm dần rồi bỏ yêu thích 1 sản phẩm (mock API)",
+    "requires": ["customer"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "customer" },
+      { "keyword": "common.mockGet", "args": ["**/api/wishlist", "@data:account/wishlist.json#response"] },
+      { "keyword": "common.mockWrite", "args": ["DELETE", "**/api/wishlist/*", { "success": true, "message": "Đã xóa khỏi danh sách yêu thích" }] },
+      { "keyword": "account.openWishlist" },
+      { "keyword": "account.verifyWishlistCount", "arg": 4 },
+      { "keyword": "account.sortWishlist", "arg": "price_desc" },
+      {
+        "keyword": "account.verifyWishlistProducts",
+        "arg": ["Váy liền thân hoa nhí", "Áo sơ mi linen", "Quần short kaki", "Mũ lưỡi trai thêu logo"]
+      },
+      { "keyword": "account.removeFromWishlist", "arg": "Áo sơ mi linen" },
+      { "keyword": "common.verifyRequest", "args": ["DELETE", "/api/wishlist/301"] },
+      { "keyword": "account.verifyWishlistCount", "arg": 3 },
+      { "keyword": "account.verifyWishlistProducts", "arg": ["Váy liền thân hoa nhí", "Quần short kaki", "Mũ lưỡi trai thêu logo"] }
+    ]
+  },
+  {
+    "id": "KD-ACC-15",
+    "title": "Đã đăng nhập: thanh toán COD (mock tạo đơn) -> trang thành công -> Xem đơn hàng",
+    "requires": ["customer"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "customer" },
+      { "keyword": "account.seedStoredUser", "arg": "@data:account/checkout.json#user", "note": "Thay user hiển thị bằng user mẫu (token vẫn là token thật)" },
+      { "keyword": "cart.seedCart", "arg": ["@data:account/checkout.json#cartItem"] },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/orders", "@data:account/checkout.json#createResponse", 201] },
+      { "keyword": "common.mockGet", "args": ["**/api/orders*", "@data:account/checkout.json#ordersAfter"] },
+      { "keyword": "checkout.openCheckout" },
+      { "keyword": "account.verifyCheckoutAccount", "args": ["Nguyễn Văn Kiểm Thử", "e2e.profile@example.com"] },
+      { "keyword": "checkout.fillShipping", "arg": "@data:checkout/addresses.json#hcm" },
+      { "keyword": "checkout.placeOrder" },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/api/orders", { "payment_method": "cod", "recipient_name": "Nguyễn Kiểm Thử" }] },
+      { "keyword": "checkout.verifyOrderSuccess", "args": ["Đặt hàng thành công", "ORD000999"] },
+      { "keyword": "account.verifyOrderSuccessLinks" },
+      { "keyword": "account.openOrdersFromSuccess" },
+      { "keyword": "account.verifyOrderList", "arg": ["ORD000999"] },
+      { "keyword": "account.verifyOrderStatus", "args": ["ORD000999", "Chờ xác nhận"] }
+    ]
+  }
+]

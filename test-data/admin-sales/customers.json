@@ -1,0 +1,357 @@
+{
+  "fixture": {
+    "customers": [
+      {
+        "id": 9601,
+        "name": "Nguyễn Văn E2E",
+        "email": "nguyenvan.e2e@example.test",
+        "phone": "0901000001",
+        "role": "user",
+        "is_active": true,
+        "reward_points": 1200,
+        "created_at": "2026-08-01T03:00:00.000Z",
+        "order_count": 3,
+        "total_spent": 1500000
+      },
+      {
+        "id": 9602,
+        "name": "Trần Thị Kiểm Thử",
+        "email": "tranthi.e2e@example.test",
+        "phone": null,
+        "role": "user",
+        "is_active": true,
+        "reward_points": 0,
+        "created_at": "2026-09-01T03:00:00.000Z",
+        "order_count": 0,
+        "total_spent": 0
+      },
+      {
+        "id": 9603,
+        "name": "Lê Văn Khóa",
+        "email": "levan.khoa@example.test",
+        "phone": "0901000003",
+        "role": "user",
+        "is_active": false,
+        "reward_points": 50,
+        "created_at": "2026-07-01T03:00:00.000Z",
+        "order_count": 1,
+        "total_spent": 299000
+      }
+    ],
+    "details": {
+      "9601": {
+        "recent_orders": [
+          {
+            "id": 9001,
+            "order_number": "E2E-0001",
+            "total_price": 599000,
+            "status": "pending",
+            "payment_status": "unpaid",
+            "created_at": "2026-09-30T03:30:00.000Z"
+          },
+          {
+            "id": 9005,
+            "order_number": "E2E-0005",
+            "total_price": 299000,
+            "status": "delivered",
+            "payment_status": "paid",
+            "created_at": "2026-09-20T01:00:00.000Z"
+          }
+        ]
+      }
+    }
+  },
+  "headers": [
+    "Khách hàng",
+    "Liên hệ",
+    "Đơn hàng",
+    "Tổng chi tiêu",
+    "Điểm",
+    "Trạng thái",
+    "Thao tác"
+  ],
+  "rows": [
+    {
+      "name": "Nguyễn Văn E2E",
+      "status": "Hoạt động",
+      "spent": "1.500.000đ",
+      "points": "1.200"
+    },
+    {
+      "name": "Lê Văn Khóa",
+      "status": "Khóa",
+      "spent": "299.000đ",
+      "points": "50"
+    }
+  ],
+  "search": {
+    "text": "Kiểm Thử",
+    "rows": [
+      "Trần Thị Kiểm Thử"
+    ],
+    "hidden": [
+      "Nguyễn Văn E2E"
+    ]
+  },
+  "addValidation": [
+    {
+      "id": "ADS-CUS-V01",
+      "title": "Bỏ trống họ tên và email",
+      "tags": [
+        "@smoke"
+      ],
+      "form": {},
+      "errors": [
+        "Họ và tên không được để trống.",
+        "Email không được để trống."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V02",
+      "title": "Họ tên chỉ có khoảng trắng",
+      "form": {
+        "Họ và tên": "   ",
+        "Email": "kh.e2e@example.test"
+      },
+      "errors": [
+        "Họ và tên không được để trống."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V03",
+      "title": "Email thiếu @",
+      "form": {
+        "Họ và tên": "Khách E2E",
+        "Email": "khach-e2e.example.test"
+      },
+      "errors": [
+        "Email không đúng định dạng."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V04",
+      "title": "Email thiếu tên miền cấp cao",
+      "form": {
+        "Họ và tên": "Khách E2E",
+        "Email": "khach@e2e"
+      },
+      "errors": [
+        "Email không đúng định dạng."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V05",
+      "title": "Số điện thoại không bắt đầu bằng 0",
+      "form": {
+        "Họ và tên": "Khách E2E",
+        "Email": "kh.e2e@example.test",
+        "Số điện thoại": "912345678"
+      },
+      "errors": [
+        "Số điện thoại không đúng định dạng."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V06",
+      "title": "Số điện thoại quá ngắn",
+      "form": {
+        "Họ và tên": "Khách E2E",
+        "Email": "kh.e2e@example.test",
+        "Số điện thoại": "09123"
+      },
+      "errors": [
+        "Số điện thoại không đúng định dạng."
+      ]
+    },
+    {
+      "id": "ADS-CUS-V07",
+      "title": "Mật khẩu dưới 6 ký tự",
+      "form": {
+        "Họ và tên": "Khách E2E",
+        "Email": "kh.e2e@example.test",
+        "Mật khẩu": "12345"
+      },
+      "errors": [
+        "Mật khẩu phải có ít nhất 6 ký tự."
+      ]
+    }
+  ],
+  "editValidation": [
+    {
+      "id": "ADS-CUS-EV01",
+      "title": "Xóa trống họ tên khi sửa",
+      "customer": "Nguyễn Văn E2E",
+      "form": {
+        "Họ và tên": ""
+      },
+      "errors": [
+        "Họ và tên không được để trống."
+      ]
+    },
+    {
+      "id": "ADS-CUS-EV02",
+      "title": "Email sai định dạng khi sửa",
+      "customer": "Nguyễn Văn E2E",
+      "form": {
+        "Email": "sai-dinh-dang"
+      },
+      "errors": [
+        "Email không đúng định dạng."
+      ]
+    },
+    {
+      "id": "ADS-CUS-EV03",
+      "title": "Mật khẩu mới dưới 6 ký tự bị chặn ở client",
+      "customer": "Nguyễn Văn E2E",
+      "form": {
+        "Mật khẩu mới": "123"
+      },
+      "errors": [
+        "Mật khẩu phải có ít nhất 6 ký tự."
+      ],
+      "knownBug": "AdminCustomers.jsx:55 chỉ kiểm tra độ dài mật khẩu khi THÊM (isNew) - khi sửa vẫn gửi mật khẩu 3 ký tự lên server"
+    }
+  ],
+  "add": {
+    "form": {
+      "Họ và tên": "Khách Hàng Mới E2E",
+      "Email": "khmoi.e2e@example.test",
+      "Số điện thoại": "0909123456",
+      "Mật khẩu": "matkhau123"
+    },
+    "payload": {
+      "name": "Khách Hàng Mới E2E",
+      "email": "khmoi.e2e@example.test",
+      "phone": "0909123456",
+      "password": "matkhau123",
+      "is_active": true
+    },
+    "response": {
+      "success": true,
+      "customer": {
+        "id": 9699,
+        "name": "Khách Hàng Mới E2E",
+        "email": "khmoi.e2e@example.test",
+        "phone": "0909123456",
+        "role": "user",
+        "is_active": true,
+        "reward_points": 0,
+        "created_at": "2026-10-01T03:00:00.000Z",
+        "order_count": 0,
+        "total_spent": 0
+      }
+    },
+    "toast": "Thêm khách hàng thành công.",
+    "passwordHint": "Để trống sẽ dùng mật khẩu mặc định: customer123",
+    "error": {
+      "status": 400,
+      "message": "Email đã tồn tại."
+    }
+  },
+  "edit": {
+    "customer": "Trần Thị Kiểm Thử",
+    "id": 9602,
+    "prefill": {
+      "Họ và tên": "Trần Thị Kiểm Thử",
+      "Email": "tranthi.e2e@example.test",
+      "Số điện thoại": "",
+      "Mật khẩu mới": ""
+    },
+    "form": {
+      "Họ và tên": "Trần Thị Đã Sửa",
+      "Tài khoản hoạt động": false
+    },
+    "payload": {
+      "name": "Trần Thị Đã Sửa",
+      "email": "tranthi.e2e@example.test",
+      "phone": null,
+      "is_active": false
+    },
+    "response": {
+      "success": true,
+      "customer": {
+        "id": 9602,
+        "name": "Trần Thị Đã Sửa",
+        "is_active": false
+      }
+    },
+    "newName": "Trần Thị Đã Sửa",
+    "status": "Khóa",
+    "toast": "Cập nhật khách hàng thành công."
+  },
+  "detail": {
+    "customer": "Nguyễn Văn E2E",
+    "name": "Nguyễn Văn E2E",
+    "email": "nguyenvan.e2e@example.test",
+    "stats": {
+      "Đơn hàng": "3",
+      "Tổng chi tiêu": "1.500.000đ"
+    },
+    "values": {
+      "Số điện thoại:": "0901000001",
+      "Điểm tích lũy:": "1.200",
+      "Ngày tham gia:": "01/08/2026",
+      "Trạng thái:": "Hoạt động"
+    },
+    "recentOrders": [
+      "E2E-0001",
+      "E2E-0005"
+    ],
+    "recentStatuses": [
+      "Chờ xác nhận",
+      "Đã giao"
+    ],
+    "statusBug": "AdminCustomers.jsx:526 hiển thị mã trạng thái thô ('pending', 'delivered') thay vì nhãn tiếng Việt như trang Đơn hàng"
+  },
+  "delete": [
+    {
+      "id": "ADS-CUS-D01",
+      "title": "Xóa khách chưa có đơn -> xóa khỏi bảng",
+      "customer": "Trần Thị Kiểm Thử",
+      "customerId": 9602,
+      "status": 200,
+      "response": {
+        "success": true,
+        "message": "Đã xóa khách hàng."
+      },
+      "toast": "Xóa khách hàng thành công.",
+      "removed": true
+    },
+    {
+      "id": "ADS-CUS-D02",
+      "title": "Xóa khách đã có đơn -> bị khóa thay vì xóa",
+      "customer": "Nguyễn Văn E2E",
+      "customerId": 9601,
+      "warning": "Khách hàng đã có 3 đơn hàng. Hệ thống sẽ khóa tài khoản thay vì xóa.",
+      "status": 200,
+      "response": {
+        "success": true,
+        "blocked": true,
+        "message": "Đã khóa tài khoản vì khách hàng đã có đơn hàng. Không thể xóa cứng."
+      },
+      "toast": "Khách hàng đã có đơn hàng nên được khóa thay vì xóa.",
+      "removed": false,
+      "rowStatus": "Khóa"
+    },
+    {
+      "id": "ADS-CUS-D03",
+      "title": "Server lỗi khi xóa -> báo lỗi, giữ dòng",
+      "customer": "Trần Thị Kiểm Thử",
+      "customerId": 9602,
+      "status": 500,
+      "response": {
+        "success": false,
+        "message": "Không thể xóa khách hàng. Vui lòng thử lại."
+      },
+      "toast": "Không thể xóa khách hàng. Vui lòng thử lại.",
+      "removed": false
+    }
+  ],
+  "deleteText": "Bạn có chắc chắn muốn xóa khách hàng \"Trần Thị Kiểm Thử\" không?",
+  "pagination": {
+    "total": 160,
+    "lastClicked": 5,
+    "expectedPage": 6,
+    "text": "Trang 6 / 8"
+  }
+}

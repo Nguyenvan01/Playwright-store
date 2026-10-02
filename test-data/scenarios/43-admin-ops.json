@@ -1,0 +1,93 @@
+[
+  {
+    "id": "KD-ADO-01",
+    "title": "Kho hàng: thẻ thống kê, tab Sắp hết và tìm kiếm",
+    "tags": ["@smoke"],
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "adminOps.mockWarehouse", "arg": "@data:admin-ops/warehouse.json#mock" },
+      { "keyword": "adminOps.openWarehouse" },
+      { "keyword": "adminOps.verifyStatCards", "arg": "@data:admin-ops/warehouse.json#statCards" },
+      { "keyword": "adminOps.selectWarehouseTab", "arg": "Sắp hết" },
+      { "keyword": "adminOps.verifyListQuery", "args": ["/admin/warehouse", { "filter": "low" }] },
+      { "keyword": "adminOps.verifyRowCount", "arg": 2 },
+      { "keyword": "admin.searchList", "args": ["Tìm kiếm sản phẩm, SKU, danh mục...", "vay"] },
+      { "keyword": "adminOps.verifyVisibleRows", "args": [["Váy maxi"], ["Quần jeans slim"]] }
+    ]
+  },
+  {
+    "id": "KD-ADO-02",
+    "title": "Nhập hàng: tạo đơn nháp 2 biến thể (mock GET + POST)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/admin/imports", { "success": true }] },
+      { "keyword": "adminOps.mockImportData", "arg": "@data:admin-ops/import.json#mock" },
+      { "keyword": "adminOps.openImport" },
+      { "keyword": "adminOps.openCreateImport" },
+      { "keyword": "admin.fillForm", "arg": { "Nhà cung cấp": "Xưởng Dệt Sài Gòn", "Kho nhận": "Kho Hà Nội" } },
+      { "keyword": "adminOps.fillImportItem", "args": [0, { "product": "Quần jeans slim", "variant": "M / Xanh", "quantity": 2 }] },
+      { "keyword": "adminOps.addImportItemRow" },
+      { "keyword": "adminOps.fillImportItem", "args": [1, { "product": "Quần jeans slim", "variant": "L / Xanh", "quantity": 1 }] },
+      { "keyword": "adminOps.verifyImportTotals", "args": [1, "200.000đ", "600.000đ"] },
+      { "keyword": "adminOps.clickModalButton", "args": ["Tạo đơn nhập hàng", "Lưu nháp"] },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/admin/imports", { "status": "draft", "supplier_id": "2", "warehouse_id": "1" }] },
+      { "keyword": "common.verifyToast", "arg": "Tạo đơn nhập hàng thành công." }
+    ]
+  },
+  {
+    "id": "KD-ADO-03",
+    "title": "Nhập hàng: nhận hàng một phần rồi hủy đơn qua hộp thoại (mock)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["POST", "**/api/admin/imports/*/receive", { "success": true }] },
+      { "keyword": "common.mockWrite", "args": ["DELETE", "**/api/admin/imports/*", { "success": true }] },
+      { "keyword": "adminOps.mockImportData", "arg": "@data:admin-ops/import.json#mock" },
+      { "keyword": "adminOps.openImport" },
+      { "keyword": "admin.clickRowAction", "args": ["PN0001", "Nhận hàng"] },
+      { "keyword": "adminOps.setReceiveQuantities", "arg": [4, 0] },
+      { "keyword": "adminOps.clickModalButton", "args": ["Nhận hàng", "Xác nhận nhận hàng"] },
+      { "keyword": "common.verifyRequest", "args": ["POST", "/admin/imports/1/receive", { "items": [{ "item_id": 11, "quantity_received": 4 }] }] },
+      { "keyword": "common.verifyToast", "arg": "Nhận hàng thành công." },
+      { "keyword": "common.acceptNextDialog", "arg": true },
+      { "keyword": "admin.clickRowAction", "args": ["PN0003", "Hủy đơn"] },
+      { "keyword": "common.verifyRequest", "args": ["DELETE", "/admin/imports/3"] },
+      { "keyword": "common.verifyToast", "arg": "Hủy đơn nhập hàng thành công." }
+    ]
+  },
+  {
+    "id": "KD-ADO-04",
+    "title": "Báo cáo: đổi kỳ 7 ngày, lọc tùy chọn và xuất CSV",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "adminOps.mockReportsOverview", "arg": "@data:admin-ops/reports.json#overview" },
+      { "keyword": "adminOps.openReports" },
+      { "keyword": "adminOps.selectReportPeriod", "arg": "last7days" },
+      { "keyword": "adminOps.verifyListQuery", "args": ["/admin/reports/overview", { "period": "7days" }] },
+      { "keyword": "adminOps.selectReportPeriod", "arg": "custom" },
+      { "keyword": "adminOps.applyCustomRange", "args": ["2026-09-01", "2026-09-30"] },
+      { "keyword": "adminOps.verifyListQuery", "args": ["/admin/reports/overview", { "period": "custom", "start_date": "2026-09-01", "end_date": "2026-09-30" }] },
+      { "keyword": "adminOps.exportReport", "args": ["^bao-cao-custom-\\d+\\.csv$", ["\"Báo cáo\",\"Tùy chọn\"", "\"Đến ngày\",\"30/09/2026\""]] }
+    ]
+  },
+  {
+    "id": "KD-ADO-05",
+    "title": "Cài đặt: tắt COD, đổi phí ship rồi lưu (mock PUT)",
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "auth.restoreSession", "arg": "admin" },
+      { "keyword": "common.mockWrite", "args": ["PUT", "**/api/admin/settings", { "success": true }] },
+      { "keyword": "adminOps.mockSettings", "arg": "@data:admin-ops/settings.json#mock" },
+      { "keyword": "adminOps.openSettings" },
+      { "keyword": "adminOps.openSettingsTab", "arg": "Bán hàng" },
+      { "keyword": "admin.fillForm", "arg": { "Phí vận chuyển mặc định": "25000", "Cho phép COD": false } },
+      { "keyword": "adminOps.verifyCheckboxes", "arg": { "Cho phép COD": false, "Cho phép VNPay": true } },
+      { "keyword": "adminOps.saveSettings" },
+      { "keyword": "common.verifyRequest", "args": ["PUT", "/admin/settings", { "default_shipping_fee": "25000", "allow_cod": "0", "site_name": "CANIFA" }] },
+      { "keyword": "common.verifyToast", "arg": "Lưu cài đặt thành công." }
+    ]
+  }
+]

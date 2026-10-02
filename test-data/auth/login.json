@@ -1,0 +1,60 @@
+{
+  "validation": [
+    {
+      "id": "LOGIN-V01",
+      "title": "Bỏ trống email và mật khẩu",
+      "tags": ["@smoke"],
+      "identifier": "",
+      "password": "",
+      "errors": ["Vui lòng nhập email hoặc số điện thoại", "Vui lòng nhập mật khẩu"]
+    },
+    {
+      "id": "LOGIN-V02",
+      "title": "Email sai định dạng",
+      "identifier": "abc@",
+      "password": "123456",
+      "errors": ["Email hoặc số điện thoại không hợp lệ"]
+    },
+    {
+      "id": "LOGIN-V03",
+      "title": "Số điện thoại sai định dạng",
+      "identifier": "12345",
+      "password": "123456",
+      "errors": ["Email hoặc số điện thoại không hợp lệ"]
+    },
+    {
+      "id": "LOGIN-V04",
+      "title": "Mật khẩu dưới 6 ký tự",
+      "identifier": "test@example.com",
+      "password": "123",
+      "errors": ["Mật khẩu phải có ít nhất 6 ký tự"]
+    },
+    {
+      "id": "LOGIN-V05",
+      "title": "SĐT hợp lệ nhưng bỏ trống mật khẩu",
+      "identifier": "0912345678",
+      "password": "",
+      "errors": ["Vui lòng nhập mật khẩu"]
+    }
+  ],
+  "wrongCredentials": [
+    {
+      "id": "LOGIN-S01",
+      "title": "Email không tồn tại",
+      "identifier": "khong-ton-tai-e2e@example.com",
+      "password": "sai-mat-khau",
+      "error": "Email hoặc mật khẩu không đúng",
+      "knownBug": "Interceptor 401 trong services/api.js reload sang /login nên thông báo lỗi bị mất"
+    },
+    {
+      "id": "LOGIN-S02",
+      "title": "Đúng email nhưng sai mật khẩu",
+      "requires": ["customer"],
+      "identifier": "${env.customer.email}",
+      "password": "sai-mat-khau-e2e",
+      "error": "Email hoặc mật khẩu không đúng",
+      "knownBug": "Interceptor 401 trong services/api.js reload sang /login nên thông báo lỗi bị mất"
+    }
+  ],
+  "mockUser": { "id": 9999, "name": "Mock User", "email": "mock@example.com", "phone": "0900000000" }
+}

@@ -1,0 +1,78 @@
+{
+  "sortOptions": ["Mới nhất", "Bán chạy nhất", "Giá: Thấp → Cao", "Giá: Cao → Thấp"],
+  "titles": [
+    {
+      "id": "SF-SRCH-01",
+      "title": "?q= : tiêu đề \"Kết quả tìm kiếm\", breadcrumb Tìm kiếm, chip Tìm",
+      "tags": ["@smoke"],
+      "query": "?q=${productFirstWord}",
+      "heading": "Kết quả tìm kiếm: \"${productFirstWord}\"",
+      "breadcrumbs": ["Trang chủ", "Tìm kiếm"],
+      "breadcrumbLinks": [["Trang chủ", "/"]],
+      "chips": [{ "text": "Tìm: \"${productFirstWord}\"", "closeHref": "/search" }]
+    },
+    {
+      "id": "SF-SRCH-02",
+      "title": "Không tham số: \"Tất cả sản phẩm\", breadcrumb Sản phẩm",
+      "query": "",
+      "heading": "Tất cả sản phẩm",
+      "breadcrumbs": ["Trang chủ", "Sản phẩm"],
+      "breadcrumbLinks": [["Trang chủ", "/"]]
+    },
+    {
+      "id": "SF-SRCH-03",
+      "title": "?category= : tiêu đề từ slug, breadcrumb Sản phẩm > Vay, chip Danh mục",
+      "query": "?category=vay",
+      "heading": "Vay",
+      "breadcrumbs": ["Trang chủ", "Sản phẩm", "Vay"],
+      "breadcrumbLinks": [["Trang chủ", "/"], ["Sản phẩm", "/search"]],
+      "chips": [{ "text": "Danh mục: Vay", "closeHref": "/search" }]
+    },
+    {
+      "id": "SF-SRCH-04",
+      "title": "?brand= : tiêu đề từ slug, breadcrumb Thương hiệu > Canifa, chip Thương hiệu",
+      "query": "?brand=canifa",
+      "heading": "Canifa",
+      "breadcrumbs": ["Trang chủ", "Thương hiệu", "Canifa"],
+      "breadcrumbLinks": [["Trang chủ", "/"], ["Thương hiệu", "/search"]],
+      "chips": [{ "text": "Thương hiệu: Canifa", "closeHref": "/search" }]
+    },
+    {
+      "id": "SF-SRCH-05",
+      "title": "?category= + ?q= : ưu tiên tiêu đề danh mục, chip Tìm đóng về lại danh mục",
+      "query": "?category=vay&q=Váy",
+      "heading": "Vay",
+      "breadcrumbs": ["Trang chủ", "Sản phẩm", "Vay"],
+      "chips": [
+        { "text": "Danh mục: Vay", "closeHref": "/search" },
+        { "text": "Tìm: \"Váy\"", "closeHref": "/search?category=vay" }
+      ]
+    }
+  ],
+  "closeChip": {
+    "id": "SF-SRCH-06",
+    "title": "Bỏ chip Danh mục quay về \"Tất cả sản phẩm\"",
+    "query": "?category=vay",
+    "chip": "Danh mục: Vay",
+    "heading": "Tất cả sản phẩm"
+  },
+  "sort": [
+    { "id": "SF-SRCH-07", "title": "Sắp xếp \"Giá: Thấp → Cao\" (dữ liệu thật)", "query": "", "option": "Giá: Thấp → Cao", "order": "asc" },
+    { "id": "SF-SRCH-08", "title": "Sắp xếp \"Giá: Cao → Thấp\" theo thương hiệu (dữ liệu thật)", "query": "?brand=canifa", "option": "Giá: Cao → Thấp", "order": "desc" }
+  ],
+  "empty": [
+    { "id": "SF-SRCH-09", "title": "Từ khóa không có kết quả: gợi ý đổi từ khóa + nút xem tất cả", "query": "?q=zzzkhongtontaie2e", "hint": "Hãy thử tìm kiếm với từ khóa khác" },
+    { "id": "SF-SRCH-10", "title": "Danh mục không có sản phẩm: thông báo danh mục trống", "query": "?category=danh-muc-khong-ton-tai-e2e", "hint": "Hiện chưa có sản phẩm nào trong danh mục này" }
+  ],
+  "error": { "id": "SF-SRCH-11", "title": "API lỗi 500: hiển thị \"Đã xảy ra lỗi\" và nút Thử lại (mock)", "message": "Đã xảy ra lỗi khi tải sản phẩm" },
+  "paging": [
+    { "id": "SF-SRCH-12", "title": "Phân trang: bấm trang 2 gửi page=2 (mock 4 trang)", "via": "number" },
+    { "id": "SF-SRCH-13", "title": "Phân trang: bấm \"chevron_right\" sang trang 2 (mock 4 trang)", "via": "next" }
+  ],
+  "mockPagination": { "page": 1, "limit": 12, "total": 40, "total_pages": 4 },
+  "shortQuery": {
+    "id": "SF-SRCH-14",
+    "title": "Gõ 1 ký tự: API gợi ý trả 400 nên không hiện dropdown, Enter vẫn ra trang kết quả có sản phẩm",
+    "keyword": "a"
+  }
+}

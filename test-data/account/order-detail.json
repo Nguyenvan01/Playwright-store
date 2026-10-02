@@ -1,0 +1,167 @@
+{
+  "pending": {
+    "success": true,
+    "order": {
+      "id": 107, "order_number": "ORD000107", "user_id": 9001,
+      "customer_name": "Nguyễn Văn Kiểm Thử", "customer_email": "e2e.profile@example.com", "customer_phone": "0912345678",
+      "recipient_name": "Nguyễn Văn Kiểm Thử", "recipient_phone": "0912345678",
+      "shipping_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+      "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+      "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường Bến Nghé",
+      "subtotal": 480000, "shipping_fee": 30000, "discount_amount": 60000, "discount_code": "GIAM60K", "total_price": 450000,
+      "status": "pending", "payment_method": "cod", "payment_status": "unpaid", "shipping_method": "express",
+      "tracking_number": null, "shipping_note": "Giao giờ hành chính", "note": "Giao giờ hành chính",
+      "created_at": "2026-09-28T03:15:00.000Z", "updated_at": "2026-09-28T03:15:00.000Z",
+      "shipping_full_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "shipping_info": {
+        "recipient_name": "Nguyễn Văn Kiểm Thử", "recipient_phone": "0912345678",
+        "address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+        "ward": "phuong-1", "district": "quan-1", "city": "hcm",
+        "ward_name": "Phường Bến Nghé", "district_name": "Quận 1", "city_name": "TP. Hồ Chí Minh",
+        "method": "express"
+      },
+      "items": [
+        { "id": 1001, "product_id": 301, "variant_id": 3011, "product_name": "Áo thun basic", "product_sku": "ATB-M-TRANG", "product_image": null, "size_name": "M", "color_name": "Trắng", "unit_price": 150000, "quantity": 2, "total_price": 300000 },
+        { "id": 1002, "product_id": 302, "variant_id": 3021, "product_name": "Quần jean slim", "product_sku": "QJS-30-XANH", "product_image": null, "size_name": "30", "color_name": "Xanh đậm", "unit_price": 180000, "quantity": 1, "total_price": 180000 }
+      ]
+    }
+  },
+  "pendingView": {
+    "heading": "Chi tiết đơn hàng #ORD000107",
+    "status": "Chờ xác nhận",
+    "payment": "Chưa thanh toán",
+    "orderInfo": {
+      "Mã đơn hàng": "#ORD000107",
+      "Ngày đặt": "28/09/2026",
+      "Phương thức": "Thanh toán khi nhận hàng (COD)",
+      "Vận chuyển": "Giao hàng nhanh (1-2 ngày)"
+    },
+    "shippingInfo": {
+      "Người nhận": "Nguyễn Văn Kiểm Thử",
+      "Điện thoại": "0912345678",
+      "Địa chỉ": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "Vận chuyển": "Giao hàng nhanh (1-2 ngày)",
+      "Ghi chú": "Giao giờ hành chính"
+    },
+    "itemsHeading": "Sản phẩm đã đặt (2)",
+    "items": [
+      { "name": "Áo thun basic", "texts": ["Trắng", "Size: M", "SKU: ATB-M-TRANG", "150.000đ", "x2", "300.000đ"] },
+      { "name": "Quần jean slim", "texts": ["Xanh đậm", "Size: 30", "SKU: QJS-30-XANH", "180.000đ", "x1"] }
+    ],
+    "totals": {
+      "Tạm tính": "480.000đ",
+      "Phí vận chuyển": "30.000đ",
+      "Giảm giá (GIAM60K)": "-60.000đ",
+      "Tổng tiền": "450.000đ"
+    }
+  },
+
+  "delivered": {
+    "success": true,
+    "order": {
+      "id": 103, "order_number": "ORD000103", "user_id": 9001,
+      "customer_name": "Nguyễn Văn Kiểm Thử", "customer_email": "e2e.profile@example.com", "customer_phone": "0912345678",
+      "recipient_name": "Trần Thị Bình", "recipient_phone": "0987654321",
+      "shipping_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+      "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+      "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường Bến Nghé",
+      "subtotal": 599000, "shipping_fee": 0, "discount_amount": 0, "discount_code": null, "total_price": 599000,
+      "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard",
+      "tracking_number": "GHN123456789", "shipping_note": null, "note": "",
+      "created_at": "2026-09-10T03:00:00.000Z", "updated_at": "2026-09-13T03:00:00.000Z",
+      "shipping_full_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+      "shipping_info": {
+        "recipient_name": "Trần Thị Bình", "recipient_phone": "0987654321",
+        "address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+        "ward": "phuong-1", "district": "quan-1", "city": "hcm",
+        "ward_name": "Phường Bến Nghé", "district_name": "Quận 1", "city_name": "TP. Hồ Chí Minh",
+        "method": "standard"
+      },
+      "items": [
+        { "id": 1003, "product_id": 305, "variant_id": null, "product_name": "Áo polo pique", "product_sku": null, "product_image": null, "size_name": "L", "color_name": null, "unit_price": 599000, "quantity": 1, "total_price": 599000 }
+      ]
+    }
+  },
+  "deliveredView": {
+    "heading": "Chi tiết đơn hàng #ORD000103",
+    "status": "Đã giao",
+    "payment": "Đã thanh toán",
+    "orderInfo": {
+      "Mã đơn hàng": "#ORD000103",
+      "Phương thức": "Thanh toán khi nhận hàng (COD)",
+      "Vận chuyển": "Giao hàng tiêu chuẩn (3-5 ngày)",
+      "Mã vận đơn": "GHN123456789"
+    },
+    "shippingInfo": {
+      "Người nhận": "Trần Thị Bình",
+      "Điện thoại": "0987654321",
+      "Địa chỉ": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+    },
+    "itemsHeading": "Sản phẩm đã đặt (1)",
+    "items": [
+      { "name": "Áo polo pique", "texts": ["Size: L", "599.000đ", "x1"] }
+    ],
+    "totals": {
+      "Tạm tính": "599.000đ",
+      "Phí vận chuyển": "Miễn phí",
+      "Tổng tiền": "599.000đ"
+    }
+  },
+
+  "returned": {
+    "success": true,
+    "order": {
+      "id": 101, "order_number": "ORD000101", "user_id": 9001,
+      "customer_name": "Nguyễn Văn Kiểm Thử", "customer_email": "e2e.profile@example.com", "customer_phone": "0912345678",
+      "recipient_name": "Nguyễn Văn Kiểm Thử", "recipient_phone": "0912345678",
+      "shipping_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng", "address_detail": "88 Bạch Đằng",
+      "shipping_city": "danang", "shipping_district": "hai-chau", "shipping_ward": "phuong-3",
+      "shipping_city_name": "Đà Nẵng", "shipping_district_name": "Hải Châu", "shipping_ward_name": "Phường 3",
+      "subtotal": 760000, "shipping_fee": 0, "discount_amount": 0, "discount_code": null, "total_price": 760000,
+      "status": "returned", "payment_method": "vnpay", "payment_status": "partially_paid", "shipping_method": "standard",
+      "tracking_number": null, "shipping_note": null, "note": "",
+      "created_at": "2026-09-01T03:00:00.000Z", "updated_at": "2026-09-08T03:00:00.000Z",
+      "shipping_full_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng",
+      "shipping_info": {
+        "recipient_name": "Nguyễn Văn Kiểm Thử", "recipient_phone": "0912345678",
+        "address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng", "address_detail": "88 Bạch Đằng",
+        "ward": "phuong-3", "district": "hai-chau", "city": "danang",
+        "ward_name": "Phường 3", "district_name": "Hải Châu", "city_name": "Đà Nẵng",
+        "method": "standard"
+      },
+      "items": [
+        { "id": 1004, "product_id": 306, "variant_id": null, "product_name": "Quần tây âu", "product_sku": "QTA-32", "product_image": null, "size_name": "32", "color_name": "Đen", "unit_price": 560000, "quantity": 1, "total_price": 560000 },
+        { "id": 1005, "product_id": 307, "variant_id": null, "product_name": "Thắt lưng da", "product_sku": "TLD-01", "product_image": null, "size_name": null, "color_name": "Nâu", "unit_price": 200000, "quantity": 1, "total_price": 200000 }
+      ]
+    }
+  },
+  "returnedExpected": { "status": "Đã trả hàng", "payment": "Thanh toán một phần" },
+
+  "statuses": [
+    { "id": "ACC-ODT-C01", "title": "Chờ xác nhận -> có nút Hủy đơn hàng", "status": "pending", "statusLabel": "Chờ xác nhận", "cancelable": true },
+    { "id": "ACC-ODT-C02", "title": "Đã xác nhận -> có nút Hủy đơn hàng", "status": "confirmed", "statusLabel": "Đã xác nhận", "cancelable": true },
+    { "id": "ACC-ODT-C03", "title": "Đang xử lý -> không cho hủy", "status": "processing", "statusLabel": "Đang xử lý", "cancelable": false },
+    { "id": "ACC-ODT-C04", "title": "Đang giao -> không cho hủy", "status": "shipped", "statusLabel": "Đang giao", "cancelable": false },
+    { "id": "ACC-ODT-C05", "title": "Đã giao -> không cho hủy", "status": "delivered", "statusLabel": "Đã giao", "cancelable": false },
+    { "id": "ACC-ODT-C06", "title": "Đã hủy -> không cho hủy", "status": "cancelled", "statusLabel": "Đã hủy", "cancelable": false }
+  ],
+
+  "cancel": {
+    "reason": "Đặt nhầm size, muốn đặt lại",
+    "response": { "success": true, "message": "Đơn hàng đã được hủy" },
+    "errorStatus": 400,
+    "errorResponse": { "success": false, "message": "Chỉ có thể hủy đơn ở trạng thái chờ xác nhận hoặc đã xác nhận" }
+  },
+
+  "errors": [
+    {
+      "id": "ACC-ODT-E01", "title": "Đơn không tồn tại (404) hiển thị Không tìm thấy đơn hàng",
+      "knownBug": "OrderDetailPage.jsx:139-140 - mọi lỗi HTTP (kể cả 404 'Không tìm thấy đơn hàng' của backend) đều vào catch -> luôn hiện 'Không thể tải thông tin đơn hàng'; nhánh 'Không tìm thấy đơn hàng' (dòng 137) không bao giờ chạy",
+      "status": 404, "response": { "success": false, "message": "Không tìm thấy đơn hàng" }, "message": "Không tìm thấy đơn hàng"
+    },
+    {
+      "id": "ACC-ODT-E02", "title": "Lỗi server (500) hiển thị Không thể tải thông tin đơn hàng",
+      "status": 500, "response": { "success": false, "message": "Lỗi server" }, "message": "Không thể tải thông tin đơn hàng"
+    }
+  ]
+}

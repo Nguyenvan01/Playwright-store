@@ -1,0 +1,180 @@
+{
+  "list": {
+    "success": true,
+    "orders": [
+      {
+        "id": 107, "order_number": "ORD000107", "total_price": 450000, "status": "pending",
+        "payment_method": "cod", "payment_status": "unpaid",
+        "shipping_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+        "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+        "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường Bến Nghé",
+        "shipping_method": "express", "created_at": "2026-09-28T03:15:00.000Z",
+        "item_count": 2, "total_items": 3, "product_names": "Áo thun basic|||Quần jean slim", "first_image": null,
+        "shipping_full_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+      },
+      {
+        "id": 106, "order_number": "ORD000106", "total_price": 890000, "status": "confirmed",
+        "payment_method": "vnpay", "payment_status": "paid",
+        "shipping_address": "25 Xuân Thủy, Phường 2, Cầu Giấy, Hà Nội", "address_detail": "25 Xuân Thủy",
+        "shipping_city": "hanoi", "shipping_district": "cau-giay", "shipping_ward": "phuong-2",
+        "shipping_city_name": "Hà Nội", "shipping_district_name": "Cầu Giấy", "shipping_ward_name": "Phường 2",
+        "shipping_method": "standard", "created_at": "2026-09-25T03:00:00.000Z",
+        "item_count": 1, "total_items": 1, "product_names": "Áo khoác bomber", "first_image": null,
+        "shipping_full_address": "25 Xuân Thủy, Phường 2, Cầu Giấy, Hà Nội"
+      },
+      {
+        "id": 105, "order_number": "ORD000105", "total_price": 320000, "status": "processing",
+        "payment_method": "momo", "payment_status": "paid",
+        "shipping_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng", "address_detail": "88 Bạch Đằng",
+        "shipping_city": "danang", "shipping_district": "hai-chau", "shipping_ward": "phuong-3",
+        "shipping_city_name": "Đà Nẵng", "shipping_district_name": "Hải Châu", "shipping_ward_name": "Phường 3",
+        "shipping_method": "standard", "created_at": "2026-09-20T03:00:00.000Z",
+        "item_count": 1, "total_items": 2, "product_names": "Quần short kaki", "first_image": null,
+        "shipping_full_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng"
+      },
+      {
+        "id": 104, "order_number": "ORD000104", "total_price": 1250000, "status": "shipped",
+        "payment_method": "bank_transfer", "payment_status": "partially_paid",
+        "shipping_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+        "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+        "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường Bến Nghé",
+        "shipping_method": "express", "created_at": "2026-09-15T03:00:00.000Z",
+        "item_count": 3, "total_items": 4, "product_names": "Váy liền thân hoa nhí|||Áo sơ mi linen|||Mũ lưỡi trai thêu logo", "first_image": null,
+        "shipping_full_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+      },
+      {
+        "id": 103, "order_number": "ORD000103", "total_price": 599000, "status": "delivered",
+        "payment_method": "cod", "payment_status": "paid",
+        "shipping_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "address_detail": "12 Nguyễn Huệ",
+        "shipping_city": "hcm", "shipping_district": "quan-1", "shipping_ward": "phuong-1",
+        "shipping_city_name": "TP. Hồ Chí Minh", "shipping_district_name": "Quận 1", "shipping_ward_name": "Phường Bến Nghé",
+        "shipping_method": "standard", "created_at": "2026-09-10T03:00:00.000Z",
+        "item_count": 1, "total_items": 1, "product_names": "Áo polo pique", "first_image": null,
+        "shipping_full_address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh"
+      },
+      {
+        "id": 102, "order_number": "ORD000102", "total_price": 199000, "status": "cancelled",
+        "payment_method": "cod", "payment_status": "unpaid",
+        "shipping_address": "25 Xuân Thủy, Phường 2, Cầu Giấy, Hà Nội", "address_detail": "25 Xuân Thủy",
+        "shipping_city": "hanoi", "shipping_district": "cau-giay", "shipping_ward": "phuong-2",
+        "shipping_city_name": "Hà Nội", "shipping_district_name": "Cầu Giấy", "shipping_ward_name": "Phường 2",
+        "shipping_method": "standard", "created_at": "2026-09-05T03:00:00.000Z",
+        "item_count": 1, "total_items": 1, "product_names": "Tất cổ cao", "first_image": null,
+        "shipping_full_address": "25 Xuân Thủy, Phường 2, Cầu Giấy, Hà Nội"
+      },
+      {
+        "id": 101, "order_number": "ORD000101", "total_price": 760000, "status": "returned",
+        "payment_method": "vnpay", "payment_status": "refunded",
+        "shipping_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng", "address_detail": "88 Bạch Đằng",
+        "shipping_city": "danang", "shipping_district": "hai-chau", "shipping_ward": "phuong-3",
+        "shipping_city_name": "Đà Nẵng", "shipping_district_name": "Hải Châu", "shipping_ward_name": "Phường 3",
+        "shipping_method": "standard", "created_at": "2026-09-01T03:00:00.000Z",
+        "item_count": 2, "total_items": 2, "product_names": "Quần tây âu|||Thắt lưng da", "first_image": null,
+        "shipping_full_address": "88 Bạch Đằng, Phường 3, Hải Châu, Đà Nẵng"
+      }
+    ],
+    "pagination": { "page": 1, "limit": 50, "total": 7, "totalPages": 1 }
+  },
+
+  "empty": { "success": true, "orders": [], "pagination": { "page": 1, "limit": 50, "total": 0, "totalPages": 0 } },
+
+  "profileFirstPage": {
+    "success": true,
+    "orders": [
+      { "id": 212, "order_number": "ORD000212", "total_price": 150000, "status": "pending", "payment_method": "cod", "payment_status": "unpaid", "shipping_method": "standard", "created_at": "2026-09-30T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 211, "order_number": "ORD000211", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-29T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 210, "order_number": "ORD000210", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-28T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 209, "order_number": "ORD000209", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-27T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 208, "order_number": "ORD000208", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-26T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 207, "order_number": "ORD000207", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-25T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 206, "order_number": "ORD000206", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-24T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 205, "order_number": "ORD000205", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-23T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 204, "order_number": "ORD000204", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-22T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null },
+      { "id": 203, "order_number": "ORD000203", "total_price": 150000, "status": "delivered", "payment_method": "cod", "payment_status": "paid", "shipping_method": "standard", "created_at": "2026-09-21T03:00:00.000Z", "item_count": 1, "total_items": 1, "product_names": "Áo thun basic", "first_image": null }
+    ],
+    "pagination": { "page": 1, "limit": 10, "total": 12, "totalPages": 2 }
+  },
+  "profileTotalOrders": "12",
+
+  "stats": { "Tất cả đơn": 7, "Chờ xác nhận": 1, "Đang giao": 1, "Đã giao": 1, "Đã hủy": 1 },
+  "allCodes": ["ORD000107", "ORD000106", "ORD000105", "ORD000104", "ORD000103", "ORD000102", "ORD000101"],
+
+  "tabs": [
+    { "id": "ACC-ORD-T01", "title": "Tab Tất cả hiển thị mọi đơn", "tab": "Tất cả", "expected": ["ORD000107", "ORD000106", "ORD000105", "ORD000104", "ORD000103", "ORD000102", "ORD000101"] },
+    { "id": "ACC-ORD-T02", "title": "Tab Chờ xác nhận", "tab": "Chờ xác nhận", "expected": ["ORD000107"] },
+    { "id": "ACC-ORD-T03", "title": "Tab Đã xác nhận", "tab": "Đã xác nhận", "expected": ["ORD000106"] },
+    { "id": "ACC-ORD-T04", "title": "Tab Đang xử lý", "tab": "Đang xử lý", "expected": ["ORD000105"] },
+    { "id": "ACC-ORD-T05", "title": "Tab Đang giao", "tab": "Đang giao", "expected": ["ORD000104"] },
+    { "id": "ACC-ORD-T06", "title": "Tab Đã giao", "tab": "Đã giao", "expected": ["ORD000103"] },
+    { "id": "ACC-ORD-T07", "title": "Tab Đã hủy", "tab": "Đã hủy", "expected": ["ORD000102"] }
+  ],
+
+  "statButtons": [
+    { "id": "ACC-ORD-K01", "title": "Ô thống kê Đang giao lọc danh sách", "stat": "Đang giao", "expected": ["ORD000104"] },
+    { "id": "ACC-ORD-K02", "title": "Ô thống kê Đã hủy lọc danh sách", "stat": "Đã hủy", "expected": ["ORD000102"] }
+  ],
+
+  "search": [
+    { "id": "ACC-ORD-S01", "title": "Tìm đúng mã đơn", "query": "ORD000104", "expected": ["ORD000104"] },
+    { "id": "ACC-ORD-S02", "title": "Tìm không phân biệt hoa thường, theo 1 phần mã", "query": "ord00010", "expected": ["ORD000107", "ORD000106", "ORD000105", "ORD000104", "ORD000103", "ORD000102", "ORD000101"] },
+    { "id": "ACC-ORD-S03", "title": "Tìm có khoảng trắng đầu/cuối", "query": "  ORD000103  ", "expected": ["ORD000103"] },
+    { "id": "ACC-ORD-S04", "title": "Không có đơn phù hợp hiển thị thông báo", "query": "KHONG-TON-TAI", "expected": [] }
+  ],
+  "noMatchMessage": "Không tìm thấy đơn hàng phù hợp",
+  "emptyMessage": "Bạn chưa có đơn hàng nào",
+
+  "labels": [
+    {
+      "id": "ACC-ORD-L01", "title": "Đơn chờ xác nhận - COD, giao nhanh", "code": "ORD000107", "status": "Chờ xác nhận",
+      "texts": ["Ngày đặt: 28/09/2026", "Áo thun basic, Quần jean slim", "3 sản phẩm", "Thanh toán: Chưa thanh toán", "Phương thức: Thanh toán khi nhận hàng", "Vận chuyển: Giao hàng nhanh", "450.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L02", "title": "Đơn đã xác nhận - VNPay đã thanh toán", "code": "ORD000106", "status": "Đã xác nhận",
+      "texts": ["Ngày đặt: 25/09/2026", "Áo khoác bomber", "1 sản phẩm", "Thanh toán: Đã thanh toán", "Phương thức: VNPay", "Vận chuyển: Giao hàng tiêu chuẩn", "890.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L03", "title": "Đơn đang xử lý - MoMo", "code": "ORD000105", "status": "Đang xử lý",
+      "texts": ["Ngày đặt: 20/09/2026", "Quần short kaki", "2 sản phẩm", "Phương thức: MoMo", "320.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L04", "title": "Đơn đang giao - chuyển khoản, thanh toán một phần, chỉ hiện 2 tên sản phẩm", "code": "ORD000104", "status": "Đang giao",
+      "texts": ["Váy liền thân hoa nhí, Áo sơ mi linen", "4 sản phẩm", "Thanh toán: Thanh toán một phần", "Phương thức: Chuyển khoản ngân hàng", "1.250.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L05", "title": "Đơn đã giao", "code": "ORD000103", "status": "Đã giao",
+      "texts": ["Áo polo pique", "Thanh toán: Đã thanh toán", "599.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L06", "title": "Đơn đã hủy", "code": "ORD000102", "status": "Đã hủy",
+      "texts": ["Tất cổ cao", "Thanh toán: Chưa thanh toán", "199.000đ"]
+    },
+    {
+      "id": "ACC-ORD-L07", "title": "Đơn trả hàng - đã hoàn tiền", "code": "ORD000101", "status": "Đã trả hàng",
+      "texts": ["Quần tây âu, Thắt lưng da", "Thanh toán: Đã hoàn tiền", "760.000đ"]
+    }
+  ],
+
+  "cancelButtons": [
+    { "id": "ACC-ORD-B01", "title": "Đơn Chờ xác nhận có nút Hủy đơn", "code": "ORD000107", "cancelable": true },
+    {
+      "id": "ACC-ORD-B02", "title": "Đơn Đã xác nhận có nút Hủy đơn (backend và trang chi tiết cho phép hủy)", "code": "ORD000106", "cancelable": true,
+      "knownBug": "OrderListItem.jsx:25 chỉ cho hủy khi status = 'pending', trong khi backend (customerController.js cancelOrder) và OrderDetailPage.jsx:202 cho hủy cả 'confirmed'"
+    },
+    { "id": "ACC-ORD-B03", "title": "Đơn Đang xử lý không có nút Hủy đơn", "code": "ORD000105", "cancelable": false },
+    { "id": "ACC-ORD-B04", "title": "Đơn Đang giao không có nút Hủy đơn", "code": "ORD000104", "cancelable": false },
+    { "id": "ACC-ORD-B05", "title": "Đơn Đã giao không có nút Hủy đơn", "code": "ORD000103", "cancelable": false },
+    { "id": "ACC-ORD-B06", "title": "Đơn Đã hủy không có nút Hủy đơn", "code": "ORD000102", "cancelable": false },
+    { "id": "ACC-ORD-B07", "title": "Đơn Trả hàng không có nút Hủy đơn", "code": "ORD000101", "cancelable": false }
+  ],
+
+  "cancel": {
+    "pendingCode": "ORD000107",
+    "pendingId": 107,
+    "reason": "Khách hàng hủy đơn",
+    "response": { "success": true, "message": "Đơn hàng đã được hủy" },
+    "errorStatus": 400,
+    "errorResponse": { "success": false, "message": "Chỉ có thể hủy đơn ở trạng thái chờ xác nhận hoặc đã xác nhận" },
+    "statsAfter": { "Tất cả đơn": 7, "Chờ xác nhận": 0, "Đã hủy": 2 },
+    "confirmedCode": "ORD000106"
+  }
+}

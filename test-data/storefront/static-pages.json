@@ -1,0 +1,103 @@
+{
+  "pages": [
+    {
+      "id": "SF-STAT-01",
+      "title": "Giới thiệu (/about): tiêu đề, câu chuyện, giá trị, số liệu",
+      "tags": ["@smoke"],
+      "path": "/about",
+      "h1": "Về Chúng Tôi",
+      "h2": ["Khởi nguồn từ đam mê", "Những điều chúng tôi tin tưởng"],
+      "h3": ["Bền vững", "Chất lượng", "Cộng đồng"],
+      "texts": [
+        "Đạt Hoàng được thành lập vào năm 2018 với sứ mệnh mang đến những sản phẩm thời trang chất lượng cao với giá thành hợp lý cho người Việt.",
+        "Năm kinh nghiệm",
+        "Khách hàng",
+        "Cửa hàng"
+      ]
+    },
+    {
+      "id": "SF-STAT-02",
+      "title": "Giao hàng (/shipping): hình thức giao hàng, miễn phí từ 500.000đ, câu hỏi thường gặp",
+      "path": "/shipping",
+      "h1": "Giao Hàng",
+      "h2": ["Hình thức giao hàng", "Câu hỏi thường gặp"],
+      "h3": [
+        "Giao hàng nhanh",
+        "Giao hàng tiêu chuẩn",
+        "Giao hàng tiết kiệm",
+        "Làm sao để theo dõi đơn hàng?",
+        "Tôi có thể thay đổi địa chỉ giao hàng không?",
+        "Đơn hàng chưa đến sau thời gian dự kiến?",
+        "Tôi có thể nhận hàng tại cửa hàng không?"
+      ],
+      "texts": [
+        "Đơn hàng từ 500.000đ sẽ được miễn phí vận chuyển trên toàn quốc.",
+        "1-2 ngày làm việc",
+        "3-5 ngày làm việc",
+        "5-7 ngày làm việc"
+      ]
+    },
+    {
+      "id": "SF-STAT-03",
+      "title": "Đổi trả (/returns): quy định, sản phẩm không áp dụng, quy trình 4 bước",
+      "path": "/returns",
+      "h1": "Đổi Trả Hàng",
+      "h2": ["Quy định đổi trả", "Sản phẩm không áp dụng đổi trả", "Quy trình đổi trả"],
+      "h3": ["Đổi hàng", "Hoàn tiền", "Điều kiện", "Chi phí", "Liên hệ", "Gửi hàng", "Xác nhận", "Hoàn tất"],
+      "texts": [
+        "Bạn có thể đổi sản phẩm trong vòng 30 ngày kể từ ngày nhận hàng",
+        "Sản phẩm giảm giá hoặc nằm trong chương trình khuyến mãi đặc biệt",
+        "Đổi hàng mới hoặc hoàn tiền trong 7-14 ngày"
+      ]
+    },
+    {
+      "id": "SF-STAT-04",
+      "title": "Bảo mật (/privacy): 5 mục chính sách và thông tin liên hệ",
+      "path": "/privacy",
+      "h1": "Chính Sách Bảo Mật",
+      "h2": ["Thu thập thông tin", "Thông tin thu thập", "Sử dụng thông tin", "Bảo mật thông tin", "Quyền của khách hàng", "Liên hệ"],
+      "h3": [],
+      "texts": ["Mã hóa dữ liệu SSL 256-bit", "privacy@cloth.com", "1900 1234", "Cập nhật lần cuối: Tháng 5/2026"]
+    }
+  ],
+  "contentBugs": [
+    {
+      "id": "SF-STAT-05",
+      "title": "Đổi trả: nội dung không lẫn ký tự Cyrillic",
+      "knownBug": "ReturnsPage.jsx:21 \"không có запаh hư\" chứa chữ Nga (Cyrillic) trong câu tiếng Việt",
+      "path": "/returns",
+      "mustNotMatch": "[\\u0400-\\u04FF]"
+    },
+    {
+      "id": "SF-STAT-06",
+      "title": "Giao hàng: phí \"Giao hàng nhanh\" khớp phí tính ở checkout (30.000đ)",
+      "knownBug": "ShippingPage.jsx:11 ghi 35.000đ nhưng CheckoutPage.jsx:72 tính 30.000đ cho giao hàng nhanh (tiêu chuẩn miễn phí, trang ghi 25.000đ)",
+      "path": "/shipping",
+      "block": "Giao hàng nhanh",
+      "mustContain": "30.000đ"
+    }
+  ],
+  "unknownRoutes": [
+    {
+      "id": "SF-STAT-07",
+      "title": "Đường dẫn không tồn tại hiển thị trang 404",
+      "knownBug": "App.jsx:75-129 không có <Route path=\"*\"> -> trang trắng, không header/footer",
+      "path": "/khong-ton-tai-e2e",
+      "message": "Không tìm thấy trang"
+    },
+    {
+      "id": "SF-STAT-08",
+      "title": "/products (link \"Xem tất cả\" ở trang chủ) hiển thị trang 404 hoặc danh sách",
+      "knownBug": "App.jsx:75-129 không có route /products và không có route \"*\" -> trang trắng",
+      "path": "/products",
+      "message": "Không tìm thấy trang"
+    },
+    {
+      "id": "SF-STAT-09",
+      "title": "/collections/doraemon (nút bộ sưu tập) hiển thị trang 404 hoặc bộ sưu tập",
+      "knownBug": "App.jsx:75-129 không có route /collections/:slug và không có route \"*\" -> trang trắng",
+      "path": "/collections/doraemon",
+      "message": "Không tìm thấy trang"
+    }
+  ]
+}

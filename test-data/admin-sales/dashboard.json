@@ -1,0 +1,81 @@
+{
+  "cardLabels": ["Tổng đơn hàng", "Sản phẩm", "Khách hàng", "Doanh thu tháng"],
+  "sections": ["Doanh thu & Đơn hàng", "Đơn hàng theo trạng thái", "Đơn hàng gần đây", "Sản phẩm bán chạy"],
+  "response": {
+    "stats": {
+      "totalOrders": 1234, "totalProducts": 44, "totalCustomers": 8, "totalRevenue": 45600000,
+      "pendingOrders": 12, "monthlyRevenue": 15600000, "revenueGrowth": -4.5, "lowStockProducts": 5,
+      "confirmedOrders": 3, "processingOrders": 4, "shippedOrders": 5, "deliveredOrders": 6,
+      "cancelledOrders": 2, "returnedOrders": 1
+    },
+    "recentOrders": [
+      { "id": 9001, "order_number": "E2E-0001", "customer_name": "Nguyễn Văn E2E", "total_price": 599000, "status": "pending", "created_at": "2026-09-30T03:30:00.000Z" },
+      { "id": 9002, "order_number": "E2E-0002", "customer_name": "Trần Thị Kiểm Thử", "total_price": 1299000, "status": "confirmed", "created_at": "2026-09-29T02:15:00.000Z" }
+    ],
+    "topProducts": [
+      { "name": "Áo thun E2E cổ tròn", "total_sold": 120 },
+      { "name": "Quần jeans E2E slim", "total_sold": 98 },
+      { "name": "Mũ lưỡi trai E2E", "total_sold": 85 }
+    ],
+    "chartData": [
+      { "name": "T1", "revenue": 8.5, "orders": 35 },
+      { "name": "T2", "revenue": 10.2, "orders": 42 },
+      { "name": "T3", "revenue": 9.8, "orders": 38 },
+      { "name": "T4", "revenue": 12.5, "orders": 48 }
+    ]
+  },
+  "expected": {
+    "cards": [
+      { "label": "Tổng đơn hàng", "value": "1.234" },
+      { "label": "Sản phẩm", "value": "44", "sub": "5 sản phẩm sắp hết hàng" },
+      { "label": "Khách hàng", "value": "8" },
+      { "label": "Doanh thu tháng", "value": "15.600.000đ", "change": "4.5%" }
+    ],
+    "statusBreakdown": {
+      "Chờ xác nhận": "12", "Đã xác nhận": "3", "Đang xử lý": "4", "Đang giao": "5", "Đã giao": "6", "Đã hủy": "2"
+    },
+    "recentOrders": [
+      { "number": "E2E-0001", "customer": "Nguyễn Văn E2E", "total": "599.000đ", "status": "Chờ xác nhận" },
+      { "number": "E2E-0002", "customer": "Trần Thị Kiểm Thử", "total": "1.299.000đ", "status": "Đã xác nhận" }
+    ],
+    "topProducts": [
+      { "name": "Áo thun E2E cổ tròn", "sold": "120 đã bán" },
+      { "name": "Quần jeans E2E slim", "sold": "98 đã bán" },
+      { "name": "Mũ lưỡi trai E2E", "sold": "85 đã bán" }
+    ],
+    "quickCards": [
+      { "title": "Sản phẩm sắp hết hàng", "value": "5 sản phẩm" },
+      { "title": "Đơn hàng chờ xử lý", "value": "12 đơn hàng" },
+      { "title": "Doanh thu tháng này", "value": "15.600.000đ" }
+    ],
+    "chartTicks": ["T1", "T2", "T3", "T4"]
+  },
+  "zeroCards": [
+    { "label": "Tổng đơn hàng", "value": "0" },
+    { "label": "Sản phẩm", "value": "0", "sub": "0 sản phẩm sắp hết hàng" },
+    { "label": "Khách hàng", "value": "0" },
+    { "label": "Doanh thu tháng", "value": "0đ", "change": "0%" }
+  ],
+  "links": [
+    { "id": "ADS-DASH-L01", "title": "'Xem tất cả' ở Đơn hàng gần đây -> /admin/orders", "section": "Đơn hàng gần đây", "label": "Xem tất cả", "path": "/admin/orders", "pageTitle": "Đơn hàng" },
+    { "id": "ADS-DASH-L02", "title": "'Xem tất cả' ở Sản phẩm bán chạy -> /admin/products", "section": "Sản phẩm bán chạy", "label": "Xem tất cả", "path": "/admin/products", "pageTitle": "Sản phẩm" },
+    { "id": "ADS-DASH-L03", "title": "'Xem kho hàng' -> /admin/warehouse", "label": "Xem kho hàng", "path": "/admin/warehouse", "pageTitle": "Kho hàng" },
+    { "id": "ADS-DASH-L04", "title": "'Xử lý đơn hàng' -> /admin/orders?status=pending", "label": "Xử lý đơn hàng", "path": "/admin/orders?status=pending", "pageTitle": "Đơn hàng" },
+    { "id": "ADS-DASH-L05", "title": "'Xem báo cáo' -> /admin/reports", "label": "Xem báo cáo", "path": "/admin/reports", "pageTitle": "Báo cáo" }
+  ],
+  "fakeGrowth": [
+    {
+      "id": "ADS-DASH-G01",
+      "title": "Thẻ 'Tổng đơn hàng' không hiển thị % tăng trưởng giả",
+      "card": "Tổng đơn hàng",
+      "knownBug": "AdminDashboard.jsx:196 - change=\"+12%\" viết cứng, API không trả tăng trưởng đơn hàng"
+    },
+    {
+      "id": "ADS-DASH-G02",
+      "title": "Thẻ 'Khách hàng' không hiển thị % tăng trưởng giả",
+      "card": "Khách hàng",
+      "knownBug": "AdminDashboard.jsx:209 - change=\"+8%\" viết cứng, API không trả tăng trưởng khách hàng"
+    }
+  ],
+  "rangeOption": "30 ngày qua"
+}

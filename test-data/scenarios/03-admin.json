@@ -1,0 +1,26 @@
+[
+  {
+    "id": "KD-ADM-01",
+    "title": "Admin đăng nhập, xem Sản phẩm và Đơn hàng",
+    "tags": ["@smoke"],
+    "requires": ["admin"],
+    "steps": [
+      { "keyword": "admin.openAdminLogin" },
+      { "keyword": "admin.loginAdmin", "args": ["${env.admin.email}", "${env.admin.password}"] },
+      { "keyword": "admin.verifyAdminPage", "arg": "/admin" },
+      { "keyword": "admin.navigateMenu", "arg": "Sản phẩm" },
+      { "keyword": "admin.verifyAdminPage", "arg": "/admin/products" },
+      { "keyword": "admin.navigateMenu", "arg": "Đơn hàng" },
+      { "keyword": "admin.verifyAdminPage", "arg": "/admin/orders" },
+      { "keyword": "common.verifyNoPageErrors" }
+    ]
+  },
+  {
+    "id": "KD-ADM-02",
+    "title": "Chưa đăng nhập không vào được trang quản trị",
+    "steps": [
+      { "keyword": "common.goto", "arg": "/admin/orders" },
+      { "keyword": "admin.verifyOnAdminLogin" }
+    ]
+  }
+]

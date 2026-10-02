@@ -1,0 +1,6 @@
+[
+  { "nav": "NAM", "path": "/nam", "heading": "Thời trang Nam" },
+  { "nav": "NỮ", "path": "/nu", "heading": "Thời trang Nữ" },
+  { "nav": "TRẺ EM", "path": "/tre-em", "heading": "TRẺ EM" },
+  { "nav": "GIẢM GIÁ", "path": "/giam-gia", "heading": "GIẢM GIÁ" }
+]

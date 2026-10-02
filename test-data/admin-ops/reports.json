@@ -1,0 +1,85 @@
+{
+  "cardLabels": ["Doanh thu", "Đơn hàng", "Sản phẩm đã bán", "Khách hàng mới"],
+  "sectionHeadings": ["Doanh thu theo thời gian", "Trạng thái đơn hàng", "Sản phẩm bán chạy", "Khách hàng mua nhiều"],
+  "overview": {
+    "revenue": {
+      "range": { "start": "2026-09-03", "end": "2026-10-02" },
+      "todayRevenue": 1500000,
+      "rangeRevenue": 45600000,
+      "growth": 12.5,
+      "dailyRevenue": [
+        { "date": "2026-09-28", "revenue": 2000000 },
+        { "date": "2026-09-29", "revenue": 3500000 }
+      ]
+    },
+    "orders": { "total": 120, "pending": 7, "confirmed": 10, "processing": 5, "shipped": 8, "delivered": 85, "cancelled": 5 },
+    "products": {
+      "totalSoldQuantity": 340,
+      "topProducts": [
+        { "id": 1, "name": "Áo thun basic", "sku": "TS001", "category_name": "T-Shirt", "sold_quantity": 120, "revenue": 23880000 },
+        { "id": 2, "name": "Quần jeans slim", "sku": "FE007", "category_name": null, "sold_quantity": 60, "revenue": 29940000 }
+      ],
+      "lowStockProducts": [{ "id": 3 }, { "id": 4 }, { "id": 5 }]
+    },
+    "customers": {
+      "newCustomers": 15,
+      "topCustomers": [{ "id": 1, "name": "Nguyễn Văn An", "email": "an@example.com", "order_count": 8, "total_spent": 12000000 }]
+    }
+  },
+  "emptyOverview": {
+    "revenue": { "todayRevenue": 0, "rangeRevenue": 0, "dailyRevenue": [] },
+    "orders": { "total": 0 },
+    "products": { "totalSoldQuantity": 0, "topProducts": [], "lowStockProducts": [] },
+    "customers": { "newCustomers": 0, "topCustomers": [] }
+  },
+  "summaryCards": {
+    "Doanh thu": "45.600.000đ",
+    "Đơn hàng": "120",
+    "Sản phẩm đã bán": "340",
+    "Khách hàng mới": "15",
+    "Sản phẩm sắp hết hàng": "3 sản phẩm",
+    "Đơn hàng chờ xử lý": "7 đơn hàng",
+    "Doanh thu hôm nay": "1.500.000đ"
+  },
+  "emptyCards": { "Doanh thu": "0đ", "Đơn hàng": "0", "Sản phẩm đã bán": "0", "Khách hàng mới": "0", "Sản phẩm sắp hết hàng": "0 sản phẩm" },
+  "statusLegend": ["Chờ xác nhận", "Đã giao", "85", "Đã hủy"],
+  "sections": [
+    { "heading": "Sản phẩm bán chạy", "rows": 2, "firstRow": ["1", "Áo thun basic", "TS001", "T-Shirt", "120", "23.880.000đ"] },
+    { "heading": "Khách hàng mua nhiều", "rows": 1, "firstRow": ["Nguyễn Văn An", "an@example.com", "8", "12.000.000đ"] }
+  ],
+  "emptyTexts": {
+    "Doanh thu theo thời gian": "Không có dữ liệu doanh thu trong khoảng thời gian này",
+    "Trạng thái đơn hàng": "Chưa có dữ liệu trạng thái đơn hàng",
+    "Sản phẩm bán chạy": "Chưa có dữ liệu",
+    "Khách hàng mua nhiều": "Chưa có dữ liệu"
+  },
+  "periods": [
+    { "id": "ADO-RPT-P01", "title": "Mặc định \"30 ngày qua\" gửi period=30days", "tags": ["@smoke"], "value": "", "label": "30 ngày qua", "apiPeriod": "30days" },
+    { "id": "ADO-RPT-P02", "title": "\"Hôm nay\" gửi period=today", "value": "today", "label": "Hôm nay", "apiPeriod": "today" },
+    { "id": "ADO-RPT-P03", "title": "\"7 ngày qua\" gửi period=7days", "value": "last7days", "label": "7 ngày qua", "apiPeriod": "7days" },
+    { "id": "ADO-RPT-P04", "title": "\"Tháng này\" gửi period=month", "value": "thisMonth", "label": "Tháng này", "apiPeriod": "month" }
+  ],
+  "custom": { "id": "ADO-RPT-C01", "title": "\"Tùy chọn\" + \"Lọc\" gửi period=custom kèm start_date/end_date", "start": "2026-09-01", "end": "2026-09-15" },
+  "customDefaults": {
+    "id": "ADO-RPT-B01",
+    "title": "\"Tùy chọn\" mặc định từ ngày 1 tháng này đến hôm nay",
+    "knownBug": "AdminReports.jsx:53,129 dateOnly() dùng toISOString (UTC) -> ở UTC+7 ngày 1 của tháng thành ngày cuối tháng trước"
+  },
+  "exports": [
+    {
+      "id": "ADO-RPT-X01", "title": "Xuất CSV kỳ mặc định: tên file, BOM, số liệu", "tags": ["@smoke"], "value": "",
+      "filePattern": "^bao-cao-last30days-\\d+\\.csv$",
+      "lines": ["\"Báo cáo\",\"30 ngày qua\"", "\"Từ ngày\",\"03/09/2026\"", "\"Tổng quan\",\"Doanh thu\",\"45600000\"", "\"Tổng quan\",\"Khách hàng mới\",\"15\"", "\"\",\"Áo thun basic\",\"T-Shirt\",\"120\",\"23880000\"", "\"\",\"Nguyễn Văn An\",\"an@example.com\",\"8\",\"12000000\""]
+    },
+    {
+      "id": "ADO-RPT-X02", "title": "Xuất CSV kỳ \"Tùy chọn\" ghi đúng khoảng ngày", "value": "custom", "range": { "start": "2026-09-01", "end": "2026-09-15" },
+      "filePattern": "^bao-cao-custom-\\d+\\.csv$",
+      "lines": ["\"Báo cáo\",\"Tùy chọn\"", "\"Từ ngày\",\"01/09/2026\"", "\"Đến ngày\",\"15/09/2026\""]
+    },
+    {
+      "id": "ADO-RPT-X03", "title": "Xuất CSV kỳ \"Hôm nay\"", "value": "today",
+      "filePattern": "^bao-cao-today-\\d+\\.csv$",
+      "lines": ["\"Báo cáo\",\"Hôm nay\""]
+    }
+  ]
+}

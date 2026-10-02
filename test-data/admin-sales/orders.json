@@ -1,0 +1,154 @@
+{
+  "fixture": {
+    "stats": {
+      "total": 8, "pending": 2, "confirmed": 1, "processing": 1, "shipped": 1,
+      "delivered": 1, "cancelled": 1, "returned": 1
+    },
+    "orders": [
+      {
+        "id": 9001, "order_number": "E2E-0001", "customer_name": "Nguyễn Văn E2E", "customer_email": "nguyenvan.e2e@example.test",
+        "customer_phone": "0901000001", "total_price": 599000, "subtotal": 569000, "shipping_fee": 30000, "discount_amount": 0,
+        "status": "pending", "payment_status": "unpaid", "payment_method": "cod", "shipping_method": "standard",
+        "item_count": 2, "created_at": "2026-09-30T03:30:00.000Z", "updated_at": "2026-09-30T03:30:00.000Z"
+      },
+      {
+        "id": 9002, "order_number": "E2E-0002", "customer_name": "Trần Thị Kiểm Thử", "customer_email": "tranthi.e2e@example.test",
+        "customer_phone": "0901000002", "total_price": 1299000, "subtotal": 1299000, "shipping_fee": 0, "discount_amount": 0,
+        "status": "confirmed", "payment_status": "paid", "payment_method": "vnpay", "shipping_method": "standard",
+        "item_count": 3, "created_at": "2026-09-29T02:15:00.000Z", "updated_at": "2026-09-29T05:00:00.000Z"
+      },
+      {
+        "id": 9003, "order_number": "E2E-0003", "customer_name": "Lê Văn Giao", "customer_email": "levan.e2e@example.test",
+        "customer_phone": "0901000003", "total_price": 829000, "subtotal": 849000, "shipping_fee": 30000, "discount_amount": 50000,
+        "discount_code": "E2E50K", "points_discount": 0,
+        "status": "processing", "payment_status": "unpaid", "payment_method": "vnpay", "shipping_method": "express",
+        "item_count": 2, "created_at": "2026-09-28T01:00:00.000Z", "updated_at": "2026-09-28T09:00:00.000Z"
+      },
+      {
+        "id": 9004, "order_number": "E2E-0004", "customer_name": "Phạm Thị Đang Giao", "customer_email": "pham.e2e@example.test",
+        "customer_phone": "0901000004", "total_price": 459000, "subtotal": 429000, "shipping_fee": 30000, "discount_amount": 0,
+        "status": "shipped", "payment_status": "unpaid", "payment_method": "cod", "shipping_method": "standard",
+        "item_count": 1, "created_at": "2026-09-27T01:00:00.000Z", "updated_at": "2026-09-28T01:00:00.000Z"
+      },
+      {
+        "id": 9005, "order_number": "E2E-0005", "customer_name": "Hoàng Văn Đã Nhận", "customer_email": "hoang.e2e@example.test",
+        "customer_phone": "0901000005", "total_price": 299000, "subtotal": 269000, "shipping_fee": 30000, "discount_amount": 0,
+        "status": "delivered", "payment_status": "paid", "payment_method": "momo", "shipping_method": "standard",
+        "item_count": 1, "created_at": "2026-09-20T01:00:00.000Z", "updated_at": "2026-09-22T01:00:00.000Z"
+      },
+      {
+        "id": 9006, "order_number": "E2E-0006", "customer_name": "Vũ Thị Đã Hủy", "customer_email": "vu.e2e@example.test",
+        "customer_phone": "0901000006", "total_price": 199000, "subtotal": 169000, "shipping_fee": 30000, "discount_amount": 0,
+        "status": "cancelled", "payment_status": "unpaid", "payment_method": "cod", "shipping_method": "standard",
+        "item_count": 1, "created_at": "2026-09-18T01:00:00.000Z", "updated_at": "2026-09-18T05:00:00.000Z"
+      },
+      {
+        "id": 9007, "order_number": "E2E-0007", "customer_name": "Đỗ Văn Trả Hàng", "customer_email": "do.e2e@example.test",
+        "customer_phone": "0901000007", "total_price": 349000, "subtotal": 319000, "shipping_fee": 30000, "discount_amount": 0,
+        "status": "returned", "payment_status": "refunded", "payment_method": "bank_transfer", "shipping_method": "standard",
+        "item_count": 1, "created_at": "2026-09-15T01:00:00.000Z", "updated_at": "2026-09-19T01:00:00.000Z"
+      },
+      {
+        "id": 9008, "order_number": "E2E-0008", "customer_name": "Bùi Thị Dùng Điểm", "customer_email": "bui.e2e@example.test",
+        "customer_phone": "0901000008", "total_price": 650000, "subtotal": 700000, "shipping_fee": 0, "discount_amount": 0,
+        "points_earned": 0, "points_discount": 50000,
+        "status": "pending", "payment_status": "unpaid", "payment_method": "cod", "shipping_method": "standard",
+        "item_count": 2, "created_at": "2026-09-30T05:00:00.000Z", "updated_at": "2026-09-30T05:00:00.000Z"
+      }
+    ],
+    "details": {
+      "9003": {
+        "shipping_info": {
+          "recipient_name": "Lê Văn Giao", "recipient_phone": "0901000003",
+          "address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh", "method": "express"
+        },
+        "items": [
+          {
+            "id": 1, "product_name": "Áo thun E2E cổ tròn", "product_sku": "E2E-AT-01", "size_name": "M", "color_name": "Đen",
+            "quantity": 2, "unit_price": 199000, "total_price": 398000
+          },
+          {
+            "id": 2, "product_name": "Quần jeans E2E slim", "product_sku": "E2E-QJ-02", "size_name": "L", "color_name": "Xanh Navy",
+            "quantity": 1, "unit_price": 451000, "total_price": 451000
+          }
+        ],
+        "logs": [
+          { "id": 1, "description": "Đơn hàng được tạo", "created_at": "2026-09-28T01:00:00.000Z" },
+          { "id": 2, "description": "Đơn hàng đã được xác nhận", "created_at": "2026-09-28T05:00:00.000Z" }
+        ]
+      }
+    }
+  },
+  "headers": ["Mã đơn", "Khách hàng", "Ngày đặt", "Sản phẩm", "Tổng tiền", "Thanh toán", "Trạng thái", "Thao tác"],
+  "statusCards": {
+    "Chờ xác nhận": "2", "Đã xác nhận": "1", "Đang xử lý": "1", "Đang giao": "1", "Đã giao": "1", "Đã hủy": "1", "Trả hàng": "1"
+  },
+  "row": { "number": "E2E-0003", "customer": "Lê Văn Giao", "items": "2 sản phẩm", "total": "829.000đ", "payment": "Chưa thanh toán", "status": "Đang xử lý" },
+  "detail": {
+    "number": "E2E-0003",
+    "heading": "Chi tiết đơn hàng #E2E-0003",
+    "status": "Đang xử lý",
+    "payment": "Chưa thanh toán",
+    "recipient": "Lê Văn Giao",
+    "email": "levan.e2e@example.test",
+    "phone": "0901000003",
+    "address": "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+    "info": {
+      "Mã đơn": "#E2E-0003",
+      "Phương thức thanh toán": "VNPay",
+      "Trạng thái thanh toán": "Chưa thanh toán",
+      "Phương thức vận chuyển": "Giao hàng nhanh",
+      "Mã giảm giá": "E2E50K"
+    },
+    "items": [
+      { "name": "Áo thun E2E cổ tròn", "variant": "Size: M / Màu: Đen", "qty": "2", "total": "398.000đ" },
+      { "name": "Quần jeans E2E slim", "variant": "Size: L / Màu: Xanh Navy", "qty": "1", "total": "451.000đ" }
+    ],
+    "summary": { "Tạm tính": "849.000đ", "Phí vận chuyển": "30.000đ", "Tổng thanh toán": "829.000đ" },
+    "logs": ["Đơn hàng được tạo", "Đơn hàng đã được xác nhận"]
+  },
+  "transitions": [
+    { "id": "ADS-ORD-ST01", "title": "Chờ xác nhận -> Xác nhận", "order": "E2E-0001", "orderId": 9001, "buttons": ["Xác nhận", "Hủy đơn"], "click": "Xác nhận", "status": "confirmed", "label": "Đã xác nhận", "tags": ["@smoke"] },
+    { "id": "ADS-ORD-ST02", "title": "Chờ xác nhận -> Hủy đơn (nút trong chi tiết)", "order": "E2E-0001", "orderId": 9001, "buttons": ["Xác nhận", "Hủy đơn"], "click": "Hủy đơn", "status": "cancelled", "label": "Đã hủy" },
+    { "id": "ADS-ORD-ST03", "title": "Đã xác nhận -> Xử lý tiếp", "order": "E2E-0002", "orderId": 9002, "buttons": ["Xử lý tiếp", "Hủy đơn"], "click": "Xử lý tiếp", "status": "processing", "label": "Đang xử lý" },
+    { "id": "ADS-ORD-ST04", "title": "Đang xử lý -> Giao hàng", "order": "E2E-0003", "orderId": 9003, "buttons": ["Giao hàng", "Hủy đơn"], "click": "Giao hàng", "status": "shipped", "label": "Đang giao" },
+    { "id": "ADS-ORD-ST05", "title": "Đang giao -> Đã nhận hàng", "order": "E2E-0004", "orderId": 9004, "buttons": ["Đã nhận hàng", "Yêu cầu trả"], "click": "Đã nhận hàng", "status": "delivered", "label": "Đã giao", "warning": true },
+    { "id": "ADS-ORD-ST06", "title": "Đang giao -> Yêu cầu trả", "order": "E2E-0004", "orderId": 9004, "buttons": ["Đã nhận hàng", "Yêu cầu trả"], "click": "Yêu cầu trả", "status": "returned", "label": "Trả hàng", "warning": true },
+    { "id": "ADS-ORD-ST07", "title": "Đã giao -> Yêu cầu trả", "order": "E2E-0005", "orderId": 9005, "buttons": ["Yêu cầu trả"], "click": "Yêu cầu trả", "status": "returned", "label": "Trả hàng", "warning": true },
+    { "id": "ADS-ORD-ST08", "title": "Đơn đã hủy không còn nút chuyển trạng thái", "order": "E2E-0006", "orderId": 9006, "buttons": [] },
+    { "id": "ADS-ORD-ST09", "title": "Đơn trả hàng không còn nút chuyển trạng thái", "order": "E2E-0007", "orderId": 9007, "buttons": [] }
+  ],
+  "filters": [
+    { "id": "ADS-ORD-F01", "title": "Tìm theo mã đơn", "search": "E2E-0003", "request": { "search": "E2E-0003" }, "rows": ["E2E-0003"] },
+    { "id": "ADS-ORD-F02", "title": "Tìm theo số điện thoại", "search": "0901000005", "request": { "search": "0901000005" }, "rows": ["E2E-0005"] },
+    { "id": "ADS-ORD-F03", "title": "Lọc trạng thái 'Đang giao' bằng ô chọn", "status": "shipped", "request": { "status": "shipped" }, "rows": ["E2E-0004"] },
+    { "id": "ADS-ORD-F04", "title": "Lọc 'Đã thanh toán'", "payment": "paid", "request": { "payment_status": "paid" }, "rows": ["E2E-0002", "E2E-0005"] },
+    { "id": "ADS-ORD-F05", "title": "Bấm thẻ 'Chờ xác nhận' lọc theo trạng thái", "card": "Chờ xác nhận", "request": { "status": "pending" }, "rows": ["E2E-0001", "E2E-0008"], "selectValue": "pending" },
+    { "id": "ADS-ORD-F06", "title": "Lọc theo khoảng ngày", "dateFrom": "2026-09-01", "dateTo": "2026-09-30", "request": { "date_from": "2026-09-01", "date_to": "2026-09-30" } }
+  ],
+  "payment": { "order": "E2E-0001", "orderId": 9001, "value": "paid", "toast": "Đã cập nhật thanh toán", "label": "Đã thanh toán" },
+  "cancel": {
+    "order": "E2E-0002", "orderId": 9002, "reason": "Khách đổi ý (E2E)",
+    "refundNote": "Số tiền đã thanh toán sẽ được hoàn lại cho khách hàng.",
+    "toast": "Đã hủy đơn hàng",
+    "pointsOrder": "E2E-0008",
+    "pointsNote": "Điểm tích lũy đã sử dụng sẽ được hoàn lại.",
+    "error": { "status": 400, "message": "Không thể hủy đơn hàng ở trạng thái này" }
+  },
+  "cancelAction": [
+    { "id": "ADS-ORD-CA01", "title": "Đơn chờ xác nhận có nút Hủy đơn", "order": "E2E-0001", "visible": true },
+    { "id": "ADS-ORD-CA02", "title": "Đơn đang xử lý có nút Hủy đơn", "order": "E2E-0003", "visible": true },
+    {
+      "id": "ADS-ORD-CA03",
+      "title": "Đơn đang giao KHÔNG có nút Hủy đơn (backend không cho hủy)",
+      "order": "E2E-0004",
+      "visible": false,
+      "knownBug": "AdminOrders.jsx:409 hiện nút Hủy đơn cho đơn 'shipped' nhưng adminController.cancelOrder trả 400 'Không thể hủy đơn hàng ở trạng thái này'"
+    },
+    { "id": "ADS-ORD-CA04", "title": "Đơn đã giao không có nút Hủy đơn", "order": "E2E-0005", "visible": false },
+    { "id": "ADS-ORD-CA05", "title": "Đơn đã hủy không có nút Hủy đơn", "order": "E2E-0006", "visible": false },
+    { "id": "ADS-ORD-CA06", "title": "Đơn trả hàng không có nút Hủy đơn", "order": "E2E-0007", "visible": false }
+  ],
+  "pagination": { "total": 45, "text": "Trang 1 / 3 — 45 đơn hàng", "page": 2 },
+  "pushNotification": { "order": "E2E-0001", "orderId": 9001, "click": "Xác nhận", "title": "Đơn xác nhận" }
+}

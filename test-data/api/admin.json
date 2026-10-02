@@ -1,0 +1,56 @@
+{
+  "readEndpoints": [
+    { "id": "API-ADM-R01", "title": "Dashboard", "path": "/admin/dashboard", "keys": ["stats", "recentOrders", "topProducts"] },
+    { "id": "API-ADM-R02", "title": "Thông báo", "path": "/admin/notifications", "keys": ["notifications", "counts"] },
+    { "id": "API-ADM-R03", "title": "Danh sách sản phẩm", "path": "/admin/products?limit=5", "keys": ["products", "total", "totalPages", "page"] },
+    { "id": "API-ADM-R04", "title": "Danh sách size", "path": "/admin/sizes", "keys": ["sizes"] },
+    { "id": "API-ADM-R05", "title": "Danh sách màu", "path": "/admin/colors", "keys": ["colors"] },
+    { "id": "API-ADM-R06", "title": "Tùy chọn sản phẩm", "path": "/admin/products/options", "keys": ["products"] },
+    { "id": "API-ADM-R07", "title": "Danh mục", "path": "/admin/categories", "keys": ["categories"] },
+    { "id": "API-ADM-R08", "title": "Thương hiệu", "path": "/admin/brands", "keys": ["brands"] },
+    { "id": "API-ADM-R09", "title": "Thống kê đơn hàng", "path": "/admin/orders/stats", "keys": ["stats"] },
+    { "id": "API-ADM-R10", "title": "Danh sách đơn hàng", "path": "/admin/orders?limit=5", "keys": ["orders", "total", "totalPages", "page"] },
+    { "id": "API-ADM-R11", "title": "Khách hàng", "path": "/admin/customers?limit=5", "keys": ["customers", "total", "totalPages", "page"] },
+    { "id": "API-ADM-R12", "title": "Nhân viên", "path": "/admin/employees", "keys": ["employees", "total"] },
+    { "id": "API-ADM-R13", "title": "Khuyến mãi", "path": "/admin/promotions", "keys": ["promotions"] },
+    { "id": "API-ADM-R14", "title": "Mã giảm giá", "path": "/admin/coupons", "keys": ["coupons"] },
+    { "id": "API-ADM-R15", "title": "Kho hàng", "path": "/admin/warehouse?limit=5", "keys": ["stats", "products"] },
+    { "id": "API-ADM-R16", "title": "Nhà cung cấp", "path": "/admin/suppliers", "keys": ["suppliers"] },
+    { "id": "API-ADM-R17", "title": "Danh sách kho", "path": "/admin/warehouses", "keys": ["warehouses"] },
+    { "id": "API-ADM-R18", "title": "Phiếu nhập", "path": "/admin/imports", "keys": ["imports"] },
+    { "id": "API-ADM-R19", "title": "Đơn đặt nhà cung cấp", "path": "/admin/supplier-orders", "keys": ["orders"] },
+    { "id": "API-ADM-R20", "title": "Đánh giá", "path": "/admin/reviews?limit=5", "keys": ["reviews", "total"] },
+    { "id": "API-ADM-R21", "title": "Bài viết (blogs)", "path": "/admin/blogs", "keys": ["blogs"] },
+    { "id": "API-ADM-R22", "title": "Bài viết (news)", "path": "/admin/news", "keys": ["blogs"] },
+    { "id": "API-ADM-R23", "title": "Liên hệ", "path": "/admin/contacts", "keys": ["contacts"] },
+    { "id": "API-ADM-R24", "title": "Báo cáo tổng quan", "path": "/admin/reports/overview", "keys": ["overview"] },
+    { "id": "API-ADM-R25", "title": "Báo cáo doanh thu", "path": "/admin/reports/revenue", "keys": ["revenue"] },
+    { "id": "API-ADM-R26", "title": "Báo cáo đơn hàng", "path": "/admin/reports/orders", "keys": ["orders"] },
+    { "id": "API-ADM-R27", "title": "Báo cáo sản phẩm", "path": "/admin/reports/products", "keys": ["products"] },
+    { "id": "API-ADM-R28", "title": "Báo cáo khách hàng", "path": "/admin/reports/customers", "keys": ["customers"] },
+    { "id": "API-ADM-R29", "title": "Cài đặt", "path": "/admin/settings", "keys": ["settings"] },
+    { "id": "API-ADM-R30", "title": "Hồ sơ admin", "path": "/admin/profile", "keys": ["user"] }
+  ],
+  "detailEndpoints": [
+    { "id": "API-ADM-D01", "title": "Chi tiết sản phẩm", "list": "/admin/products?limit=1", "listKey": "products", "detail": "/admin/products/{id}", "key": "product" },
+    { "id": "API-ADM-D02", "title": "Chi tiết khách hàng", "list": "/admin/customers?limit=1", "listKey": "customers", "detail": "/admin/customers/{id}", "key": "customer" },
+    { "id": "API-ADM-D03", "title": "Chi tiết khuyến mãi", "list": "/admin/promotions", "listKey": "promotions", "detail": "/admin/promotions/{id}", "key": "promotion" },
+    { "id": "API-ADM-D04", "title": "Chi tiết bài viết", "list": "/admin/blogs", "listKey": "blogs", "detail": "/admin/blogs/{id}", "key": "blog" },
+    { "id": "API-ADM-D05", "title": "Chi tiết đơn hàng", "list": "/admin/orders?limit=1", "listKey": "orders", "detail": "/admin/orders/{id}", "key": "order" }
+  ],
+  "notFound": [
+    { "id": "API-ADM-N01", "title": "Sản phẩm không tồn tại", "path": "/admin/products/99999999" },
+    { "id": "API-ADM-N02", "title": "Khách hàng không tồn tại", "path": "/admin/customers/99999999" },
+    { "id": "API-ADM-N03", "title": "Khuyến mãi không tồn tại", "path": "/admin/promotions/99999999" },
+    { "id": "API-ADM-N04", "title": "Bài viết không tồn tại", "path": "/admin/blogs/99999999" },
+    { "id": "API-ADM-N05", "title": "Đơn hàng không tồn tại", "path": "/admin/orders/99999999" },
+    { "id": "API-ADM-N06", "title": "Đánh giá không tồn tại", "path": "/admin/reviews/99999999" },
+    { "id": "API-ADM-N07", "title": "Liên hệ không tồn tại", "path": "/admin/contacts/99999999" },
+    {
+      "id": "API-ADM-N08",
+      "title": "Id không phải số",
+      "path": "/admin/products/abc",
+      "knownBug": "Backend không validate id, trả 500 thay vì 400/404"
+    }
+  ]
+}

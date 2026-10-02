@@ -1,0 +1,114 @@
+{
+  "headers": ["Mã đơn", "Nhà cung cấp", "Kho nhận", "Ngày đặt", "Tổng tiền", "Thanh toán", "Trạng thái", "Thao tác"],
+  "mock": {
+    "suppliers": [
+      { "id": 1, "name": "Công ty May Việt" },
+      { "id": 2, "name": "Xưởng Dệt Sài Gòn" }
+    ],
+    "warehouses": [
+      { "id": 1, "name": "Kho Hà Nội" },
+      { "id": 2, "name": "Kho HCM" }
+    ],
+    "products": [
+      { "id": 10, "name": "Áo thun basic", "sku": "TS001", "cost_price": 100000, "variants": [] },
+      { "id": 20, "name": "Quần jeans slim", "sku": "FE007", "cost_price": 200000, "variants": [
+        { "id": 201, "name": "M / Xanh", "sku": "FE007-M" },
+        { "id": 202, "name": "L / Xanh", "sku": "FE007-L" }
+      ] }
+    ],
+    "imports": [
+      {
+        "id": 1, "code": "PN0001", "supplier_id": 1, "supplier_name": "Công ty May Việt", "warehouse_name": "Kho Hà Nội",
+        "order_date": "2026-09-20", "expected_date": "2026-09-30", "subtotal": 3000000, "discount_amount": 0, "shipping_fee": 0,
+        "total_amount": 3000000, "paid_amount": 0, "payment_status": "unpaid", "status": "processing", "note": "Giao trước 10h",
+        "items": [
+          { "id": 11, "product_name": "Áo thun basic", "sku": "TS001", "quantity_ordered": 20, "quantity_received": 0, "unit_cost": 100000, "total_cost": 2000000 },
+          { "id": 12, "product_name": "Quần jeans slim", "variant_name": "M / Xanh", "sku": "FE007-M", "quantity_ordered": 5, "quantity_received": 2, "unit_cost": 200000, "total_cost": 1000000 }
+        ]
+      },
+      { "id": 2, "code": "PN0002", "supplier_id": 2, "supplier_name": "Xưởng Dệt Sài Gòn", "warehouse_name": "Kho HCM", "order_date": "2026-09-15", "total_amount": 1500000, "paid_amount": 1500000, "payment_status": "paid", "status": "received" },
+      { "id": 3, "code": "PN0003", "supplier_id": 1, "supplier_name": "Công ty May Việt", "warehouse_name": "Kho HCM", "order_date": "2026-09-25", "total_amount": 500000, "paid_amount": 200000, "payment_status": "partial", "status": "draft" },
+      { "id": 4, "code": "PN0004", "supplier_id": 2, "supplier_name": "Xưởng Dệt Sài Gòn", "warehouse_name": "Kho Hà Nội", "order_date": "2026-09-10", "total_amount": 800000, "paid_amount": 0, "payment_status": "unpaid", "status": "cancelled" },
+      { "id": 5, "code": "PN0005", "supplier_id": 1, "supplier_name": "Công ty May Việt", "warehouse_name": "Kho Hà Nội", "order_date": "2026-09-28", "total_amount": 1200000, "paid_amount": 0, "payment_status": "unpaid", "status": "partial_received" }
+    ]
+  },
+  "statCards": { "Tổng đơn": "5", "Đã nhận đủ": "1", "Đang xử lý": "3", "Tổng giá trị": "7.000.000đ" },
+  "rows": [
+    { "id": "ADO-IMP-R01", "title": "Đang xử lý: Xem chi tiết / Nhận hàng / Hủy đơn", "tags": ["@smoke"], "rowText": "PN0001", "expected": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội", "Tổng tiền": "3.000.000đ", "Thanh toán": "Chưa thanh toán", "Trạng thái": "Đang xử lý" }, "actions": ["Xem chi tiết", "Nhận hàng", "Hủy đơn"] },
+    { "id": "ADO-IMP-R02", "title": "Đã nhận đủ: chỉ còn Xem chi tiết", "rowText": "PN0002", "expected": { "Thanh toán": "Đã thanh toán", "Trạng thái": "Đã nhận đủ" }, "actions": ["Xem chi tiết"] },
+    { "id": "ADO-IMP-R03", "title": "Nháp: Xem chi tiết / Hủy đơn, thanh toán một phần", "rowText": "PN0003", "expected": { "Thanh toán": "Thanh toán một phần", "Trạng thái": "Nháp" }, "actions": ["Xem chi tiết", "Hủy đơn"] },
+    { "id": "ADO-IMP-R04", "title": "Đã hủy: chỉ còn Xem chi tiết", "rowText": "PN0004", "expected": { "Trạng thái": "Đã hủy" }, "actions": ["Xem chi tiết"] },
+    { "id": "ADO-IMP-R05", "title": "Đã nhận một phần: Xem chi tiết / Nhận hàng", "rowText": "PN0005", "expected": { "Trạng thái": "Đã nhận một phần" }, "actions": ["Xem chi tiết", "Nhận hàng"] }
+  ],
+  "filters": [
+    { "id": "ADO-IMP-F01", "title": "Lọc trạng thái gửi status=processing", "action": "status", "value": "processing", "query": { "status": "processing", "supplier_id": null }, "visible": ["PN0001"] },
+    { "id": "ADO-IMP-F02", "title": "Lọc nhà cung cấp gửi supplier_id", "action": "supplier", "value": "Xưởng Dệt Sài Gòn", "query": { "supplier_id": "2", "status": null }, "visible": ["PN0002", "PN0004"] },
+    { "id": "ADO-IMP-F03", "title": "Tìm mã đơn gửi search lên server", "action": "search", "value": "pn0003", "query": { "search": "pn0003" }, "visible": ["PN0003"] },
+    { "id": "ADO-IMP-F04", "title": "Không có đơn phù hợp -> \"Không có đơn nhập hàng nào\"", "action": "search", "value": "khong-ton-tai", "query": { "search": "khong-ton-tai" }, "visible": [], "emptyText": "Không có đơn nhập hàng nào" }
+  ],
+  "validation": [
+    { "id": "ADO-IMP-V01", "title": "Chưa chọn nhà cung cấp", "tags": ["@smoke"], "form": {}, "items": [], "toast": "Vui lòng chọn nhà cung cấp." },
+    { "id": "ADO-IMP-V02", "title": "Chưa chọn kho nhận", "form": { "Nhà cung cấp": "Công ty May Việt" }, "items": [], "toast": "Vui lòng chọn kho nhận." },
+    { "id": "ADO-IMP-V03", "title": "Chưa có sản phẩm nhập", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội" }, "items": [], "toast": "Vui lòng thêm ít nhất một sản phẩm nhập." },
+    { "id": "ADO-IMP-V04", "title": "Sản phẩm có biến thể nhưng chưa chọn biến thể", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội" }, "items": [{ "product": "Quần jeans slim" }], "toast": "Vui lòng chọn biến thể cho sản phẩm có biến thể." },
+    { "id": "ADO-IMP-V05", "title": "Số lượng nhập = 0", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội" }, "items": [{ "product": "Áo thun basic", "quantity": 0 }], "toast": "Số lượng nhập phải lớn hơn 0." },
+    { "id": "ADO-IMP-V06", "title": "Đơn giá nhập âm", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội" }, "items": [{ "product": "Áo thun basic", "quantity": 2, "unitCost": -1000 }], "toast": "Đơn giá nhập không hợp lệ." },
+    { "id": "ADO-IMP-V07", "title": "Trùng dòng cùng sản phẩm + biến thể", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội" }, "items": [{ "product": "Áo thun basic", "quantity": 1 }, { "product": "Áo thun basic", "quantity": 2 }], "toast": "Sản phẩm không được bị trùng dòng nếu cùng sản phẩm và biến thể." },
+    { "id": "ADO-IMP-V08", "title": "Đã thanh toán lớn hơn tổng tiền", "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho Hà Nội", "Trạng thái thanh toán": "partial", "Số tiền đã thanh toán": "999999999" }, "items": [{ "product": "Áo thun basic", "quantity": 1 }], "toast": "Số tiền đã thanh toán không được lớn hơn tổng tiền." }
+  ],
+  "totals": {
+    "id": "ADO-IMP-04", "title": "Tính thành tiền và tổng tiền nhập (chiết khấu, chi phí)",
+    "form": { "Chiết khấu": "20000", "Chi phí nhập hàng": "10000" },
+    "items": [{ "product": "Áo thun basic", "quantity": 3 }],
+    "lineTotal": "300.000đ",
+    "grandTotal": "290.000đ"
+  },
+  "create": [
+    {
+      "id": "ADO-IMP-C01", "title": "\"Tạo đơn nhập hàng\" gửi POST status=processing (mock)", "tags": ["@smoke"],
+      "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho HCM", "Ngày dự kiến nhận": "2026-10-15", "Ghi chú": "Đơn E2E" },
+      "items": [{ "product": "Áo thun basic", "quantity": 10, "unitCost": 95000, "note": "Hàng mới" }],
+      "button": "Tạo đơn nhập hàng",
+      "expectedPayload": {
+        "status": "processing", "supplier_id": "1", "warehouse_id": "2", "expected_date": "2026-10-15", "note": "Đơn E2E",
+        "discount_amount": 0, "shipping_fee": 0, "paid_amount": 0, "payment_status": "unpaid", "payment_method": "cash",
+        "items": [{ "product_id": 10, "variant_id": null, "sku": "TS001", "product_name": "Áo thun basic", "quantity_ordered": 10, "unit_cost": 95000, "note": "Hàng mới" }]
+      },
+      "toast": "Tạo đơn nhập hàng thành công."
+    },
+    {
+      "id": "ADO-IMP-C02", "title": "\"Lưu nháp\" 2 biến thể cùng sản phẩm, đã thanh toán đủ (mock)",
+      "form": { "Nhà cung cấp": "Xưởng Dệt Sài Gòn", "Kho nhận": "Kho Hà Nội", "Phương thức": "bank_transfer" },
+      "items": [{ "product": "Quần jeans slim", "variant": "M / Xanh", "quantity": 2 }, { "product": "Quần jeans slim", "variant": "L / Xanh", "quantity": 1 }],
+      "payment": { "Trạng thái thanh toán": "paid" },
+      "button": "Lưu nháp",
+      "expectedPayload": {
+        "status": "draft", "supplier_id": "2", "warehouse_id": "1", "payment_status": "paid", "paid_amount": 600000, "payment_method": "bank_transfer",
+        "items": [
+          { "product_id": 20, "variant_id": 201, "sku": "FE007-M", "variant_name": "M / Xanh", "quantity_ordered": 2, "unit_cost": 200000 },
+          { "product_id": 20, "variant_id": 202, "sku": "FE007-L", "variant_name": "L / Xanh", "quantity_ordered": 1, "unit_cost": 200000 }
+        ]
+      },
+      "toast": "Tạo đơn nhập hàng thành công."
+    }
+  ],
+  "createError": {
+    "id": "ADO-IMP-E01", "title": "Server từ chối tạo đơn -> hiện thông báo của server",
+    "form": { "Nhà cung cấp": "Công ty May Việt", "Kho nhận": "Kho HCM" },
+    "items": [{ "product": "Áo thun basic", "quantity": 1 }],
+    "status": 400,
+    "message": "Sản phẩm nhập không tồn tại."
+  },
+  "detail": { "rowText": "PN0001", "id": 1, "texts": ["PN0001", "Công ty May Việt", "Kho Hà Nội", "Đang xử lý", "Chưa thanh toán", "Áo thun basic", "M / Xanh", "FE007-M", "Giao trước 10h", "3.000.000đ"] },
+  "receive": {
+    "rowText": "PN0001",
+    "id": 1,
+    "cases": [
+      { "id": "ADO-IMP-N01", "title": "Mọi dòng nhận 0 -> \"Vui lòng nhập số lượng nhận.\"", "quantities": [0, 0], "toast": "Vui lòng nhập số lượng nhận." },
+      { "id": "ADO-IMP-N02", "title": "Nhận vượt số còn lại -> báo lỗi", "quantities": [21, 3], "toast": "Tổng số lượng đã nhận không được vượt quá số lượng đặt." },
+      { "id": "ADO-IMP-N03", "title": "Nhận hàng hợp lệ gửi POST receive (mock)", "tags": ["@smoke"], "quantities": [5, 3], "toast": "Nhận hàng thành công.", "expectedPayload": { "items": [{ "item_id": 11, "quantity_received": 5 }, { "item_id": 12, "quantity_received": 3 }] } },
+      { "id": "ADO-IMP-N04", "title": "Dòng nhận 0 bị bỏ khỏi payload (mock)", "quantities": [0, 2], "toast": "Nhận hàng thành công.", "expectedPayload": { "items": [{ "item_id": 12, "quantity_received": 2 }] } }
+    ]
+  },
+  "cancel": { "rowText": "PN0001", "id": 1, "toast": "Hủy đơn nhập hàng thành công." }
+}

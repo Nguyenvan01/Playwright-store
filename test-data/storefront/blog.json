@@ -1,0 +1,147 @@
+{
+  "mockList": {
+    "success": true,
+    "news": [
+      {
+        "id": 901,
+        "title": "Xu hướng E2E: màu be lên ngôi",
+        "slug": "e2e-xu-huong-mau-be",
+        "summary": "Tóm tắt xu hướng màu be mùa thu đông.",
+        "category": "Xu hướng",
+        "tags": "thu đông, màu be",
+        "view_count": 1250,
+        "author_name": "Biên tập E2E",
+        "published_at": "2026-09-13T07:00:00.000Z",
+        "content": "<p>Nội dung chi tiết xu hướng màu be.</p>",
+        "thumbnail": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+      },
+      {
+        "id": 902,
+        "title": "Phối đồ E2E: chân váy dài",
+        "slug": "e2e-phoi-do-chan-vay",
+        "summary": "15 cách phối chân váy dài.",
+        "category": "Phối đồ",
+        "tags": [
+          "chân váy",
+          "công sở"
+        ],
+        "view_count": 890,
+        "author_name": "Biên tập E2E",
+        "published_at": "2026-09-12T07:00:00.000Z",
+        "content": "<p>Nội dung phối đồ chân váy.</p>",
+        "thumbnail": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=556&q=80"
+      },
+      {
+        "id": 903,
+        "title": "Phối đồ E2E: outfit Đà Lạt",
+        "slug": "e2e-phoi-do-da-lat",
+        "summary": "Gợi ý outfit đi Đà Lạt.",
+        "category": "Phối đồ",
+        "tags": null,
+        "published_at": "2026-09-11T07:00:00.000Z",
+        "content": null
+      },
+      {
+        "id": 904,
+        "title": "Kiến thức E2E: size S là bao nhiêu kg",
+        "slug": "e2e-size-s",
+        "summary": "Bảng size S chuẩn.",
+        "category": "Thuật ngữ - Kiến thức",
+        "tags": null,
+        "view_count": 40,
+        "author_name": "CANIFA",
+        "published_at": "2026-09-10T07:00:00.000Z",
+        "content": "<p>Bảng size.</p>"
+      },
+      {
+        "id": 905,
+        "title": "Kiến thức E2E: stylist là gì",
+        "slug": "e2e-stylist-la-gi",
+        "summary": "Stylist là ai, làm gì.",
+        "category": "Thuật ngữ - Kiến thức",
+        "tags": null,
+        "view_count": 12,
+        "author_name": "CANIFA",
+        "published_at": "2026-09-09T07:00:00.000Z",
+        "content": "<p>Stylist.</p>"
+      }
+    ]
+  },
+  "pills": [
+    "Tất cả",
+    "Xu hướng",
+    "Phối đồ",
+    "Thuật ngữ - Kiến thức"
+  ],
+  "filters": [
+    {
+      "id": "SF-BLOG-03",
+      "title": "Lọc \"Phối đồ\" chỉ còn 2 bài Phối đồ",
+      "category": "Phối đồ",
+      "titles": [
+        "Phối đồ E2E: chân váy dài",
+        "Phối đồ E2E: outfit Đà Lạt"
+      ]
+    },
+    {
+      "id": "SF-BLOG-04",
+      "title": "Lọc \"Thuật ngữ - Kiến thức\" chỉ còn 2 bài",
+      "category": "Thuật ngữ - Kiến thức",
+      "titles": [
+        "Kiến thức E2E: size S là bao nhiêu kg",
+        "Kiến thức E2E: stylist là gì"
+      ]
+    },
+    {
+      "id": "SF-BLOG-05",
+      "title": "Lọc \"Xu hướng\" chỉ còn 1 bài",
+      "category": "Xu hướng",
+      "titles": [
+        "Xu hướng E2E: màu be lên ngôi"
+      ]
+    }
+  ],
+  "details": [
+    {
+      "id": "SF-BLOG-06",
+      "title": "Chi tiết bài đầy đủ: danh mục, tác giả, lượt xem, tag, bài liên quan",
+      "slug": "e2e-xu-huong-mau-be",
+      "titleText": "Xu hướng E2E: màu be lên ngôi",
+      "category": "Xu hướng",
+      "views": "1250",
+      "author": "Biên tập E2E",
+      "related": [
+        "Phối đồ E2E: chân váy dài",
+        "Phối đồ E2E: outfit Đà Lạt",
+        "Kiến thức E2E: size S là bao nhiêu kg"
+      ],
+      "articleTags": [
+        "thu đông",
+        "màu be"
+      ]
+    },
+    {
+      "id": "SF-BLOG-07",
+      "title": "Chi tiết bài thiếu dữ liệu: tác giả mặc định, 0 lượt xem, nội dung đang cập nhật",
+      "slug": "e2e-phoi-do-da-lat",
+      "titleText": "Phối đồ E2E: outfit Đà Lạt",
+      "category": "Phối đồ",
+      "views": "0",
+      "author": "Đạt Hoàng Editorial",
+      "related": [
+        "Xu hướng E2E: màu be lên ngôi",
+        "Phối đồ E2E: chân váy dài",
+        "Kiến thức E2E: size S là bao nhiêu kg"
+      ],
+      "fallback": true,
+      "articleTags": []
+    }
+  ],
+  "invalidSlug": "bai-viet-khong-ton-tai-e2e",
+  "newsletterBug": {
+    "id": "SF-BLOG-11",
+    "title": "Đăng ký nhận tin ở trang Blog không tải lại trang",
+    "knownBug": "BlogPage.jsx:139 <form> không có onSubmit -> bấm \"Đăng ký\" submit form GET, tải lại trang, không có phản hồi",
+    "email": "e2e.blog@example.com"
+  }
+}

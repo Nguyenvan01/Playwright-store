@@ -1,0 +1,53 @@
+{
+  "response": {
+    "success": true,
+    "wishlist": [
+      {
+        "wishlist_id": 504, "added_at": "2026-09-27T03:00:00.000Z", "id": 304, "name": "Mũ lưỡi trai thêu logo", "slug": "mu-luoi-trai-theu-logo-e2e",
+        "price": 150000, "compare_price": 180000, "stock": 30, "is_active": false, "category_name": "Phụ kiện", "variant_count": 0, "image_url": null
+      },
+      {
+        "wishlist_id": 502, "added_at": "2026-09-25T03:00:00.000Z", "id": 302, "name": "Quần short kaki", "slug": "quan-short-kaki-e2e",
+        "price": 220000, "compare_price": null, "stock": 15, "is_active": true, "category_name": "Quần short", "variant_count": 0, "image_url": null
+      },
+      {
+        "wishlist_id": 501, "added_at": "2026-09-20T03:00:00.000Z", "id": 301, "name": "Áo sơ mi linen", "slug": "ao-so-mi-linen-e2e",
+        "price": 350000, "compare_price": 450000, "stock": 20, "is_active": true, "category_name": "Áo sơ mi", "variant_count": 4, "image_url": null
+      },
+      {
+        "wishlist_id": 503, "added_at": "2026-09-10T03:00:00.000Z", "id": 303, "name": "Váy liền thân hoa nhí", "slug": "vay-lien-than-hoa-nhi-e2e",
+        "price": 590000, "compare_price": null, "stock": 0, "is_active": true, "category_name": "Váy", "variant_count": 2, "image_url": null
+      }
+    ]
+  },
+  "empty": { "success": true, "wishlist": [] },
+  "count": 4,
+  "recentOrder": ["Mũ lưỡi trai thêu logo", "Quần short kaki", "Áo sơ mi linen", "Váy liền thân hoa nhí"],
+
+  "sort": [
+    { "id": "ACC-WL-O01", "title": "Mặc định: mới lưu gần đây trước", "sort": "recent", "expected": ["Mũ lưỡi trai thêu logo", "Quần short kaki", "Áo sơ mi linen", "Váy liền thân hoa nhí"] },
+    { "id": "ACC-WL-O02", "title": "Giá thấp đến cao", "sort": "price_asc", "expected": ["Mũ lưỡi trai thêu logo", "Quần short kaki", "Áo sơ mi linen", "Váy liền thân hoa nhí"] },
+    { "id": "ACC-WL-O03", "title": "Giá cao đến thấp", "sort": "price_desc", "expected": ["Váy liền thân hoa nhí", "Áo sơ mi linen", "Quần short kaki", "Mũ lưỡi trai thêu logo"] }
+  ],
+
+  "search": [
+    { "id": "ACC-WL-S01", "title": "Tìm theo tên (không phân biệt hoa thường)", "query": "QUẦN", "expected": ["Quần short kaki"] },
+    { "id": "ACC-WL-S02", "title": "Tìm theo danh mục", "query": "phụ kiện", "expected": ["Mũ lưỡi trai thêu logo"] },
+    { "id": "ACC-WL-S03", "title": "Không có sản phẩm phù hợp", "query": "giày thể thao", "expected": [] }
+  ],
+
+  "availability": [
+    { "id": "ACC-WL-A01", "title": "Còn hàng, có giảm giá -> nút thêm giỏ bật, hiện % giảm", "name": "Áo sơ mi linen", "available": true, "texts": ["Áo sơ mi", "350.000đ", "450.000đ", "-22%", "Còn hàng", "Đã lưu 20/09/2026"] },
+    { "id": "ACC-WL-A02", "title": "Hết hàng (stock = 0) -> nút thêm giỏ tắt", "name": "Váy liền thân hoa nhí", "available": false, "texts": ["590.000đ", "Tạm hết hàng"] },
+    { "id": "ACC-WL-A03", "title": "Sản phẩm ngừng bán (is_active = false) -> coi như hết hàng", "name": "Mũ lưỡi trai thêu logo", "available": false, "texts": ["Phụ kiện", "Tạm hết hàng"] }
+  ],
+
+  "remove": {
+    "name": "Quần short kaki", "productId": 302,
+    "remaining": ["Mũ lưỡi trai thêu logo", "Áo sơ mi linen", "Váy liền thân hoa nhí"],
+    "errorStatus": 500, "errorResponse": { "success": false, "message": "Lỗi server" }
+  },
+  "addSimple": { "name": "Quần short kaki", "toast": "Đã thêm sản phẩm vào giỏ hàng" },
+  "addWithVariants": { "name": "Áo sơ mi linen", "slug": "ao-so-mi-linen-e2e" },
+  "heart": { "listingPath": "/nam" }
+}

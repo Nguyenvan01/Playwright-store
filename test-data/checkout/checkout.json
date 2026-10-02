@@ -1,0 +1,48 @@
+{
+  "cartItem": { "product_id": 201, "name": "Áo khoác E2E", "slug": "ao-khoac-e2e", "price": 500000, "quantity": 2, "size": "M" },
+  "orders": [
+    {
+      "id": "CO-01",
+      "title": "COD + giao tiêu chuẩn (HCM)",
+      "tags": ["@smoke"],
+      "address": "hcm",
+      "shippingMethod": "standard",
+      "payment": "cod",
+      "expected": { "heading": "Đặt hàng thành công", "shippingFee": 0, "paymentStatus": "unpaid" }
+    },
+    {
+      "id": "CO-02",
+      "title": "Chuyển khoản + giao nhanh (Hà Nội)",
+      "address": "hanoi",
+      "shippingMethod": "express",
+      "payment": "bank",
+      "expected": { "heading": "Đang chờ thanh toán", "shippingFee": 30000, "paymentStatus": "paid" }
+    },
+    {
+      "id": "CO-03",
+      "title": "VNPay + giao tiêu chuẩn (Đà Nẵng)",
+      "address": "danang",
+      "shippingMethod": "standard",
+      "payment": "vnpay",
+      "expected": { "heading": "Đang chờ thanh toán", "shippingFee": 0, "paymentStatus": "paid" }
+    },
+    {
+      "id": "CO-04",
+      "title": "MoMo + giao nhanh (HCM)",
+      "address": "hcm",
+      "shippingMethod": "express",
+      "payment": "momo",
+      "expected": { "heading": "Đang chờ thanh toán", "shippingFee": 30000, "paymentStatus": "paid" }
+    }
+  ],
+  "incomplete": [
+    { "id": "CO-V01", "title": "Thiếu họ", "missing": "firstName" },
+    { "id": "CO-V02", "title": "Thiếu tên", "missing": "lastName" },
+    { "id": "CO-V03", "title": "Thiếu số điện thoại", "missing": "phone" },
+    { "id": "CO-V04", "title": "Thiếu địa chỉ chi tiết", "missing": "address" }
+  ],
+  "serverErrors": [
+    { "id": "CO-S01", "title": "Hết hàng (400)", "status": 400, "message": "Sản phẩm đã hết hàng" },
+    { "id": "CO-S02", "title": "Lỗi server (500)", "status": 500, "message": "Có lỗi xảy ra, vui lòng thử lại sau." }
+  ]
+}

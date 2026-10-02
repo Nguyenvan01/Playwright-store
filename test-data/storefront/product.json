@@ -1,0 +1,129 @@
+{
+  "mockSlug": "e2e-ao-thun-kiem-thu",
+  "mockProduct": {
+    "success": true,
+    "data": {
+      "id": 990001,
+      "name": "Áo thun E2E kiểm thử",
+      "slug": "e2e-ao-thun-kiem-thu",
+      "sku": "E2E-SKU-001",
+      "price": 449000,
+      "compare_price": 599000,
+      "description": "Áo thun cotton dáng suông.\nPhù hợp đi làm và đi chơi.",
+      "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+      "images": [
+        { "id": 1, "url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp", "is_primary": true },
+        { "id": 2, "url": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/d/o/doraemon_bst_homepage-140426.webp", "is_primary": false },
+        { "id": 3, "url": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/d/i/disney_bst_homepage-140426.webp", "is_primary": false }
+      ],
+      "colors": [
+        { "id": 1, "name": "Đen", "code": "BLK", "hex": "#1a1a1a" },
+        { "id": 2, "name": "Trắng", "code": "WHT", "hex": "#ffffff" },
+        { "id": 3, "name": "Xanh Navy", "code": "NVY", "hex": "#1e3a5f" }
+      ],
+      "sizes": [
+        { "id": 1, "name": "S", "code": "S" },
+        { "id": 2, "name": "M", "code": "M" }
+      ],
+      "variants": [],
+      "avg_rating": 0,
+      "review_count": 0,
+      "reviews": [],
+      "related_products": [
+        {
+          "id": "${product.id}",
+          "name": "${product.name}",
+          "slug": "${product.slug}",
+          "price": "${product.price}",
+          "compare_price": null,
+          "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp",
+          "is_on_sale": false
+        }
+      ]
+    }
+  },
+  "expected": {
+    "title": "Áo thun E2E kiểm thử",
+    "sku": "E2E-SKU-001",
+    "price": "449.000đ",
+    "comparePrice": "599.000đ",
+    "discount": "-25%",
+    "colors": ["Đen", "Trắng", "Xanh Navy"],
+    "imageCount": 3,
+    "description": ["Áo thun cotton dáng suông.", "Phù hợp đi làm và đi chơi."],
+    "materials": ["Cotton 100%"],
+    "care": ["Giặt tay hoặc giặt máy ở nhiệt độ thường"],
+    "services": [
+      { "title": "Thanh toán khi nhận hàng (COD)", "desc": "Giao hàng toàn quốc." },
+      { "title": "Miễn phí giao hàng", "desc": "Với đơn hàng trên" },
+      { "title": "Đổi hàng miễn phí", "desc": "Trong 30 ngày kể từ ngày mua." }
+    ],
+    "relatedName": "${product.name}"
+  },
+  "accordions": ["Mô tả", "Chất liệu", "Hướng dẫn sử dụng"],
+  "priceBug": {
+    "id": "SF-PDP-07",
+    "title": "Giá bán và giá gốc hiển thị đúng định dạng \"449.000đ\"",
+    "knownBug": "ProductDetailPage.jsx:449,453 formatPrice() đã thêm \"đ\" rồi JSX thêm \" đ\" -> hiển thị \"449.000đ đ\"",
+    "expected": "449.000đ"
+  },
+  "shippingThresholdBug": {
+    "id": "SF-PDP-10",
+    "title": "Ngưỡng miễn phí giao hàng khớp chính sách (500.000đ như /shipping và giỏ hàng)",
+    "knownBug": "ProductDetailPage.jsx:109 ghi \"trên 599.000 đ\" trong khi ShippingPage.jsx:91, CartPage.jsx:51 và cài đặt backend dùng 500.000đ",
+    "service": "Miễn phí giao hàng",
+    "expected": "Với đơn hàng trên 500.000đ."
+  },
+  "reviewValidation": [
+    { "id": "SF-PDP-13", "title": "Đánh giá: bỏ trống sao và nội dung -> 2 lỗi", "requires": ["customer"], "stars": 0, "content": "", "errors": ["Vui lòng chọn số sao đánh giá.", "Vui lòng nhập nội dung đánh giá."] },
+    { "id": "SF-PDP-14", "title": "Đánh giá: nội dung 3 ký tự -> tối thiểu 5 ký tự", "requires": ["customer"], "stars": 4, "content": "Tốt", "errors": ["Nội dung đánh giá tối thiểu 5 ký tự."] },
+    { "id": "SF-PDP-15", "title": "Đánh giá: có nội dung nhưng chưa chọn sao", "requires": ["customer"], "stars": 0, "content": "Sản phẩm rất tốt", "errors": ["Vui lòng chọn số sao đánh giá."] },
+    { "id": "SF-PDP-16", "title": "Đánh giá: nội dung toàn khoảng trắng bị coi là trống", "requires": ["customer"], "stars": 5, "content": "      ", "errors": ["Vui lòng nhập nội dung đánh giá."] }
+  ],
+  "reviewSuccess": {
+    "id": "SF-PDP-17",
+    "title": "Gửi đánh giá hợp lệ (mock API) -> toast từ server, form đóng",
+    "tags": ["@smoke"],
+    "requires": ["customer"],
+    "stars": 5,
+    "content": "Chất vải đẹp, mặc rất mát.",
+    "message": "Cảm ơn bạn! Đánh giá đã được gửi và đang chờ duyệt."
+  },
+  "reviewServerErrors": [
+    {
+      "id": "SF-PDP-18",
+      "title": "Server 403 (chưa mua hàng) -> hiển thị thông báo của server",
+      "requires": ["customer"],
+      "knownBug": "ProductDetailPage.jsx:283 catch luôn hiện \"Không thể gửi đánh giá. Vui lòng thử lại.\", bỏ qua message của server",
+      "stars": 5, "content": "Chất vải đẹp, mặc rất mát.", "status": 403,
+      "message": "Bạn cần mua và nhận hàng trước khi đánh giá sản phẩm này",
+      "toast": "Bạn cần mua và nhận hàng trước khi đánh giá sản phẩm này"
+    },
+    {
+      "id": "SF-PDP-19",
+      "title": "Server 409 (đã đánh giá) -> hiển thị thông báo của server",
+      "requires": ["customer"],
+      "knownBug": "ProductDetailPage.jsx:283 catch luôn hiện thông báo chung, bỏ qua message của server",
+      "stars": 4, "content": "Mặc thoải mái, đúng size.", "status": 409,
+      "message": "Bạn đã đánh giá sản phẩm này rồi",
+      "toast": "Bạn đã đánh giá sản phẩm này rồi"
+    },
+    {
+      "id": "SF-PDP-20",
+      "title": "Nội dung 9 ký tự qua được form (>=5) nhưng server đòi >=10 -> hiển thị thông báo của server",
+      "requires": ["customer"],
+      "knownBug": "ProductDetailPage.jsx:255 cho phép >=5 ký tự nhưng customerController.js:890 yêu cầu >=10; và :283 nuốt message server",
+      "stars": 3, "content": "Vải đẹp!!", "status": 400,
+      "message": "Nội dung đánh giá phải có ít nhất 10 ký tự",
+      "toast": "Nội dung đánh giá phải có ít nhất 10 ký tự"
+    },
+    {
+      "id": "SF-PDP-21",
+      "title": "Server 500 -> thông báo chung \"Không thể gửi đánh giá\"",
+      "requires": ["customer"],
+      "stars": 5, "content": "Chất vải đẹp, mặc rất mát.", "status": 500,
+      "message": "Lỗi server",
+      "toast": "Không thể gửi đánh giá. Vui lòng thử lại."
+    }
+  ]
+}

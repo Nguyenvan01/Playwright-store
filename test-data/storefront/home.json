@@ -1,0 +1,122 @@
+{
+  "mockHome": {
+    "success": true,
+    "data": {
+      "banners": [
+        { "id": 1, "title": "Banner E2E 1", "slug": "banner-e2e-1", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/2/8/2880x960007052026.webp", "link_url": "/nu", "description": null, "sort_order": 1 },
+        { "id": 2, "title": "Banner E2E 2", "slug": "banner-e2e-2", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/a/o/aophong-desk-210326.webp", "link_url": "/giam-gia", "description": null, "sort_order": 2 },
+        { "id": 3, "title": "Thu Đông E2E", "subtitle": "Ấm áp mùa lạnh", "slug": "banner-e2e-3", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/a/o/aophong-desk-210326.webp", "link_url": "/tre-em", "description": "Bộ sưu tập mới cho cả gia đình", "sort_order": 3 }
+      ],
+      "vouchers": [
+        { "id": 901, "code": "E2E50K", "title": "Voucher E2E 50K", "description": "Giảm 50k cho đơn từ 399k", "discount_type": "fixed_amount", "discount_value": 50000, "min_order_amount": 399000, "valid_until": "2030-11-13T05:00:00.000Z", "expiry": "2030-11-13T05:00:00.000Z", "is_expiring_soon": false, "condition": "Đơn từ 399.000đ" },
+        { "id": 902, "code": "E2ESOON", "title": "Voucher E2E sắp hết hạn", "description": "Giảm 10% tối đa 30k", "discount_type": "percentage", "discount_value": 10, "min_order_amount": 0, "expiresInDays": 3, "is_expiring_soon": true, "condition": "Không giới hạn đơn" }
+      ],
+      "featuredProducts": [
+        { "id": 990201, "name": "Áo thun nam E2E 1", "slug": "e2e-ao-thun-nam-1", "price": 199000, "compare_price": 299000, "gender": "male", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990202, "name": "Váy nữ E2E 2", "slug": "e2e-vay-nu-2", "price": 399000, "compare_price": null, "gender": "female", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990203, "name": "Áo polo nam E2E 3", "slug": "e2e-ao-polo-nam-3", "price": 349000, "compare_price": null, "gender": "male", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990204, "name": "Áo blouse nữ E2E 4", "slug": "e2e-ao-blouse-nu-4", "price": 299000, "compare_price": 359000, "gender": "female", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990205, "name": "Quần short nam E2E 5", "slug": "e2e-quan-short-nam-5", "price": 259000, "compare_price": null, "gender": "male", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990206, "name": "Đầm nữ E2E 6", "slug": "e2e-dam-nu-6", "price": 459000, "compare_price": null, "gender": "female", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990207, "name": "Áo khoác nam E2E 7", "slug": "e2e-ao-khoac-nam-7", "price": 599000, "compare_price": 699000, "gender": "male", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990208, "name": "Chân váy nữ E2E 8", "slug": "e2e-chan-vay-nu-8", "price": 329000, "compare_price": null, "gender": "female", "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" }
+      ],
+      "homewearProducts": [
+        { "id": 990211, "name": "Homewear E2E 1", "slug": "e2e-homewear-1", "price": 249000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990212, "name": "Homewear E2E 2", "slug": "e2e-homewear-2", "price": 259000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990213, "name": "Homewear E2E 3", "slug": "e2e-homewear-3", "price": 269000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990214, "name": "Homewear E2E 4", "slug": "e2e-homewear-4", "price": 279000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990215, "name": "Homewear E2E 5", "slug": "e2e-homewear-5", "price": 289000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" }
+      ],
+      "tshirtProducts": [
+        { "id": 990221, "name": "T-shirt E2E 1", "slug": "e2e-tshirt-1", "price": 199000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990222, "name": "T-shirt E2E 2", "slug": "e2e-tshirt-2", "price": 209000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990223, "name": "T-shirt E2E 3", "slug": "e2e-tshirt-3", "price": 219000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" }
+      ],
+      "vayProducts": [
+        { "id": 990231, "name": "Váy E2E 1", "slug": "e2e-vay-1", "price": 399000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990232, "name": "Váy E2E 2", "slug": "e2e-vay-2", "price": 499000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990233, "name": "Váy E2E 3", "slug": "e2e-vay-3", "price": 599000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" },
+        { "id": 990234, "name": "Váy E2E 4", "slug": "e2e-vay-4", "price": 699000, "image_url": "https://2885371169.e.cdneverest.net/catalog/product/cache/500_750/6/d/6ds23w004-sm541-4-thumb.webp" }
+      ],
+      "collections": [
+        { "id": 1, "title": "DORAEMON", "slug": "doraemon", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/d/o/doraemon_bst_homepage-140426.webp", "cta": "/collections/doraemon", "cta_text": "Khám phá", "sort_order": 1 },
+        { "id": 2, "title": "TỰ HÀO VIỆT NAM", "slug": "tu-hao-viet-nam", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/c/a/canifas_bst_homepage-140426.webp", "cta": "/collections/canifa-s", "cta_text": "Khám phá", "sort_order": 2 },
+        { "id": 3, "title": "DISNEY", "slug": "disney", "image": "https://2885371169.e.cdneverest.net/Simiconnector/BannerSlider/d/i/disney_bst_homepage-140426.webp", "cta": "/collections/disney", "cta_text": "Khám phá", "sort_order": 3 }
+      ],
+      "categories": [],
+      "news": [
+        { "id": 801, "title": "Tin E2E nổi bật: xu hướng thu đông", "slug": "e2e-tin-noi-bat", "summary": "Tóm tắt tin nổi bật", "thumbnail": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80", "category": "Xu hướng", "published_at": "2026-09-13T07:00:00.000Z" },
+        { "id": 802, "title": "Tin E2E 2", "slug": "e2e-tin-2", "category": "Phối đồ", "published_at": "2026-09-12T07:00:00.000Z" },
+        { "id": 803, "title": "Tin E2E 3", "slug": "e2e-tin-3", "category": "Phối đồ", "published_at": "2026-09-11T07:00:00.000Z" },
+        { "id": 804, "title": "Tin E2E 4", "slug": "e2e-tin-4", "category": "Thuật ngữ - Kiến thức", "published_at": "2026-09-10T07:00:00.000Z" },
+        { "id": 805, "title": "Tin E2E 5", "slug": "e2e-tin-5", "category": "Thuật ngữ - Kiến thức", "published_at": "2026-09-09T07:00:00.000Z" },
+        { "id": 806, "title": "Tin E2E 6 (không hiển thị)", "slug": "e2e-tin-6", "category": "Xu hướng", "published_at": "2026-09-08T07:00:00.000Z" }
+      ]
+    }
+  },
+  "sections": [
+    "ƯU ĐÃI NỔI BẬT",
+    "SẢN PHẨM MỚI",
+    "HOMEWEAR",
+    "T-SHIRT",
+    "VÁY",
+    "C-LIVE - NHƯ MUA SẮM TẠI CỬA HÀNG",
+    "Tin tức thời trang"
+  ],
+  "banner": {
+    "slideHrefs": ["/nu", "/giam-gia", "/tre-em"],
+    "overlay": {
+      "id": "SF-HOME-07",
+      "title": "Chữ trên slide 3: nút \"Khám phá ngay\" dùng link_url của banner",
+      "knownBug": "Banner.jsx:109 nút \"Khám phá ngay\" dùng banner.cta (API không có) -> luôn trỏ /nam thay vì link_url",
+      "index": 3,
+      "expectedHref": "/tre-em"
+    }
+  },
+  "vouchers": [
+    { "title": "Voucher E2E 50K", "description": "Giảm 50k cho đơn từ 399k", "condition": "Đơn từ 399.000đ", "validity": "HSD: 13/11/2030", "code": "E2E50K" },
+    { "title": "Voucher E2E sắp hết hạn", "description": "Giảm 10% tối đa 30k", "condition": "Không giới hạn đơn", "validity": "Sắp hết hạn: Còn 3 ngày", "code": "E2ESOON" }
+  ],
+  "tabs": ["TẤT CẢ", "NỮ", "NAM", "BÉ GÁI", "BÉ TRAI"],
+  "tabCases": [
+    {
+      "id": "SF-HOME-11",
+      "title": "Tab NAM lọc SẢN PHẨM MỚI chỉ còn sản phẩm nam",
+      "knownBug": "Home.jsx:76-87 các tab SẢN PHẨM MỚI không có onClick -> không đổi tab, không lọc",
+      "tab": "NAM",
+      "visible": "Áo thun nam E2E 1",
+      "hidden": "Váy nữ E2E 2"
+    },
+    {
+      "id": "SF-HOME-12",
+      "title": "Tab NỮ lọc SẢN PHẨM MỚI chỉ còn sản phẩm nữ",
+      "knownBug": "Home.jsx:76-87 các tab SẢN PHẨM MỚI không có onClick -> không đổi tab, không lọc",
+      "tab": "NỮ",
+      "visible": "Váy nữ E2E 2",
+      "hidden": "Áo thun nam E2E 1"
+    }
+  ],
+  "promoBlocks": [
+    { "title": "HOMEWEAR", "description": "Được kiểm định theo QUY CHUẨN QUỐC TẾ, an toàn tuyệt đối với mọi thành phần trong sản phẩm, trang phục mặc nhà giúp những phút giây ở nhà thêm trọn vẹn.", "cardCount": 4 },
+    { "title": "T-SHIRT", "description": "Áo thun cho cả gia đình với chất liệu mềm mại, thoáng khí, mang lại cảm giác dễ chịu suốt ngày dài.", "cardCount": 3 },
+    { "title": "VÁY", "description": "Đón mùa mới đầy cảm hứng cùng BST váy đầm trẻ trung. Chất liệu nhẹ mát cùng họa tiết tinh tế tôn lên vẻ ngọt ngào và nữ tính.", "cardCount": 4 }
+  ],
+  "collections": [
+    { "id": "SF-HOME-17", "title": "Bộ sưu tập DORAEMON có nút \"Khám phá\"", "knownBug": "CollectionSection.jsx:54 đọc collection.ctaText nhưng API trả cta_text -> nút CTA trống chữ", "ctaText": "Khám phá", "href": "/collections/doraemon", "titleText": "DORAEMON" },
+    { "id": "SF-HOME-18", "title": "Bộ sưu tập DISNEY có nút \"Khám phá\"", "knownBug": "CollectionSection.jsx:54 đọc collection.ctaText nhưng API trả cta_text -> nút CTA trống chữ", "ctaText": "Khám phá", "href": "/collections/disney", "titleText": "DISNEY" }
+  ],
+  "clive": [
+    "Tính năng mua sắm mới trên app, giúp bạn gọi video call trực tiếp tới nhân viên tư vấn thời trang tại cửa hàng. Hoàn toàn miễn phí.",
+    "Tải app Đạt Hoàng",
+    "Trải nghiệm C-LIVE ngay hôm nay"
+  ],
+  "deadLinks": [
+    { "id": "SF-HOME-21", "title": "SẢN PHẨM MỚI: \"Xem tất cả →\" mở trang có nội dung", "knownBug": "Home.jsx:69 href=\"/products\" nhưng App.jsx không có route /products -> trang trắng", "link": "Xem tất cả", "href": "/products" },
+    { "id": "SF-HOME-22", "title": "HOMEWEAR: \"Khám phá ngay\" mở trang có nội dung", "knownBug": "Home.jsx:154 href=\"/homewear\" không có route -> trang trắng", "link": "Khám phá ngay", "section": "HOMEWEAR", "href": "/homewear" },
+    { "id": "SF-HOME-23", "title": "T-SHIRT: \"Xem tất cả\" mở trang có nội dung", "knownBug": "Home.jsx:220 href=\"/products?category=tshirt\" không có route /products -> trang trắng", "link": "Xem tất cả", "section": "T-SHIRT", "href": "/products?category=tshirt" },
+    { "id": "SF-HOME-24", "title": "VÁY: \"Khám phá ngay\" mở trang có nội dung", "knownBug": "Home.jsx:246 href=\"/products?category=vay\" không có route /products -> trang trắng", "link": "Khám phá ngay", "section": "VÁY", "href": "/products?category=vay" }
+  ],
+  "quickAdd": { "product": "Áo thun nam E2E 1", "toast": "Đã thêm \"Áo thun nam E2E 1\" vào giỏ hàng" },
+  "defaultBannerCount": 3
+}

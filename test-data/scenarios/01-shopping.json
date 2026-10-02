@@ -1,0 +1,72 @@
+[
+  {
+    "id": "KD-SHOP-01",
+    "title": "Khách vãng lai tìm sản phẩm, thêm vào giỏ và đặt hàng COD",
+    "tags": ["@smoke"],
+    "steps": [
+      { "keyword": "checkout.mockCreateOrder", "arg": { "orderNumber": "KD-SHOP-01" }, "note": "không tạo đơn thật" },
+      { "keyword": "catalog.openHome" },
+      { "keyword": "catalog.typeSearch", "arg": "${product.name}" },
+      { "keyword": "catalog.verifySearchSuggestion", "arg": "${product.name}" },
+      { "keyword": "catalog.clickSearchSuggestion", "arg": "${product.name}" },
+      { "keyword": "catalog.verifyProductTitle", "arg": "${product.name}" },
+      { "keyword": "catalog.addToCart", "arg": "${size.label}" },
+      { "keyword": "common.verifyToast", "arg": "Đã thêm \"${product.name}\" vào giỏ hàng" },
+      { "keyword": "cart.verifyCartBadge", "arg": 1 },
+      { "keyword": "cart.openCart" },
+      { "keyword": "cart.verifyCartItem", "args": ["${product.name}", "${size.label}"] },
+      { "keyword": "cart.proceedToCheckout" },
+      { "keyword": "checkout.fillShipping", "arg": "@data:checkout/addresses.json#hcm" },
+      { "keyword": "checkout.choosePayment", "arg": "cod" },
+      { "keyword": "checkout.placeOrder" },
+      { "keyword": "checkout.verifyOrderSuccess", "args": ["Đặt hàng thành công", "KD-SHOP-01"] },
+      {
+        "keyword": "checkout.verifyLastOrderPayload",
+        "arg": { "payment_method": "cod", "recipient_name": "Nguyễn Kiểm Thử", "city": "hcm" }
+      },
+      { "keyword": "common.verifyNoPageErrors" }
+    ]
+  },
+  {
+    "id": "KD-SHOP-02",
+    "title": "Quản lý giỏ hàng: tăng, giảm, xóa, tạm tính",
+    "steps": [
+      { "keyword": "cart.seedCart", "arg": "@data:cart/items.json#twoItems" },
+      { "keyword": "catalog.openHome" },
+      { "keyword": "cart.verifyCartBadge", "arg": 2 },
+      { "keyword": "cart.openCart" },
+      { "keyword": "cart.verifySubtotal", "arg": "550.000" },
+      { "keyword": "cart.increaseQuantity", "args": ["Áo thun E2E", 2] },
+      { "keyword": "cart.verifyQuantity", "args": ["Áo thun E2E", 3] },
+      { "keyword": "cart.decreaseQuantity", "args": ["Áo thun E2E"] },
+      { "keyword": "cart.verifyQuantity", "args": ["Áo thun E2E", 2] },
+      { "keyword": "cart.removeItem", "arg": "Quần jean E2E" },
+      { "keyword": "cart.verifyCartItemCount", "arg": 1 },
+      { "keyword": "cart.verifySubtotal", "arg": "400.000" },
+      { "keyword": "cart.verifyCartBadge", "arg": 1 }
+    ]
+  },
+  {
+    "id": "KD-SHOP-03",
+    "title": "Duyệt danh mục Nữ và mở sản phẩm đầu tiên",
+    "steps": [
+      { "keyword": "catalog.openHome" },
+      { "keyword": "catalog.openCategoryFromMenu", "arg": "NỮ" },
+      { "keyword": "catalog.verifyCategoryPage", "args": ["/nu", "Thời trang Nữ"] },
+      { "keyword": "catalog.openFirstProductInList" },
+      { "keyword": "catalog.verifySizeWarning", "arg": true }
+    ]
+  },
+  {
+    "id": "KD-SHOP-04",
+    "title": "Thanh toán bị khóa khi xóa số điện thoại",
+    "steps": [
+      { "keyword": "cart.seedCart", "arg": "@data:cart/items.json#twoItems" },
+      { "keyword": "checkout.openCheckout" },
+      { "keyword": "checkout.fillShipping", "arg": "@data:checkout/addresses.json#danang" },
+      { "keyword": "checkout.verifySubmitEnabled", "arg": true },
+      { "keyword": "checkout.clearShippingField", "arg": "phone" },
+      { "keyword": "checkout.verifySubmitEnabled", "arg": false }
+    ]
+  }
+]

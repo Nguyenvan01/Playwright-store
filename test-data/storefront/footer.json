@@ -1,0 +1,28 @@
+{
+  "headings": ["HỖ TRỢ KHÁCH HÀNG", "VỀ ĐẠT HOÀNG", "KẾT NỐI"],
+  "links": [
+    "Chính sách đổi trả",
+    "Hướng dẫn mua hàng",
+    "Câu hỏi thường gặp",
+    "Theo dõi đơn hàng",
+    "Giới thiệu",
+    "Tuyển dụng",
+    "Liên hệ",
+    "Facebook",
+    "Instagram",
+    "YouTube"
+  ],
+  "linkCases": [
+    { "id": "SF-FOOT-02", "title": "Footer \"Chính sách đổi trả\" trỏ tới /returns", "knownBug": "Footer.jsx:37 mọi link dùng to=\"#\" (render href=\"/\") -> không tới trang Đổi trả", "link": "Chính sách đổi trả", "href": "/returns" },
+    { "id": "SF-FOOT-03", "title": "Footer \"Giới thiệu\" trỏ tới /about", "knownBug": "Footer.jsx:47 mọi link dùng to=\"#\" (render href=\"/\") -> không tới trang Giới thiệu", "link": "Giới thiệu", "href": "/about" },
+    { "id": "SF-FOOT-04", "title": "Footer có link tới trang Chính sách giao hàng /shipping", "knownBug": "Footer.jsx:36 thiếu link tới /shipping (trang chỉ vào được bằng URL)", "href": "/shipping" },
+    { "id": "SF-FOOT-05", "title": "Footer có link tới trang Chính sách bảo mật /privacy", "knownBug": "Footer.jsx:36 thiếu link tới /privacy (trang chỉ vào được bằng URL)", "href": "/privacy" }
+  ],
+  "newsletter": [
+    { "id": "SF-NEWS-01", "title": "Trang chủ: email hợp lệ -> \"Cảm ơn bạn đã đăng ký!\"", "tags": ["@smoke"], "path": "/", "email": "e2e.newsletter@example.com", "success": true },
+    { "id": "SF-NEWS-02", "title": "Trang chủ: bỏ trống email -> trình duyệt chặn", "path": "/", "email": "", "success": false, "validity": "valueMissing" },
+    { "id": "SF-NEWS-03", "title": "Trang chủ: email sai định dạng -> trình duyệt chặn", "path": "/", "email": "khong-phai-email", "success": false, "validity": "typeMismatch" },
+    { "id": "SF-NEWS-04", "title": "Trang Giới thiệu: email hợp lệ -> \"Cảm ơn bạn đã đăng ký!\"", "path": "/about", "email": "e2e.about@example.com", "success": true },
+    { "id": "SF-NEWS-05", "title": "Trang Nam: email thiếu tên miền -> trình duyệt chặn", "path": "/nam", "email": "e2e@", "success": false, "validity": "typeMismatch" }
+  ]
+}

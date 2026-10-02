@@ -1,0 +1,7 @@
+[
+  { "path": "/about", "title": "Giới thiệu" },
+  { "path": "/shipping", "title": "Chính sách giao hàng" },
+  { "path": "/returns", "title": "Đổi trả" },
+  { "path": "/privacy", "title": "Bảo mật" },
+  { "path": "/blog", "title": "Blog" }
+]

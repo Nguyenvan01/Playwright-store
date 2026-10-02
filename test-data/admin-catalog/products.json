@@ -1,0 +1,47 @@
+{
+  "headers": ["Sản phẩm", "SKU", "Danh mục", "Giá", "Tồn kho", "Đã bán", "Nổi bật", "Trạng thái", "Thao tác"],
+  "rows": [
+    { "name": "Áo thun E2E cổ tròn", "brand": "Canifa E2E", "sku": "E2E-AT-01", "category": "Áo Thun E2E", "price": "199.000đ", "stock": "50", "sold": "12", "featured": false, "active": true },
+    { "name": "Quần jeans E2E slim", "brand": "Routine E2E", "sku": "E2E-QJ-02", "category": "Quần Jeans E2E", "price": "459.000đ", "stock": "3", "sold": "40", "featured": true, "active": true, "lowStock": true },
+    { "name": "Mũ lưỡi trai E2E", "brand": "Kids E2E", "sku": "E2E-MU-03", "category": "Phụ Kiện E2E", "price": "99.000đ", "stock": "0", "sold": "0", "featured": false, "active": false, "lowStock": true }
+  ],
+  "filters": [
+    { "id": "ADC-PRD-F01", "title": "Tìm theo SKU", "search": "E2E-QJ", "request": { "search": "E2E-QJ" }, "rows": ["Quần jeans E2E slim"], "hidden": ["Áo thun E2E cổ tròn"] },
+    { "id": "ADC-PRD-F02", "title": "Tìm theo tên (không phân biệt hoa thường)", "search": "mũ lưỡi", "request": { "search": "mũ lưỡi" }, "rows": ["Mũ lưỡi trai E2E"], "hidden": ["Quần jeans E2E slim"] },
+    { "id": "ADC-PRD-F03", "title": "Lọc theo danh mục", "category": "Quần Jeans E2E", "request": { "category": "9302" }, "rows": ["Quần jeans E2E slim"], "hidden": ["Áo thun E2E cổ tròn"] },
+    { "id": "ADC-PRD-F04", "title": "Lọc theo thương hiệu", "brand": "Kids E2E", "request": { "brand": "9403" }, "rows": ["Mũ lưỡi trai E2E"], "hidden": ["Áo thun E2E cổ tròn"] }
+  ],
+  "featured": [
+    {
+      "id": "ADC-PRD-FT01", "title": "Đánh dấu nổi bật", "product": "Áo thun E2E cổ tròn", "productId": 9201,
+      "before": "Đánh dấu nổi bật", "toast": "Đã đánh dấu nổi bật", "after": "Bỏ nổi bật", "tags": ["@smoke"]
+    },
+    {
+      "id": "ADC-PRD-FT02", "title": "Bỏ nổi bật", "product": "Quần jeans E2E slim", "productId": 9202,
+      "before": "Bỏ nổi bật", "toast": "Đã bỏ đánh dấu nổi bật", "after": "Đánh dấu nổi bật"
+    },
+    {
+      "id": "ADC-PRD-FT03", "title": "API lỗi -> báo lỗi và giữ nguyên trạng thái nổi bật", "product": "Áo thun E2E cổ tròn", "productId": 9201,
+      "before": "Đánh dấu nổi bật", "status": 500, "toast": "Không thể thay đổi trạng thái nổi bật", "after": "Đánh dấu nổi bật",
+      "knownBug": "AdminProducts.jsx:90-91 - nhánh catch vẫn đảo is_featured nên UI hiển thị sai sau khi API lỗi"
+    }
+  ],
+  "status": [
+    { "id": "ADC-PRD-S01", "title": "Tắt bán sản phẩm đang bán", "product": "Áo thun E2E cổ tròn", "productId": 9201, "before": true, "toast": "Đã tắt trạng thái sản phẩm", "after": false },
+    { "id": "ADC-PRD-S02", "title": "Bật bán sản phẩm đang ngừng", "product": "Mũ lưỡi trai E2E", "productId": 9203, "before": false, "toast": "Đã bật trạng thái sản phẩm", "after": true },
+    {
+      "id": "ADC-PRD-S03", "title": "API lỗi -> báo lỗi và giữ nguyên trạng thái bán", "product": "Áo thun E2E cổ tròn", "productId": 9201,
+      "before": true, "status": 500, "toast": "Không thể thay đổi trạng thái", "after": true,
+      "knownBug": "AdminProducts.jsx:79-80 - nhánh catch vẫn đảo is_active nên nút gạt đổi trạng thái dù API lỗi"
+    }
+  ],
+  "delete": [
+    { "id": "ADC-PRD-D01", "title": "Xóa sản phẩm thành công", "product": "Mũ lưỡi trai E2E", "productId": 9203, "status": 200, "toast": "Đã xóa sản phẩm thành công", "removed": true },
+    { "id": "ADC-PRD-D02", "title": "Xóa lỗi -> báo lỗi và giữ dòng", "product": "Mũ lưỡi trai E2E", "productId": 9203, "status": 500, "toast": "Xóa sản phẩm thất bại", "removed": false }
+  ],
+  "deleteModal": { "heading": "Xóa sản phẩm?", "message": "Hành động này không thể hoàn tác. Sản phẩm sẽ bị xóa vĩnh viễn." },
+  "bulk": { "select": ["Áo thun E2E cổ tròn", "Mũ lưỡi trai E2E"], "text": "2 sản phẩm được chọn", "allText": "3 sản phẩm được chọn" },
+  "pagination": { "total": 25, "first": "Trang 1 trên 3", "second": "Trang 2 trên 3" },
+  "viewLink": { "product": "Áo thun E2E cổ tròn", "href": "/product/ao-thun-e2e-co-tron" },
+  "editLink": { "product": "Áo thun E2E cổ tròn", "path": "/admin/products/edit/9201" }
+}

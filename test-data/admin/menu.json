@@ -1,0 +1,18 @@
+[
+  { "label": "Tổng quan", "path": "/admin" },
+  { "label": "Sản phẩm", "path": "/admin/products" },
+  { "label": "Danh mục", "path": "/admin/categories" },
+  { "label": "Thương hiệu", "path": "/admin/brands" },
+  { "label": "Đơn hàng", "path": "/admin/orders" },
+  { "label": "Khách hàng", "path": "/admin/customers" },
+  { "label": "Nhân viên", "path": "/admin/employees" },
+  { "label": "Khuyến mãi", "path": "/admin/promotions" },
+  { "label": "Mã giảm giá", "path": "/admin/coupons" },
+  { "label": "Kho hàng", "path": "/admin/warehouse" },
+  { "label": "Nhập hàng", "path": "/admin/import" },
+  { "label": "Đánh giá", "path": "/admin/reviews" },
+  { "label": "Bài viết", "path": "/admin/blog" },
+  { "label": "Báo cáo", "path": "/admin/reports" },
+  { "label": "Liên hệ", "path": "/admin/contacts" },
+  { "label": "Cài đặt", "path": "/admin/settings" }
+]

@@ -1,0 +1,104 @@
+{
+  "responses": {
+    "gold": {
+      "success": true,
+      "user": {
+        "id": 9001, "name": "Nguyễn Thị Kiểm Thử", "email": "e2e.profile@example.com", "phone": "0912345678",
+        "avatar": null, "memberLevel": "Gold", "rewardPoints": 1250, "birthDate": "1995-05-15", "gender": "female",
+        "created_at": "2026-01-10T03:00:00.000Z"
+      }
+    },
+    "basic": {
+      "success": true,
+      "user": {
+        "id": 9002, "name": "Lê Văn Mới", "email": "e2e.new@example.com", "phone": "",
+        "avatar": null, "memberLevel": "Bronze", "rewardPoints": 0, "birthDate": "", "gender": "",
+        "created_at": "2026-09-30T03:00:00.000Z"
+      }
+    },
+    "platinum": {
+      "success": true,
+      "user": {
+        "id": 9003, "name": "Phạm Minh Quân", "email": "e2e.vip@example.com", "phone": "0905123456",
+        "avatar": null, "memberLevel": "Platinum", "rewardPoints": 25000, "birthDate": "1988-12-01", "gender": "male",
+        "created_at": "2025-03-15T03:00:00.000Z"
+      }
+    }
+  },
+
+  "display": [
+    {
+      "id": "ACC-PRF-D01", "title": "Hồ sơ đầy đủ: hạng Vàng, giới tính Nữ, điểm tích lũy", "tags": ["@smoke"], "response": "gold",
+      "expected": {
+        "Họ và tên": "Nguyễn Thị Kiểm Thử", "Email": "e2e.profile@example.com", "Số điện thoại": "0912345678",
+        "Ngày sinh": "15/05/1995", "Giới tính": "Nữ", "Ngày tham gia": "10/01/2026", "Hạng thành viên": "Vàng", "Điểm tích lũy": "1.250"
+      }
+    },
+    {
+      "id": "ACC-PRF-D02", "title": "Tài khoản mới: trường trống hiện Chưa cập nhật, hạng Đồng", "response": "basic",
+      "expected": {
+        "Họ và tên": "Lê Văn Mới", "Email": "e2e.new@example.com", "Số điện thoại": "Chưa cập nhật",
+        "Ngày sinh": "Chưa cập nhật", "Giới tính": "Chưa cập nhật", "Ngày tham gia": "30/09/2026", "Hạng thành viên": "Đồng", "Điểm tích lũy": "0"
+      }
+    },
+    {
+      "id": "ACC-PRF-D03", "title": "Hạng Bạch kim, giới tính Nam, điểm hàng chục nghìn", "response": "platinum",
+      "expected": {
+        "Họ và tên": "Phạm Minh Quân", "Ngày sinh": "01/12/1988", "Giới tính": "Nam", "Hạng thành viên": "Bạch kim", "Điểm tích lũy": "25.000"
+      }
+    }
+  ],
+
+  "edit": [
+    {
+      "id": "ACC-PRF-E01", "title": "Cập nhật họ tên, SĐT, ngày sinh, giới tính", "tags": ["@smoke"],
+      "form": { "name": "Nguyễn Thị Kiểm Thử Mới", "phone": "0987654321", "birthDate": "1996-02-29", "gender": "other" },
+      "expectedBody": { "name": "Nguyễn Thị Kiểm Thử Mới", "phone": "0987654321", "birthDate": "1996-02-29", "gender": "other" },
+      "expectedView": { "Họ và tên": "Nguyễn Thị Kiểm Thử Mới", "Số điện thoại": "0987654321", "Ngày sinh": "29/02/1996", "Giới tính": "Khác" }
+    },
+    {
+      "id": "ACC-PRF-E02", "title": "Xóa số điện thoại, đổi giới tính - các trường khác giữ nguyên",
+      "form": { "phone": "", "gender": "male" },
+      "expectedBody": { "name": "Nguyễn Thị Kiểm Thử", "phone": "", "birthDate": "1995-05-15", "gender": "male" },
+      "expectedView": { "Họ và tên": "Nguyễn Thị Kiểm Thử", "Số điện thoại": "Chưa cập nhật", "Ngày sinh": "15/05/1995", "Giới tính": "Nam" }
+    }
+  ],
+
+  "editServerError": {
+    "id": "ACC-PRF-E03", "title": "Lỗi server khi lưu hồ sơ hiển thị thông báo lỗi",
+    "knownBug": "ProfilePage.jsx:252-253 - catch nuốt lỗi PUT /profile, chỉ reset form, không hiển thị thông báo nào",
+    "form": { "name": "Tên Không Lưu Được" }, "status": 500, "message": "Không thể cập nhật hồ sơ. Vui lòng thử lại sau."
+  },
+
+  "password": {
+    "validation": [
+      { "id": "ACC-PWD-V01", "title": "Mật khẩu mới dưới 6 ký tự", "form": { "currentPassword": "MatKhauCu@1", "newPassword": "12345", "confirmPassword": "12345" }, "error": "Mật khẩu mới phải có ít nhất 6 ký tự" },
+      { "id": "ACC-PWD-V02", "title": "Xác nhận mật khẩu không khớp", "form": { "currentPassword": "MatKhauCu@1", "newPassword": "MatKhauMoi@1", "confirmPassword": "MatKhauMoi@2" }, "error": "Mật khẩu xác nhận không khớp" },
+      { "id": "ACC-PWD-V03", "title": "Bỏ trống mật khẩu mới", "form": { "currentPassword": "MatKhauCu@1", "newPassword": "", "confirmPassword": "" }, "error": "Mật khẩu mới phải có ít nhất 6 ký tự" },
+      { "id": "ACC-PWD-V04", "title": "Vừa ngắn vừa không khớp -> báo lỗi độ dài trước", "form": { "currentPassword": "MatKhauCu@1", "newPassword": "123", "confirmPassword": "456" }, "error": "Mật khẩu mới phải có ít nhất 6 ký tự" }
+    ],
+    "serverErrors": [
+      { "id": "ACC-PWD-S01", "title": "Sai mật khẩu hiện tại (400)", "form": { "currentPassword": "SaiMatKhau@1", "newPassword": "MatKhauMoi@1", "confirmPassword": "MatKhauMoi@1" }, "status": 400, "message": "Mật khẩu hiện tại không đúng" },
+      { "id": "ACC-PWD-S02", "title": "Bỏ trống mật khẩu hiện tại (400)", "form": { "currentPassword": "", "newPassword": "MatKhauMoi@1", "confirmPassword": "MatKhauMoi@1" }, "status": 400, "message": "Vui lòng nhập đầy đủ mật khẩu hiện tại và mật khẩu mới" },
+      { "id": "ACC-PWD-S03", "title": "Lỗi server (500)", "form": { "currentPassword": "MatKhauCu@1", "newPassword": "MatKhauMoi@1", "confirmPassword": "MatKhauMoi@1" }, "status": 500, "message": "Không thể đổi mật khẩu. Vui lòng thử lại sau." }
+    ],
+    "success": { "currentPassword": "MatKhauCu@1", "newPassword": "MatKhauMoi@1", "confirmPassword": "MatKhauMoi@1" }
+  },
+
+  "summary": { "Tổng đơn hàng": "7", "Đơn đang xử lý": "4", "Sản phẩm yêu thích": "4", "Điểm tích lũy": "1.250" },
+  "recentOrders": ["ORD000107", "ORD000106", "ORD000105"],
+  "recentFavorites": ["Mũ lưỡi trai thêu logo", "Quần short kaki", "Áo sơ mi linen", "Váy liền thân hoa nhí"],
+  "defaultAddressText": ["Nguyễn Văn Kiểm Thử", "0912345678", "12 Nguyễn Huệ, Phường Bến Nghé, Quận 1, Hồ Chí Minh"],
+
+  "scenario": {
+    "form": { "phone": "0911222333", "gender": "female" },
+    "updateResponse": {
+      "success": true,
+      "user": {
+        "id": 9001, "name": "Nguyễn Thị Kiểm Thử", "email": "e2e.profile@example.com", "phone": "0911222333",
+        "avatar": null, "memberLevel": "Gold", "rewardPoints": 1250, "birthDate": "1995-05-15", "gender": "female",
+        "created_at": "2026-01-10T03:00:00.000Z"
+      }
+    }
+  }
+}
