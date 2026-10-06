@@ -7,3 +7,10 @@ playwright/.cache/
 .env.*
 !.env.example
 !.env.prod.example
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+artifacts/

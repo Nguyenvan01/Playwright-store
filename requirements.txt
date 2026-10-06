@@ -1,0 +1,10 @@
+# Dependency Python của bộ test. Cài: python -m pip install -r requirements.txt
+# Sau đó cài trình duyệt: python -m playwright install chromium
+playwright==1.63.0
+pytest==9.1.1
+pytest-playwright==0.9.0
+pytest-xdist==3.8.0
+pytest-rerunfailures==16.7
+allure-pytest==2.16.2
+openpyxl==3.1.5
+python-dotenv==1.2.4
