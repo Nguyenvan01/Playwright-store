@@ -4,6 +4,9 @@ from playwright.sync_api import Error as PlaywrightError
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
 
+NETWORK_TOKENS = ("net::ERR_", "ECONNREFUSED", "ENOTFOUND", "ECONNRESET", "ETIMEDOUT")
+
+
 def classify_exception(error):
     if isinstance(error, AssertionError):
         return "ASSERTION_FAILED"
@@ -13,7 +16,7 @@ def classify_exception(error):
         message = error.message or ""
         if "strict mode violation" in message:
             return "LOCATOR_AMBIGUOUS"
-        if "net::ERR_" in message or "ECONNREFUSED" in message:
+        if any(token in message for token in NETWORK_TOKENS):
             return "NETWORK_ERROR"
         if "Target page, context or browser has been closed" in message:
             return "BROWSER_CLOSED"
@@ -29,8 +32,7 @@ def classify_report_text(text):
     patterns = (
         ("TimeoutError", "TIMEOUT"),
         ("strict mode violation", "LOCATOR_AMBIGUOUS"),
-        ("net::ERR_", "NETWORK_ERROR"),
-        ("ECONNREFUSED", "NETWORK_ERROR"),
+        *((token, "NETWORK_ERROR") for token in NETWORK_TOKENS),
         ("has been closed", "BROWSER_CLOSED"),
         ("AssertionError", "ASSERTION_FAILED"),
         ("playwright._impl._errors.Error", "PLAYWRIGHT_ERROR"),

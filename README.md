@@ -1,136 +1,165 @@
-# cloth-store-e2e
+# cloth-store-e2e — Hybrid Test Automation Framework (Python + Playwright)
 
-Bộ test tự động (Playwright + TypeScript) cho website bán quần áo **Đạt Hoàng**
+Bộ test tự động cho website bán quần áo **Đạt Hoàng**
 (`Web bán quần áo/Đồ án Quần áo` — React/Vite :3000 + Express API :5000).
+
+Framework theo mô hình **Hybrid**: POM + Keyword-Driven + Data-Driven, bổ sung logging có cấu trúc,
+taxonomy lỗi, failure evidence, JUnit XML và Allure reporting.
 
 > Đưa dự án lên GitHub / cài trên máy khác: xem [HUONG_DAN_GITHUB.md](HUONG_DAN_GITHUB.md).
 
-## Cài đặt
+## Luồng thực thi
+
+```text
+data/scenarios/*.xlsx (TestSteps + TestData) → hybrid_reader → template_binding → pytest item
+data/**/*.json (data-driven)                 → load_data → case_params          → pytest item
+                                                                                     ↓
+fixture (page, k, ctx) → Driver Script / test → keyword → POM → Playwright → browser
+                              │                    │                 │
+                              ├→ structured log    ├→ Allure step    └→ auto-wait + expect
+                              ↓
+                        pytest failure hook
+                              ↓
+          screenshot + page source + URL + trace + video + error category
+                              ↓
+                      JUnit XML + Allure Results
+```
+
+| Tầng | Thư mục | Chứa gì | Không chứa |
+|---|---|---|---|
+| **POM** | `pages/` | Locator, thao tác nguyên tử (fill, click 1 nút) | Assertion nghiệp vụ, dữ liệu test |
+| **Keyword** | `keywords/` | Bước nghiệp vụ + kiểm tra; mỗi keyword = 1 Allure step + 1 dòng log | Locator thô, dữ liệu cứng |
+| **Driver Script** | `drivers/` | Chạy kịch bản đã binding, log từng bước, phân loại lỗi rồi ném lại | Logic nghiệp vụ |
+| **Data** | `data/` | Test case, đầu vào, kết quả mong đợi, kịch bản Excel | Code |
+| **Utils** | `utils/` | Logging, taxonomy lỗi, evidence, đọc Excel/JSON, binding, API client | — |
+
+Danh mục đầy đủ **553 keyword**: [KEYWORDS.md](KEYWORDS.md) (tự sinh: `python scripts/gen_keywords_doc.py`).
+
+## Cấu trúc thư mục
+
+```text
+config.py                       # đọc .env theo TEST_ENV, URL, tài khoản test, timeout, chặn ghi DB remote
+pytest.ini                      # marker, thư mục test, mẫu tên file
+requirements.txt
+drivers/driver_script.py        # validate_steps + execute_steps cho kịch bản keyword-driven
+keywords/                       # kw_common, kw_auth, kw_catalog, kw_cart, kw_checkout, kw_account,
+                                # kw_listing, kw_product, kw_content, kw_admin, kw_admin_catalog,
+                                # kw_admin_sales, kw_admin_marketing, kw_admin_ops
+  base_keywords.py              # BaseKeywords, @keyword, self.step()
+  __init__.py                   # Keywords (fixture k) + KEYWORD_MAP (registry tường minh)
+pages/                          # POM: page_objects.py gom tất cả; components/ storefront/ account/ admin/
+utils/
+  logging_config.py             # TC_ID | Step | Action | Target | Result, TEST_LOG_LEVEL
+  error_classifier.py           # taxonomy lỗi dùng chung cho log / JUnit / Allure
+  artifact_manager.py           # thư mục evidence theo run_id, tên file an toàn
+  hybrid_reader.py              # đọc TestSteps/TestData từ Excel
+  template_binding.py           # gắn {placeholder} của 1 dòng TestData vào template
+  data_loader.py                # load_data (JSON), resolve_data (${...}, @data:), mask_secrets
+  cases.py                      # case_params: requires -> skip, knownBug -> xfail, tags -> marker
+  api_client.py, storage.py, factories.py, assertions.py, routes.py, messages.py
+data/                           # mỗi khu vực 1 thư mục JSON: auth/ catalog/ cart/ checkout/ account/ admin-*/ api/ ...
+  scenarios/*.xlsx              # kịch bản keyword-driven (Hybrid)
+tests/
+  conftest.py                   # lifecycle: log, evidence hook, browser context, write guard, fixture
+  framework/                    # unit test của framework (không cần app): logging, taxonomy, hợp đồng Hybrid
+  api/                          # REST API: health, sản phẩm, lọc/sắp xếp, auth, admin
+  e2e/                          # UI: smoke/ auth/ catalog/ cart/ checkout/ mobile/ storefront/ account/
+                                #     admin/ admin_catalog/ admin_sales/ admin_marketing/ admin_ops/
+    keyword_driven/             # chạy toàn bộ data/scenarios/*.xlsx
+  failure_demo/                 # demo cố tình FAIL để quan sát evidence (không nằm trong suite mặc định)
+scripts/                        # gen_keywords_doc.py, gen_test_cases.py
+artifacts/<env>/                # logs/ screenshots/ page_sources/ traces/ junit/ allure-results/ (không commit)
+```
+
+## Môi trường
 
 ```bash
-npm install
-npx playwright install chromium
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m playwright install chromium
 cp .env.example .env            # local
 cp .env.prod.example .env.prod  # production
 ```
 
-## Chạy test
+Allure CLI cài riêng (`brew install allure`) để chuyển `allure-results` thành báo cáo HTML.
 
-Mở app trước (hoặc đặt `START_SERVERS=1` trong `.env` để Playwright tự bật):
+Môi trường chọn bằng biến `TEST_ENV` (`local` mặc định → `.env`, `prod` → `.env.prod`).
+Mỗi môi trường có storageState (`.auth/<env>-*.json`) và thư mục `artifacts/<env>/` riêng.
+
+## Cách chạy
+
+Mở app trước (hoặc đặt `START_SERVERS=1` trong `.env` để framework tự bật):
 
 ```bash
 # terminal 1: cd "<APP_DIR>/backend"  && npm run dev
 # terminal 2: cd "<APP_DIR>/frontend" && npm run dev
 ```
 
-| Lệnh | Mô tả |
-|---|---|
-| `npm test` | Chạy toàn bộ (api + chromium + mobile) |
-| `npm run test:smoke` | Chỉ các test gắn tag `@smoke` |
-| `npm run test:api` | Chỉ test REST API |
-| `npm run test:keyword` | Chỉ các kịch bản keyword-driven (`test-data/scenarios`) |
-| `npm run test:e2e` | UI test trên Desktop Chrome |
-| `npm run test:mobile` | UI test trên Pixel 7 |
-| `npm run test:headed` | Chạy có hiện trình duyệt |
-| `npm run test:ui` | Playwright UI mode (debug trực quan) |
-| `npm run report` | Mở báo cáo HTML (`reports/local/html`) |
-| `npm run codegen` | Ghi thao tác để sinh code locator |
-
-### Chạy trên production (Vercel)
-
-Site: https://dat-hoang-store.vercel.app — cấu hình trong `.env.prod` (copy từ `.env.prod.example`).
+Từ thư mục project (`py` = `.venv/bin/python`):
 
 | Lệnh | Mô tả |
 |---|---|
-| `npm run test:prod` | Toàn bộ suite trên production |
-| `npm run test:prod:smoke` | Chỉ `@smoke` — dùng sau mỗi lần deploy |
-| `npm run test:prod:api` | Chỉ test API production |
-| `npm run test:prod:keyword` | Kịch bản keyword-driven trên production |
-| `npm run test:prod:watch` | **Xem trực tiếp**: mở Chrome, chạy lần lượt, mỗi thao tác chậm 0,6s |
-| `npm run test:prod:headed` | Hiện trình duyệt, chạy lần lượt từng test |
-| `npm run test:prod:ui` | Playwright UI mode: chọn test, xem từng bước, time-travel |
-| `npm run test:prod:debug` | Playwright Inspector: chạy từng bước một |
+| `py -m pytest --collect-only -q` | Kiểm tra dữ liệu + thu thập test, không mở browser |
+| `py -m pytest` | Toàn bộ suite (framework + api + e2e + mobile) |
+| `py -m pytest -m smoke` | Chỉ test `smoke` |
+| `py -m pytest -m core` | Unit test framework (không cần app) |
+| `py -m pytest -m api` / `-m e2e` / `-m mobile` / `-m keyword` | Theo nhóm |
+| `py -m pytest -n auto` | Chạy song song (pytest-xdist) |
+| `py -m pytest --headed --slowmo 600 -n 0` | Hiện trình duyệt, chậm 0,6s/thao tác để quan sát |
+| `PWDEBUG=1 py -m pytest tests/e2e/cart -k remove` | Playwright Inspector, chạy từng bước |
+| `py -m pytest tests/e2e/cart -k "remove_item"` | Chạy 1 test |
+| `py -m pytest tests/e2e/keyword_driven -k KD-SHOP-02` | Chạy 1 kịch bản Excel theo case_id |
 
-Thêm `SLOW_MO=500` phía trước để chậm lại cho dễ nhìn, vd: `SLOW_MO=500 npm run test:prod:headed -- tests/e2e/cart`.
-| `npm run report:prod` | Báo cáo HTML (`reports/prod/html`) |
-| `npm run docs:testcases` | Sinh `TEST_CASES.md` (danh mục test case + kết quả) từ lần chạy gần nhất (`TEST_ENV=prod npm run docs:testcases` cho production) |
+Production (https://dat-hoang-store.vercel.app — cấu hình trong `.env.prod`):
 
-Môi trường chọn bằng biến `TEST_ENV` (`local` mặc định → `.env`, `prod` → `.env.prod`).
-Mỗi môi trường có storageState (`.auth/<env>-*.json`) và thư mục báo cáo riêng.
+```bash
+TEST_ENV=prod py -m pytest -m smoke        # sau mỗi lần deploy
+TEST_ENV=prod py -m pytest
+```
+
+Đổi mức log:
+
+```bash
+TEST_LOG_LEVEL=DEBUG py -m pytest -m smoke   # DEBUG ghi cả lúc bắt đầu mỗi keyword
+```
+
+Demo chủ đích FAIL (offline, không cần app):
+
+```bash
+py -m pytest tests/failure_demo/demo_failure_evidence.py
+```
+
+Báo cáo:
+
+```bash
+allure generate artifacts/local/allure-results -o artifacts/local/allure-report --clean
+allure open artifacts/local/allure-report
+py scripts/gen_test_cases.py            # TEST_CASES.md từ lần chạy gần nhất (TEST_ENV=prod cho production)
+py scripts/gen_keywords_doc.py          # KEYWORDS.md
+```
 
 Khi chạy trên production:
 - **Không ghi dữ liệu**: `E2E_ALLOW_WRITE=1` bị bỏ qua với URL không phải localhost, trừ khi đặt thêm
   `E2E_ALLOW_WRITE_REMOTE=1`. Tạo đơn / đăng ký luôn được mock bằng `page.route`.
 - Dùng **tài khoản test riêng**, không dùng tài khoản khách thật.
 - Test vẫn mở trang sản phẩm thật → `view_count` của sản phẩm tăng nhẹ.
-- Retry 1 lần và timeout 45s để chịu cold start của serverless.
+- Retry 1 lần (pytest-rerunfailures) và timeout rộng hơn để chịu cold start của serverless.
 
-Chạy 1 file / 1 test: `npx playwright test tests/e2e/cart -g "Xóa sản phẩm"`.
+## Quy tắc lỗi và bằng chứng
 
-## Kiến trúc: POM + Keyword + Data
+- Driver Script thêm `case_id`, step, keyword, args và error category vào exception (`add_note`) rồi `raise` lại.
+- Keyword log `START/PASS/FAIL` kèm category; không bắt lỗi để trả boolean.
+- Pytest hook là đầu mối duy nhất chụp screenshot và page source; pytest-playwright giữ trace + video khi FAIL.
+- Fixture `page` là đầu mối duy nhất mở/đóng browser context.
+- Lỗi thu evidence chỉ được ghi WARNING, không che traceback của test.
+- Không log password, token hoặc dữ liệu bí mật (`mask_secrets` che mật khẩu trong tên step và log).
 
-```
-           test-data/*.json  ──────────────┐   (Data: test case, dữ liệu, kịch bản)
-                  │                         │
-   tests/**/*.spec.ts  (data-driven)   test-data/scenarios/*.json  (keyword-driven)
-                  │                         │  src/engine/runner.ts
-                  └──────────┬──────────────┘
-                             ▼
-             src/keywords/  — k.auth.login(), k.cart.increaseQuantity()...   (Keyword: bước nghiệp vụ)
-                             ▼
-             src/pages/     — LoginPage, CartDrawer, Header...               (POM: locator + thao tác nhỏ)
-                             ▼
-                        Playwright
-```
+Taxonomy lỗi: `ASSERTION_FAILED`, `TIMEOUT`, `LOCATOR_AMBIGUOUS`, `NETWORK_ERROR`, `BROWSER_CLOSED`,
+`PLAYWRIGHT_ERROR`, `DATA_OR_CONTRACT_ERROR`, `UNEXPECTED_ERROR`.
 
-| Tầng | Thư mục | Chứa gì | Không chứa |
-|---|---|---|---|
-| **POM** | `src/pages/` | Locator, thao tác nguyên tử (fill, click 1 nút) | Assertion nghiệp vụ, dữ liệu test |
-| **Keyword** | `src/keywords/` | Bước nghiệp vụ + kiểm tra, mỗi keyword = 1 `test.step` trong report | Locator thô, dữ liệu cứng |
-| **Data** | `test-data/` | Test case, dữ liệu đầu vào, kết quả mong đợi, kịch bản | Code |
-| **Engine** | `src/engine/` | Chạy kịch bản JSON, skip/known-bug theo dữ liệu | — |
+## Viết test — 3 cách
 
-Danh mục đầy đủ **101 keyword**: [KEYWORDS.md](KEYWORDS.md) (tự sinh: `npm run docs:keywords`).
-
-### Cấu trúc thư mục
-
-```
-.claude/skills/playwright-skill/  # Claude Code skill (lackeyjb/playwright-skill v5.0.0, MIT)
-playwright.config.ts              # projects: setup, api, chromium, mobile
-.env / .env.prod (+ .example)     # URL, tài khoản test, cờ ghi DB theo môi trường
-KEYWORDS.md                       # danh mục keyword (tự sinh)
-scripts/gen-keywords-doc.mjs      # sinh KEYWORDS.md từ JSDoc
-src/
-  config/env.ts                   # đọc .env theo TEST_ENV, chặn ghi DB remote
-  api/ApiClient.ts                # gọi backend (chuẩn bị dữ liệu, API test)
-  pages/                          # ① POM — PageObjects.ts gom tất cả page object
-  keywords/                       # ② Keyword — common, auth, catalog, cart, checkout, account, admin
-  engine/                         #    cases.ts (skip/knownBug), registry.ts, runner.ts
-  data/                           # ③ loader.ts (đọc JSON + thay biến), types.ts, factories.ts, routes.ts, messages.ts
-  fixtures/index.ts               # fixture: k (keywords), ctx (biến dữ liệu), api, page objects, purchasable
-  utils/storage.ts                # localStorage, storageState, detectReload
-test-data/                        # mỗi khu vực 1 thư mục: storefront/ account/ admin-*/ api/ ...
-  auth/        login.json, register.json
-  catalog/     categories.json, search.json
-  cart/        items.json
-  checkout/    addresses.json, checkout.json
-  admin/       menu.json
-  common/      static-pages.json
-  api/         endpoints.json
-  scenarios/   01-shopping.json, 02-account.json, 03-admin.json   # keyword-driven
-tests/
-  setup/       auth.setup.ts
-  api/         *.api.spec.ts                                      # health, sản phẩm, lọc/sắp xếp, auth, admin
-  e2e/         smoke/ auth/ catalog/ cart/ checkout/ mobile/       # luồng chính
-               storefront/                                        # trang chủ, danh sách, tìm kiếm, sản phẩm, blog, trang tĩnh
-               account/                                           # hồ sơ, đơn hàng, yêu thích, địa chỉ, checkout đã đăng nhập
-               admin/ admin-catalog/ admin-sales/ admin-marketing/ admin-ops/   # 16 trang quản trị
-               keyword-driven/scenarios.spec.ts                   # chạy toàn bộ test-data/scenarios
-```
-
-### Viết test — 3 cách
-
-**1. Thêm dữ liệu cho test có sẵn (không cần code).** Thêm 1 phần tử vào file JSON tương ứng, vd. `test-data/auth/login.json`:
+**1. Thêm dữ liệu cho test có sẵn (không cần code).** Thêm 1 phần tử vào file JSON tương ứng, vd. `data/auth/login.json`:
 
 ```json
 { "id": "LOGIN-V06", "title": "Email có khoảng trắng", "identifier": "a b@x.com", "password": "123456",
@@ -138,42 +167,40 @@ tests/
 ```
 
 Mỗi case có thể có: `tags` (`["@smoke"]`), `requires` (`customer` | `admin` | `allowWrite` → thiếu thì skip),
-`knownBug` (mô tả bug → `test.fail`).
+`knownBug` (mô tả bug → `xfail(strict=True)`).
 
-**2. Kịch bản keyword-driven (không cần code).** Thêm vào `test-data/scenarios/*.json` (hoặc tạo file mới):
+**2. Kịch bản keyword-driven trong Excel (không cần code).** Mỗi file `data/scenarios/*.xlsx` có 2 sheet:
 
-```json
-{
-  "id": "KD-SHOP-05",
-  "title": "Thêm sản phẩm rồi xóa khỏi giỏ",
-  "tags": ["@smoke"],
-  "steps": [
-    { "keyword": "catalog.openProduct", "arg": "${product.slug}" },
-    { "keyword": "catalog.addToCart", "arg": "${size.label}" },
-    { "keyword": "cart.openCart" },
-    { "keyword": "cart.removeItem", "arg": "${product.name}" },
-    { "keyword": "cart.verifyCartEmpty" }
-  ]
-}
+| Sheet | Cột |
+|---|---|
+| `TestSteps` (template) | `template_id` \| `step` (1, 2, 3... liên tục) \| `keyword` (`nhóm.tênKeyword`) \| `args` (mảng JSON) \| `note` |
+| `TestData` (1 dòng = 1 test) | `case_id` \| `template_id` \| `title` \| `tags` \| `requires` \| `known_bug` \| cột placeholder... |
+
+```text
+TestSteps:  T-REMOVE | 1 | catalog.openProduct | ["${product.slug}"]
+            T-REMOVE | 2 | catalog.addToCart   | ["{size}"]
+            T-REMOVE | 3 | cart.openCart       |
+            T-REMOVE | 4 | cart.removeItem     | ["${product.name}"]
+            T-REMOVE | 5 | cart.verifyCartEmpty|
+TestData:   KD-SHOP-05 | T-REMOVE | Thêm rồi xóa khỏi giỏ | @smoke | | | ${size.label}   ← cột "size"
 ```
 
-- `"arg"`: keyword nhận 1 tham số (kể cả mảng/object). `"args": [a, b]`: nhiều tham số theo thứ tự.
-- Keyword sai tên → báo lỗi ngay trước khi chạy, kèm danh sách keyword hợp lệ.
+- `{cot}`: gắn từ dòng TestData lúc collection (phải chiếm toàn bộ 1 phần tử của `args`).
+  Một template + nhiều dòng TestData = nhiều test, không lặp lại các bước.
+- `${...}`: biến runtime (xem bảng dưới), thay lúc chạy.
+- Keyword sai tên, step sai thứ tự, args không phải JSON, placeholder thiếu → báo lỗi lúc collection,
+  trước khi mở browser. Kịch bản phải có ít nhất 1 bước kiểm tra (`verify*`).
 
-**3. Spec bằng code** khi cần logic phức tạp — vẫn dùng keyword + data:
+**3. Test bằng code** khi cần logic phức tạp — vẫn dùng keyword + data:
 
-```ts
-import { test } from '@fixtures';
-import { loadData } from '@data/loader';
-import { applyCaseMeta, caseTitle } from '@engine/cases';
+```python
+from utils.cases import case_params
+from utils.data_loader import load_data
 
-for (const c of loadData<MyCase[]>('my/feature.json')) {
-  test(caseTitle(c), async ({ k, ctx }) => {
-    applyCaseMeta(c);
-    await k.catalog.openHome();
-    // ...
-  });
-}
+@pytest.mark.parametrize("case", case_params(load_data("my/feature.json")))
+def test_feature(k, case):
+    k.catalog.open_home()
+    ...
 ```
 
 ### Biến trong dữ liệu
@@ -186,34 +213,32 @@ for (const c of loadData<MyCase[]>('my/feature.json')) {
 | `${uid}` | Chuỗi số duy nhất (email không trùng...) |
 | `"@data:checkout/addresses.json#hcm"` | Nạp dữ liệu từ file khác (cả giá trị phải là chuỗi này) |
 
-Mật khẩu luôn được che `***` trong tên step của report.
-
 ### Thêm keyword mới
 
-1. (Nếu cần) thêm locator vào Page Object trong `src/pages/`.
-2. Thêm method vào nhóm phù hợp trong `src/keywords/` — **bắt buộc 1 dòng JSDoc** `/** ... */` và bọc thân trong `this.step(...)`.
-3. `npm run docs:keywords` để cập nhật `KEYWORDS.md` (script báo lỗi nếu thiếu JSDoc).
-
-Keyword mới tự dùng được trong kịch bản JSON với tên `nhóm.tênHàm`, không cần đăng ký.
+1. (Nếu cần) thêm locator vào Page Object trong `pages/`.
+2. Thêm method vào nhóm phù hợp trong `keywords/kw_*.py`: decorator `@keyword("tenCamelCase")`,
+   **docstring 1 dòng** tiếng Việt và thân bọc trong `with self.step(...)`.
+3. `python scripts/gen_keywords_doc.py` để cập nhật `KEYWORDS.md`.
 
 ## Quy ước
 
-- **Import** qua alias: `@fixtures`, `@keywords/*`, `@engine/*`, `@pages/*`, `@data/*`, `@api/*`, `@utils/*`, `@config/*`.
-- **Import `test, expect` từ `@fixtures`**. Thân test ưu tiên gọi keyword (`k`), chỉ dùng page object trực tiếp cho assertion đặc thù.
-- **Locator chỉ khai báo trong POM**, ưu tiên `getByRole` / `getByLabel` / `getByPlaceholder`.
+- Thân test ưu tiên gọi keyword (`k`), chỉ dùng page object (`po`) trực tiếp cho assertion đặc thù.
+  Docstring dòng đầu của test = tiêu đề tiếng Việt hiển thị trong Allure.
+- **Locator chỉ khai báo trong POM**, ưu tiên `get_by_role` / `get_by_label` / `get_by_placeholder`.
   Một số nút icon của app chưa có `aria-label` (giỏ hàng, tài khoản, menu mobile) nên tạm nhận diện qua SVG —
-  nên bổ sung `aria-label` hoặc `data-testid` trong app rồi cập nhật `Header.ts`.
-- **Dữ liệu và kết quả mong đợi** để trong `test-data/`, không viết cứng trong spec.
-- **Tag**: `@smoke`, `@api`, `@security`, `@mobile` → lọc bằng `--grep`.
-- **Đăng nhập**: dùng `test.use({ storageState: AUTH_FILES.customer })`, hoặc keyword `auth.restoreSession` trong kịch bản.
-- **Dữ liệu ghi** (đăng ký, tạo đơn, thêm/sửa/xóa admin...) luôn được **mock** bằng `k.common.mockWrite(...)`,
-  kiểm tra payload bằng `k.common.verifyRequest(...)`. Trang cần dữ liệu mà production chưa có (đơn hàng, đánh giá,
-  liên hệ...) dùng `k.common.mockGet(...)` với dữ liệu mẫu trong `test-data/`.
-- **Lưới an toàn `writeGuard`** (fixture tự động): khi `E2E_ALLOW_WRITE=0`, mọi request POST/PUT/DELETE tới `/api/**`
-  không được mock (trừ đăng nhập/đăng xuất) đều bị chặn và trả 418 — test quên mock sẽ fail chứ không ghi vào DB thật.
-  Backend local dùng chung DB với production — chỉ bật `E2E_ALLOW_WRITE=1` khi dùng DB test riêng.
-- **Bug đã biết**: `knownBug` trong JSON hoặc `test.fail(true, 'BUG: ...')` trong code. Khi bug được sửa,
-  Playwright báo *"Expected to fail, but passed"* → xóa đánh dấu.
+  nên bổ sung `aria-label` hoặc `data-testid` trong app rồi cập nhật `pages/components/header.py`.
+- **Dữ liệu và kết quả mong đợi** để trong `data/`, không viết cứng trong test.
+- **Marker**: `smoke`, `security`, `api`, `e2e`, `mobile`, `keyword`, `core` → lọc bằng `-m`.
+- **Đăng nhập**: `pytestmark = pytest.mark.role("customer")` (hoặc `"admin"`) — conftest đăng nhập qua API 1 lần,
+  thiếu tài khoản thì skip. Trong kịch bản Excel dùng keyword `auth.restoreSession`.
+- **Dữ liệu ghi** (đăng ký, tạo đơn, thêm/sửa/xóa admin...) luôn được **mock** bằng `k.common.mock_write(...)`,
+  kiểm tra payload bằng `k.common.verify_request(...)`. Trang cần dữ liệu mà production chưa có dùng
+  `k.common.mock_get(...)` với dữ liệu mẫu trong `data/`.
+- **Lưới an toàn write guard** (trong fixture `page`): khi `E2E_ALLOW_WRITE=0`, mọi request POST/PUT/DELETE tới
+  `/api/**` không được mock (trừ đăng nhập/đăng xuất) đều bị chặn và trả 418 — test quên mock sẽ fail chứ không ghi
+  vào DB thật. Backend local dùng chung DB với production — chỉ bật `E2E_ALLOW_WRITE=1` khi dùng DB test riêng.
+- **Bug đã biết**: `knownBug` trong dữ liệu hoặc `known_bug(request, "...")` trong code → `xfail(strict=True)`.
+  Khi bug được sửa, pytest báo `XPASS(strict)` → xóa đánh dấu.
 
 ## Danh mục test case & bug
 
@@ -221,10 +246,10 @@ Toàn bộ test case (ID, module, kết quả) và **danh sách bug đã phát h
 tự sinh từ lần chạy gần nhất:
 
 ```bash
-npm run test:prod && TEST_ENV=prod npm run docs:testcases
+TEST_ENV=prod py -m pytest && TEST_ENV=prod py scripts/gen_test_cases.py
 ```
 
-### ⚠️ Lỗ hổng bảo mật — test `@security` cố ý để FAIL (không dùng `test.fail`)
+### ⚠️ Lỗ hổng bảo mật — test security cố ý để FAIL (không đánh dấu xfail)
 
 1. **Mật khẩu cứng admin**: backend chấp nhận `admin123` / `manager123` / `staff123` cho **mọi tài khoản admin**
    (`backend/src/controllers/adminController.js` → `adminLogin`, và `backend/src/routes/adminAuth.js`).

@@ -14,7 +14,7 @@ REQUIREMENTS = {
     "admin": lambda: None if ADMIN["email"] else "Cần E2E_ADMIN_EMAIL/PASSWORD",
     "allowWrite": lambda: None if ALLOW_WRITE else "Cần E2E_ALLOW_WRITE=1 (ghi dữ liệu thật)",
 }
-TAG_MARKS = {"@smoke": pytest.mark.smoke}
+TAG_MARKS = {"@smoke": pytest.mark.smoke, "@security": pytest.mark.security}
 
 
 def missing_requirement(requires=None):

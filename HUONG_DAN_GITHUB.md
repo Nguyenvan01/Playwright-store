@@ -19,8 +19,8 @@ Chỉ chuyển sang public sau khi đã sửa hết các lỗ hổng.
 |---|---|
 | `.env`, `.env.prod` | Chứa email + mật khẩu tài khoản test |
 | `.auth/*.json` | Chứa token đăng nhập (customer, admin) |
-| `node_modules/` | Cài lại bằng `npm install` |
-| `reports/`, `test-results/` | Kết quả chạy test, ảnh, video, trace |
+| `.venv/` | Cài lại bằng `pip install -r requirements.txt` |
+| `artifacts/` | Kết quả chạy test: log, ảnh, page source, video, trace, JUnit, Allure |
 
 Các file mẫu `.env.example` và `.env.prod.example` (không có mật khẩu) **được** đưa lên để người khác biết cần cấu hình gì.
 
@@ -46,7 +46,7 @@ git status
 Nếu thấy, dừng lại và kiểm tra `.gitignore`. Nếu không thấy, commit:
 
 ```bash
-git commit -m "Bộ test E2E Playwright cho web bán quần áo Đạt Hoàng"
+git commit -m "Bộ test E2E Python + Playwright cho web bán quần áo Đạt Hoàng"
 ```
 
 ### Bước 3 — Tạo repo và đẩy lên
@@ -87,17 +87,20 @@ Lệnh cuối tạo repo private tên `cloth-store-e2e` và đẩy code lên lu�
 
 Mở repo trên trình duyệt và xác nhận:
 
-- Có `README.md`, `TEST_CASES.md`, `KEYWORDS.md`, `src/`, `tests/`, `test-data/`
+- Có `README.md`, `TEST_CASES.md`, `KEYWORDS.md`, `config.py`, `keywords/`, `pages/`, `tests/`, `data/`
 - **Không** có `.env.prod`, thư mục `.auth/` chỉ có `.gitkeep`
 - Góc trên có nhãn **Private**
 
 ## Cập nhật về sau
 
+(`py` = `.venv/bin/python`)
+
 Mỗi khi thêm hoặc sửa test:
 
 ```bash
 cd "/Users/ccm/Documents/Dự án cá nhân/Playwright/cloth-store-e2e"
-npm run typecheck                         # đảm bảo không lỗi TypeScript
+py -m pytest --collect-only -q           # dữ liệu + import hợp lệ
+py -m pytest -m core                      # unit test framework
 git status                                # xem file thay đổi
 git add .
 git commit -m "Mô tả ngắn thay đổi, vd: Thêm test trang Khuyến mãi"
@@ -107,8 +110,8 @@ git push
 Nên cập nhật tài liệu tự sinh trước khi commit:
 
 ```bash
-npm run docs:keywords                                       # KEYWORDS.md
-npm run test:prod && TEST_ENV=prod npm run docs:testcases   # TEST_CASES.md (chạy toàn bộ test, ~8 phút)
+py scripts/gen_keywords_doc.py                                          # KEYWORDS.md
+TEST_ENV=prod py -m pytest; TEST_ENV=prod py scripts/gen_test_cases.py  # TEST_CASES.md (chạy toàn bộ test)
 ```
 
 ## Cài lại trên máy khác
@@ -116,8 +119,9 @@ npm run test:prod && TEST_ENV=prod npm run docs:testcases   # TEST_CASES.md (ch�
 ```bash
 git clone https://github.com/<username>/cloth-store-e2e.git
 cd cloth-store-e2e
-npm install
-npx playwright install chromium
+python3 -m venv .venv
+.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m playwright install chromium
 
 cp .env.example .env               # cấu hình chạy local
 cp .env.prod.example .env.prod     # cấu hình chạy production
@@ -137,7 +141,7 @@ Mật khẩu có ký tự `#` thì **phải** bọc trong dấu nháy đơn `'..
 Chạy thử:
 
 ```bash
-npm run test:prod:smoke
+TEST_ENV=prod .venv/bin/python -m pytest -m smoke
 ```
 
 ## Gặp lỗi thường gặp
@@ -148,4 +152,4 @@ npm run test:prod:smoke
 | `remote origin already exists` | `git remote set-url origin https://github.com/<username>/cloth-store-e2e.git` |
 | `Updates were rejected because the remote contains work...` | Repo trên GitHub đã có file (do tick "Add README"). Chạy `git pull origin main --allow-unrelated-histories`, rồi `git push` |
 | Lỡ commit `.env.prod` | **Đổi mật khẩu 2 tài khoản test ngay**, rồi `git rm --cached .env.prod`, commit và push lại. File vẫn còn trong lịch sử git, nên đổi mật khẩu là bắt buộc |
-| `npm run test:prod` báo thiếu tài khoản, test bị bỏ qua | Chưa tạo hoặc chưa điền `.env.prod` (xem mục *Cài lại trên máy khác*) |
+| `TEST_ENV=prod py -m pytest` báo thiếu tài khoản, test bị bỏ qua | Chưa tạo hoặc chưa điền `.env.prod` (xem mục *Cài lại trên máy khác*) |
