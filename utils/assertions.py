@@ -2,8 +2,14 @@
 # - poll_until  ~ expect.poll(...).toBe(true)
 # - assert_subset ~ expect(actual).toMatchObject(expected)
 import time
+from contextvars import ContextVar
 
 from config import EXPECT_TIMEOUT
+
+# Page của test đang chạy (conftest đặt). Playwright sync chỉ xử lý sự kiện (page.on("request"),
+# route handler...) khi đang chờ 1 lệnh Playwright -> phải chờ bằng page.wait_for_timeout,
+# time.sleep sẽ "đóng băng" mọi sự kiện trong lúc poll.
+current_page = ContextVar("current_page", default=None)
 
 
 def poll_until(condition, message, timeout=EXPECT_TIMEOUT, interval=100):
@@ -15,7 +21,11 @@ def poll_until(condition, message, timeout=EXPECT_TIMEOUT, interval=100):
             return value
         if time.monotonic() >= deadline:
             raise AssertionError(f"{message} (sau {timeout}ms)")
-        time.sleep(interval / 1000)
+        page = current_page.get()
+        if page is not None and not page.is_closed():
+            page.wait_for_timeout(interval)
+        else:
+            time.sleep(interval / 1000)
 
 
 def is_subset(expected, actual):

@@ -61,3 +61,13 @@ def test_keyword_step_failure_keeps_original_error(k, fake_site):
     """Keyword thất bại ném lại AssertionError gốc (không đổi thành boolean)"""
     with pytest.raises(AssertionError):
         k.common.verify_request("PUT", "/api/never")
+
+
+def test_poll_sees_events_fired_while_waiting(k, fake_site):
+    """verifyRequest bắt được request gửi SAU khi bắt đầu poll (sự kiện vẫn được xử lý lúc chờ)"""
+    k.common.mock_write("POST", "**/api/later", {"success": True})
+    fake_site.evaluate(
+        "url => setTimeout(() => fetch(url, { method: 'POST', body: '{}' }), 300)",
+        f"{ORIGIN}/api/later",
+    )
+    k.common.verify_request("POST", "/api/later")

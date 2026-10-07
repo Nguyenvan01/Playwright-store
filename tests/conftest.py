@@ -41,6 +41,7 @@ from config import (
 )
 from keywords import Keywords
 from utils.api_client import ApiClient
+from utils.assertions import current_page
 from utils.artifact_manager import create_artifact_layout, safe_artifact_name
 from utils.cases import case_title
 from utils.data_loader import base_context
@@ -309,7 +310,9 @@ def page(context, request):
             route.fulfill(status=418, json={"success": False, "message": "[E2E] Đã chặn ghi dữ liệu thật"})
 
         page.route("**/api/**", guard)
+    token = current_page.set(page)
     yield page
+    current_page.reset(token)
     if blocked:
         request.node.user_properties.append(("write-blocked", ", ".join(blocked)))
         allure.attach("\n".join(blocked), "write-blocked", allure.attachment_type.TEXT)
