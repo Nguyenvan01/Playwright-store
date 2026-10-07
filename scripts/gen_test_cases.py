@@ -1,7 +1,7 @@
 # ============================================================
 # SINH TEST_CASES.md (danh mục test case + kết quả) từ Allure results của lần chạy gần nhất.
 # Chạy sau 1 lần test:
-#     .venv/bin/python scripts/gen_test_cases.py              (TEST_ENV=prod ... cho môi trường prod)
+#     .venv/bin/python scripts/gen_test_cases.py              (TEST_ENV=local ... cho môi trường local)
 #     .venv/bin/python scripts/gen_test_cases.py --stdout     (in ra màn hình, không ghi file)
 #     .venv/bin/python scripts/gen_test_cases.py --results DIR
 # Nguồn: artifacts/<TEST_ENV>/allure-results/*-result.json. Allure giữ kết quả của nhiều lần chạy

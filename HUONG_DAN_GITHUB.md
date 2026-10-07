@@ -111,7 +111,7 @@ Nên cập nhật tài liệu tự sinh trước khi commit:
 
 ```bash
 py scripts/gen_keywords_doc.py                                          # KEYWORDS.md
-TEST_ENV=prod py -m pytest; TEST_ENV=prod py scripts/gen_test_cases.py  # TEST_CASES.md (chạy toàn bộ test)
+py -m pytest; py scripts/gen_test_cases.py   # TEST_CASES.md (chạy toàn bộ test trên web thật)
 ```
 
 ## Cài lại trên máy khác
@@ -123,8 +123,8 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m playwright install chromium
 
-cp .env.example .env               # cấu hình chạy local
-cp .env.prod.example .env.prod     # cấu hình chạy production
+cp .env.prod.example .env.prod     # cấu hình chạy web thật (mặc định)
+cp .env.example .env               # cấu hình chạy local (tuỳ chọn)
 ```
 
 Mở `.env.prod` và điền lại tài khoản test (lấy từ người quản lý dự án, **không** gửi qua chat công khai):
@@ -141,8 +141,24 @@ Mật khẩu có ký tự `#` thì **phải** bọc trong dấu nháy đơn `'..
 Chạy thử:
 
 ```bash
-TEST_ENV=prod .venv/bin/python -m pytest -m smoke
+.venv/bin/python -m pytest -m smoke   # chạy trên https://dat-hoang-store.vercel.app
 ```
+
+## Test tự chạy khi push (GitHub Actions)
+
+Workflow [.github/workflows/e2e.yml](.github/workflows/e2e.yml) chạy test trên https://dat-hoang-store.vercel.app
+mỗi lần `git push` lên `main` (và mỗi PR vào `main`). Xem kết quả ở tab **Actions** của repo.
+
+Khai báo tài khoản test **một lần** (không commit `.env.prod`), lấy giá trị từ `.env.prod` ở máy:
+
+```bash
+gh secret set E2E_CUSTOMER_EMAIL
+gh secret set E2E_CUSTOMER_PASSWORD
+gh secret set E2E_ADMIN_EMAIL
+gh secret set E2E_ADMIN_PASSWORD
+```
+
+(mỗi lệnh hỏi giá trị, dán vào rồi Enter; hoặc vào **Settings → Secrets and variables → Actions → New repository secret**).
 
 ## Gặp lỗi thường gặp
 
@@ -152,4 +168,4 @@ TEST_ENV=prod .venv/bin/python -m pytest -m smoke
 | `remote origin already exists` | `git remote set-url origin https://github.com/<username>/cloth-store-e2e.git` |
 | `Updates were rejected because the remote contains work...` | Repo trên GitHub đã có file (do tick "Add README"). Chạy `git pull origin main --allow-unrelated-histories`, rồi `git push` |
 | Lỡ commit `.env.prod` | **Đổi mật khẩu 2 tài khoản test ngay**, rồi `git rm --cached .env.prod`, commit và push lại. File vẫn còn trong lịch sử git, nên đổi mật khẩu là bắt buộc |
-| `TEST_ENV=prod py -m pytest` báo thiếu tài khoản, test bị bỏ qua | Chưa tạo hoặc chưa điền `.env.prod` (xem mục *Cài lại trên máy khác*) |
+| `py -m pytest` báo thiếu tài khoản, test bị bỏ qua | Chưa tạo hoặc chưa điền `.env.prod` (xem mục *Cài lại trên máy khác*) |

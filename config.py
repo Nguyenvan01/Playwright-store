@@ -1,8 +1,11 @@
 # ============================================================
 # CẤU HÌNH DỰ ÁN: đường dẫn, môi trường, URL và timeout dùng chung.
+# Mặc định chạy trên web thật https://dat-hoang-store.vercel.app.
 # Chọn môi trường bằng biến TEST_ENV:
-#   (không đặt) -> .env       (local: localhost:3000 + localhost:5000)
-#   prod        -> .env.prod  (https://dat-hoang-store.vercel.app)
+#   (không đặt) / prod -> .env.prod  (https://dat-hoang-store.vercel.app)
+#   local              -> .env       (localhost:3000 + localhost:5000)
+# Trên CI (GitHub Actions) không có file .env.prod: URL dùng giá trị mặc định,
+# tài khoản test lấy từ GitHub Secrets qua biến môi trường.
 # Expected thuộc dữ liệu/đặc tả; cấu hình không được sửa expected để làm test xanh.
 # ============================================================
 import os
@@ -15,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data"
 SCENARIO_DIR = DATA_DIR / "scenarios"
 
-TEST_ENV = os.getenv("TEST_ENV", "local")
+TEST_ENV = os.getenv("TEST_ENV") or "prod"
 load_dotenv(ROOT / (".env" if TEST_ENV == "local" else f".env.{TEST_ENV}"))
 
 # Mỗi môi trường có thư mục báo cáo / evidence riêng.
@@ -26,9 +29,16 @@ def _flag(name):
     return os.getenv(name, "") in {"1", "true"}
 
 
-BASE_URL = os.getenv("BASE_URL") or "http://localhost:3000"
+PROD_URL = "https://dat-hoang-store.vercel.app"
+_DEFAULT_URLS = (
+    ("http://localhost:3000", "http://localhost:5000/api")
+    if TEST_ENV == "local"
+    else (PROD_URL, f"{PROD_URL}/api")
+)
+
+BASE_URL = os.getenv("BASE_URL") or _DEFAULT_URLS[0]
 IS_LOCAL = bool(re.match(r"^https?://(localhost|127\.0\.0\.1)(:\d+)?", BASE_URL))
-API_URL = (os.getenv("API_URL") or "http://localhost:5000/api").rstrip("/")
+API_URL = (os.getenv("API_URL") or _DEFAULT_URLS[1]).rstrip("/")
 APP_DIR = os.getenv("APP_DIR") or "/Users/ccm/Documents/Dự án cá nhân/Web bán quần áo/Đồ án Quần áo"
 START_SERVERS = IS_LOCAL and _flag("START_SERVERS")
 IS_CI = bool(os.getenv("CI"))

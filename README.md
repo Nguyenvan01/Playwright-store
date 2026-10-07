@@ -77,25 +77,19 @@ artifacts/<env>/                # logs/ screenshots/ page_sources/ traces/ junit
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
 .venv/bin/python -m playwright install chromium
-cp .env.example .env            # local
-cp .env.prod.example .env.prod  # production
+cp .env.prod.example .env.prod  # production (mặc định) - điền tài khoản test
+cp .env.example .env            # local (tuỳ chọn)
 ```
 
 Allure CLI cài riêng (`brew install allure`) để chuyển `allure-results` thành báo cáo HTML.
 
-Môi trường chọn bằng biến `TEST_ENV` (`local` mặc định → `.env`, `prod` → `.env.prod`).
+**Mặc định test chạy trên web thật https://dat-hoang-store.vercel.app** (`TEST_ENV=prod` → `.env.prod`).
+Muốn chạy trên máy local thì đặt `TEST_ENV=local` (→ `.env`, localhost:3000 + localhost:5000).
 Mỗi môi trường có storageState (`.auth/<env>-*.json`) và thư mục `artifacts/<env>/` riêng.
 
 ## Cách chạy
 
-Mở app trước (hoặc đặt `START_SERVERS=1` trong `.env` để framework tự bật):
-
-```bash
-# terminal 1: cd "<APP_DIR>/backend"  && npm run dev
-# terminal 2: cd "<APP_DIR>/frontend" && npm run dev
-```
-
-Từ thư mục project (`py` = `.venv/bin/python`):
+Từ thư mục project (`py` = `.venv/bin/python`), mọi lệnh dưới đây chạy trên https://dat-hoang-store.vercel.app:
 
 | Lệnh | Mô tả |
 |---|---|
@@ -110,12 +104,23 @@ Từ thư mục project (`py` = `.venv/bin/python`):
 | `py -m pytest tests/e2e/cart -k "remove_item"` | Chạy 1 test |
 | `py -m pytest tests/e2e/keyword_driven -k KD-SHOP-02` | Chạy 1 kịch bản Excel theo case_id |
 
-Production (https://dat-hoang-store.vercel.app — cấu hình trong `.env.prod`):
+Chạy trên máy local thay vì web thật (mở app trước, hoặc đặt `START_SERVERS=1` trong `.env` để framework tự bật):
 
 ```bash
-TEST_ENV=prod py -m pytest -m smoke        # sau mỗi lần deploy
-TEST_ENV=prod py -m pytest
+# terminal 1: cd "<APP_DIR>/backend"  && npm run dev
+# terminal 2: cd "<APP_DIR>/frontend" && npm run dev
+TEST_ENV=local py -m pytest -m smoke
 ```
+
+### Chạy tự động trên GitHub Actions
+
+[.github/workflows/e2e.yml](.github/workflows/e2e.yml) chạy toàn bộ suite (trừ nhóm `security`) trên
+https://dat-hoang-store.vercel.app mỗi khi **push** hoặc mở **PR** vào `main`. Chạy tay một nhóm khác:
+tab **Actions → E2E production → Run workflow**, nhập marker (vd `smoke`, `security`).
+
+- Tài khoản test lấy từ GitHub Secrets: `E2E_CUSTOMER_EMAIL`, `E2E_CUSTOMER_PASSWORD`, `E2E_ADMIN_EMAIL`,
+  `E2E_ADMIN_PASSWORD` (thiếu secret → test cần đăng nhập tự skip).
+- Kết quả: bảng tóm tắt ở trang của lần chạy; JUnit, Allure, log, ảnh, trace tải ở mục **Artifacts**.
 
 Đổi mức log:
 
@@ -132,9 +137,9 @@ py -m pytest tests/failure_demo/demo_failure_evidence.py
 Báo cáo:
 
 ```bash
-allure generate artifacts/local/allure-results -o artifacts/local/allure-report --clean
-allure open artifacts/local/allure-report
-py scripts/gen_test_cases.py            # TEST_CASES.md từ lần chạy gần nhất (TEST_ENV=prod cho production)
+allure generate artifacts/prod/allure-results -o artifacts/prod/allure-report --clean
+allure open artifacts/prod/allure-report
+py scripts/gen_test_cases.py            # TEST_CASES.md từ lần chạy gần nhất
 py scripts/gen_keywords_doc.py          # KEYWORDS.md
 ```
 
@@ -246,7 +251,7 @@ Toàn bộ test case (ID, module, kết quả) và **danh sách bug đã phát h
 tự sinh từ lần chạy gần nhất:
 
 ```bash
-TEST_ENV=prod py -m pytest && TEST_ENV=prod py scripts/gen_test_cases.py
+py -m pytest && py scripts/gen_test_cases.py
 ```
 
 ### ⚠️ Lỗ hổng bảo mật — test security cố ý để FAIL (không đánh dấu xfail)
